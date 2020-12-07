@@ -1,17 +1,14 @@
 package gimsehyeon.yoyangscombine.web.user;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import gimsehyeon.yoyangscombine.domain.Member;
 import gimsehyeon.yoyangscombine.service.user.UserService;
 
 @Controller
@@ -24,22 +21,25 @@ public class UserController {
 	}
 	
 	@PostMapping("/user/login")
-	public String login(@Valid @ModelAttribute("member") Member member, Model model, Errors err, HttpSession session) {
-		String view;
-		if(err.hasErrors()) view = "user/login";
+	public String login(@RequestParam("memberId") String memberId,
+						@RequestParam("password") String password, Model model, HttpSession session) {
+		String view = "";
+		String loginChecker = userService.loginCheck(memberId, password);
 		
-		Member result = userService.getLoginMember(member.getMemberId(), member.getPassword());
-		
-		if(result == null) {
-			session.setAttribute("member", null);
-			model.addAttribute("msg", "아이디 또는 비밀번호가 틀립니다.");
+		if(loginChecker.equals("ID")) {
+			model.addAttribute("msg", "일치하는 아이디가 없습니다.");
 			view = "user/login";
 		}
-		else {
-			session.setAttribute("member", result);
-			model.addAttribute("msg", null);
-			if(result.getMemberId().equals("admin")) view = "admin/main";
-			else view = "main";
+		if(loginChecker.equals("PW")) {
+			model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+			view = "user/login";
+		}
+		if(loginChecker.equals("SUCCESS")) {
+			session.setAttribute("memberId", memberId);
+			view = "redirect:../";
+		}
+		if(loginChecker.equals("ADMIN")) {
+			view = "redirect:../admin/main";
 		}
 		
 		return view;

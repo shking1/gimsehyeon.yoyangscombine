@@ -15,7 +15,7 @@
 			</div>
 		</div>
 		<div class='col-md-5' id='login-border'>
-			<form:form modelAttribute='member'>
+			<form method='post' id='login_form'>
 				<div class='form-group row'>
 					<label class='col-2 col-form-label'> 
 						<svg width='1.5em' height='1.5em' viewBox='0 0 16 16' class='bi bi-person' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
@@ -45,7 +45,7 @@
 					<span></span><br>
 					${msg}
 				</div>
-			</form:form>
+			</form>
 		</div>
 	</div>
 	<!-- include: footer -->

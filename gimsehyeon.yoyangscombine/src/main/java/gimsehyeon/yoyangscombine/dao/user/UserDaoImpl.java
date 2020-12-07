@@ -11,15 +11,7 @@ public class UserDaoImpl implements UserDao {
 	@Autowired private UserMap userMap;
 	
 	@Override
-	public Member selectLoginMember(String memberId, String password) {
-		Member result = null;
-		
-		try {
-			result = userMap.selectLoginMember(memberId, password);
-		} catch (Exception e) {
-			return result;
-		}
-		
-		return result;
+	public Member selectMember(String memberId) {
+		return userMap.selectMember(memberId);
 	}
 }
