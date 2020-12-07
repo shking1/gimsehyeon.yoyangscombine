@@ -17,7 +17,7 @@ public class Member {
 	String memberId;
 	String patientName;
 	String sanaName;
-	String profileImgFilename;
+	byte[] profileImgFilename;
 	LocalDate joinDate;
 	String memberName;
 	String password;
