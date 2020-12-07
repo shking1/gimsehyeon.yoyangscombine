@@ -1,0 +1,173 @@
+@charset "UTF-8";
+
+/*include: header*/
+#headertexthref{
+	margin-left: 75%;
+}
+#headertext{
+	text-align:center;                    
+}
+/*/include: header*/
+/*include: gnb*/
+#common-header{
+	text-align:center;
+}
+
+#gnb-li{
+	list-style:none;
+	display:inline-block;	
+}
+
+#gnb_btn{
+	width: 100px;
+	height: 40px;
+	background-color: #C1C0C0;
+	border-style: none;
+}
+
+#gnb_btn:hover, 
+#search-btn-admin:hover,
+#search-button:hover
+{
+	background: gray;
+}
+/*/include: gnb*/
+/*parents body*/
+#main-body,
+#main-admin-body
+{
+	position:relative;
+    margin: 10px;                    
+    min-width: 768px;            
+    min-height: 824px;
+    /*min-height: 1024px 였지만, main이 너무 휑하게 나와서 200 줄였음. 문제시 코드 수정*/   
+}
+/*/parents body*/
+/*title*/
+#logotext{
+	text-align:center;
+	display: block;                      
+    width: 200px;                   
+    height: 80px;
+    margin: 250px auto 20px;     
+}
+ 
+#main_logo{
+     display: block;                     
+     width: 150px;                   
+     height: 80px;
+     margin: 250px auto 20px;        
+}
+ 
+#title-text{
+     text-align: center;
+     font-weight: bold;
+     color: #252424;
+}
+
+#box{
+	text-align: center;                     
+}
+#box2{
+	text-align: center;
+}
+
+#admin-main-board{
+	align: center;
+	text-align: center;
+	width: 100%; 
+	height: 100px;         
+}
+
+#numberbar-admin{
+	margin: 50px;
+	color:#C1C0C0;
+}
+
+#search-btn-admin{
+	background: #C1C0C0;
+	color:black;
+}
+
+#search-dropdown{
+     width: 135px;
+     height: 40px;
+     margin: 30px 3px;
+     border: none;
+     background-color: #F4F4F4;
+     font-weight: bold;
+     color: gray;
+}
+
+#search-dropdown-o {
+	 width: 135px;
+     height: 40px;
+     border: none;
+     background-color: #F4F4F4;
+     font-weight: bold;
+     color: gray;
+}
+ 
+#search{
+	width: 300px;
+	height: 40px;
+	margin: 30px 3px;
+	font-size: 10pt;
+}
+
+#search-button{
+	width: 80px;
+	height: 40px;
+	background-color: #F4F4F4;
+	border-style: none;
+}
+
+/*include: footer*/
+#main-footer {
+	width: 90%;
+	height: 70px;
+	position:absolute;
+	bottom:0;  
+	padding: 5px 5px 0px 5px;
+}
+
+#footer-pre-div {
+	font-size: 1;
+	color: gray;	
+}
+/*/include: footer*/ 
+/*게시판 리스트 목록 */
+.sub_news,.sub_news th,.sub_news td{border:0}
+.sub_news a{color:#383838;text-decoration:none}
+.sub_news{width:100%;border-bottom:1px solid #999;color:#666;font-size:12px;table-layout:fixed}
+.sub_news caption{display:none}
+.sub_news th{padding:5px 0 6px;border-top:solid 1px #999;border-bottom:solid 1px #b2b2b2;background-color:#f1f1f4;color:#333;font-weight:bold;line-height:20px;vertical-align:top}
+.sub_news td{padding:5px 0 9px;border-bottom:solid 1px #d2d2d2;text-align:center;line-height:18px;}
+.sub_news .date-first-board,.sub_news .date-first-board{padding:0;font-family:Tahoma;font-size:11px;line-height:normal}
+.sub_news .title .sub_news .title .new{margin:0 0 2px;vertical-align:middle}
+.sub_news .title a.comment{padding:0;background:none;color:#f00;font-size:12px;font-weight:bold}
+.search-brother{
+	text-align: right;
+}
+/*/게시판 리스트 목록 */
+
+/*login*/
+#login-border {
+   width: 150px;
+   height: 400px;
+   margin-top: 300px;
+   margin-left: 40px;
+}
+
+#login_img {
+   width: 150px;
+   height: 80px;
+   border: 1px solid black;
+   margin-top: 40px;
+   margin-left: 10px;
+}
+
+#login_form {
+   margin-top: 40px;
+}
+/*/login*/

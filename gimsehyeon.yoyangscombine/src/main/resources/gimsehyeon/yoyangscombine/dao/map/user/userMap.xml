@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='gimsehyeon.yoyangscombine.dao.map.user.UserMap'>
+	<!-- 로그인 -->
+<!-- 	<select id='selectLoginMember' resultType='member'> -->
+<!-- 		select member_num memberNum, member_status memberStatus, -->
+<!-- 				member_id memberId, patient_name patientName, -->
+<!-- 				sana_name sanaName, profile_img_filename profileImgFilename, -->
+<!-- 				join_date joinDate, member_name memberName, password, -->
+<!-- 				num_of_report numOfReport -->
+<!-- 		from members -->
+<!-- 		where member_id = #{memberId} and password = #{password} -->
+<!-- 	</select> -->
+	
+	<select id='selectLoginMember' resultMap='memberMap'>
+		select member_num, member_status, member_id, patient_name,
+				sana_name, profile_img_filename, join_date,
+				member_name, password, num_of_report
+		from members
+		where member_id = #{memberId} and password = #{password}
+	</select>
+	
+	<resultMap id='memberMap' type='member'>
+		<id     property='memberNum'			column='member_num'/>
+		<result property='memberStatus'			column='member_status'/>
+		<result property='memberId'				column='member_id'/>
+		<result property='patientName'			column='patient_name'/>
+		<result property='sanaName'				column='sana_name'/>
+		<result property='profileImgFilename'	column='profile_img_filename'/>
+		<result property='joinDate'				column='join_date'/>
+		<result property='memberName'			column='member_name'/>
+		<result property='password'				column='password'/>
+		<result property='numOfReport'			column='num_of_report'/>
+	</resultMap>
+</mapper>

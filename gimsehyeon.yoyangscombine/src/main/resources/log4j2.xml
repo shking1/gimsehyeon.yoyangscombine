@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout />
+		</Console>		
+		<RollingFile name="file" fileName="c:/DEV/gimsehyeon.yoyangscombine.log"
+			filePattern="c:/DEV/gimsehyeon.yoyangscombine.%d{yyyy-MM-dd-HH-mm-ss}.log"
+			append="true">
+			<PatternLayout pattern="[%-5p: %d{yyyy/MM/dd HH:mm:ss}] %m%n" />
+			<Policies>				
+				<TimeBasedTriggeringPolicy interval="86400"/>
+			</Policies>
+		</RollingFile>
+	</Appenders>
+
+	<!-- FATAL, ERROR, WARN, INFO, DEBUG, TRACE -->
+	<Loggers>		
+		<Root level="error">
+			<AppenderRef ref="console" />
+			<AppenderRef ref='file'/>
+		</Root>
+	</Loggers>
+</Configuration>

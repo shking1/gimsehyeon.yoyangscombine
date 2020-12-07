@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='utf-8'?>
+<beans xmlns='http://www.springframework.org/schema/beans'
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xmlns:mybatis='http://mybatis.org/schema/mybatis-spring'
+	xmlns:context='http://www.springframework.org/schema/context'
+	xmlns:tx='http://www.springframework.org/schema/tx'
+	xsi:schemaLocation='http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://mybatis.org/schema/mybatis-spring
+	http://mybatis.org/schema/mybatis-spring.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd'>
+	
+	<bean id='dataSource' class='org.springframework.jndi.JndiObjectFactoryBean'>
+		<property name='jndiName' value='java:comp/env/jdbc/gimsehyeon'/>
+		<property name='resourceRef' value='true'/>
+	</bean>
+	
+	<bean id='sqlSessionFactory' class='org.mybatis.spring.SqlSessionFactoryBean'>
+		<property name='dataSource' ref='dataSource'/>
+		<property name='configLocation' value='classpath:gimsehyeon/yoyangscombine/config/sqlMapConfig.xml'/>
+		<property name='mapperLocations'>
+			<array>
+				<value>classpath:gimsehyeon/yoyangscombine/dao/map/**/*Map.xml</value>
+			</array>
+		</property>
+	</bean>
+	
+	<bean id='multipartResolver' class='org.springframework.web.multipart.commons.CommonsMultipartResolver'>
+		<property name='maxUploadSize' value='524280'/>
+		<property name='maxInMemorySize' value='5242880'/>
+		<property name='defaultEncoding' value='utf-8'/>
+	</bean>
+	<context:property-placeholder location='classpath:gimsehyeon/yoyangscombine/config/application.properties'/>
+	
+	<mybatis:scan base-package='gimsehyeon.yoyangscombine.dao.map.**'/>
+	
+	<bean id='mailSender' class='org.springframework.mail.javamail.JavaMailSenderImpl'>
+		<property name='username' value='shking28@gmail.com'/>
+		<property name='password' value='jpsgphouawolurbv'/>
+		<property name='javaMailProperties'>
+			<props>
+				<prop key='mail.smtp.starttls.enable'>true</prop>
+				<prop key='mail.smtp.host'>smtp.gmail.com</prop>
+				<prop key='mail.smtp.port'>465</prop>
+				<prop key='mail.smtp.socketFactory.class'>javax.net.ssl.SSLSocketFactory</prop>
+				<prop key='mail.smtp.socketFactory.port'>465</prop>
+				<prop key='mail.smtp.socketFactory.fallback'>false</prop>
+				<prop key='mail.smtp.auth'>true</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id='transactionManager' class='org.springframework.jdbc.datasource.DataSourceTransactionManager'>
+		<property name='dataSource' ref='dataSource'/>
+	</bean>
+	<tx:annotation-driven />
+	
+</beans>
