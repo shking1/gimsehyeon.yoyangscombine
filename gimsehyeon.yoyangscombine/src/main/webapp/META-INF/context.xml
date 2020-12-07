@@ -2,7 +2,7 @@
 <Context>
 	<WatchedResource>WEB-INF/web.xml</WatchedResource>
 	<Resource name='jdbc/gimsehyeon' auth='Container' type='javax.sql.DataSource' username='gimsehyeon' password='gimsehyeon' driverClassName='oracle.jdbc.driver.OracleDriver'
-		factory='org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory' url='jdbc:oracle:thin:@192.168.0.10:1521:xe'/>
+		factory='org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory' url='jdbc:oracle:thin:@127.0.0.1:1521:xe'/>
 </Context>
 <!--
 	IP는 팀장PC IP로(개발중에만 - 완료 후에는 127.0.0.1로)
