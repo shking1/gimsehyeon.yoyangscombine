@@ -39,7 +39,8 @@ public class UserController {
 			view = "redirect:../";
 		}
 		if(loginChecker.equals("ADMIN")) {
-			view = "redirect:../admin/main";
+			session.setAttribute("memberId", memberId);
+			view = "redirect:../admin";
 		}
 		
 		return view;
