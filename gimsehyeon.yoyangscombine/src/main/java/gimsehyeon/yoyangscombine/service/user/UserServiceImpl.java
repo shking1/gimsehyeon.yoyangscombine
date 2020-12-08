@@ -8,34 +8,36 @@ import gimsehyeon.yoyangscombine.domain.Member;
 
 @Service
 public class UserServiceImpl implements UserService {
-	@Autowired private UserDao userDao;
-	
+	@Autowired
+	private UserDao userDao;
+
 	@Override
 	public Member getMember(String memberId) {
 		return userDao.selectMember(memberId);
 	}
-	
+
 	@Override
 	public String loginCheck(String memberId, String password) {
 		String loginChecker = "";
 		Member hasMember = null;
 		String hasPw = "";
-		
+
 		hasMember = getMember(memberId);
-		if(hasMember != null)
+
+		if (hasMember != null) {
 			hasPw = hasMember.getPassword();
-		if(hasMember == null)
+			if (!hasPw.equals(password)) {
+				loginChecker = "PW";
+			}
+			if (hasPw.equals(password)) {
+				loginChecker = "SUCCESS";
+			}
+			if (hasMember.getMemberId().equals("admin") && hasMember.getPassword().equals(password))
+				loginChecker = "ADMIN";
+		}
+		if (hasMember == null) {
 			loginChecker = "ID";
-		if(hasMember != null && !hasPw.equals(password)) {
-			hasMember = null;
-			loginChecker = "PW";
 		}
-		if(hasMember != null && hasPw.equals(password)) {
-			loginChecker = "SUCCESS";
-		}
-		if(hasMember.getMemberId().equals("admin") && hasMember.getPassword().equals("admin"))
-			loginChecker = "ADMIN";
-		
 		return loginChecker;
 	}
 }
