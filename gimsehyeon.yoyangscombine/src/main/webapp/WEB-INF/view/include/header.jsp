@@ -11,6 +11,7 @@
 					관리자계정
 				</c:when>
 				<c:otherwise>
+					${memberName}님 환영합니다. <br>
 					<a href='/gimsehyeon.yoyangscombine/common/mypage'>마이페이지 </a>
 				</c:otherwise>
 			</c:choose>
