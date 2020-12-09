@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import gimsehyeon.yoyangscombine.dao.user.UserDao;
-import gimsehyeon.yoyangscombine.domain.Member;
+import gimsehyeon.yoyangscombine.domain.User;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -12,30 +12,30 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 
 	@Override
-	public Member getMember(String memberId) {
-		return userDao.selectMember(memberId);
+	public User getUser(String userId) {
+		return userDao.selectUser(userId);
 	}
 
 	@Override
-	public String loginCheck(String memberId, String password) {
+	public String loginCheck(String userId, String password) {
 		String loginChecker = "";
-		Member hasMember = null;
+		User hasUser = null;
 		String hasPw = "";
 
-		hasMember = getMember(memberId);
+		hasUser = getUser(userId);
 
-		if (hasMember != null) {
-			hasPw = hasMember.getPassword();
+		if (hasUser != null) {
+			hasPw = hasUser.getPassword();
 			if (!hasPw.equals(password)) {
 				loginChecker = "PW";
 			}
 			if (hasPw.equals(password)) {
 				loginChecker = "SUCCESS";
 			}
-			if (hasMember.getMemberId().equals("admin") && hasMember.getPassword().equals(password))
+			if (hasUser.getUserId().equals("admin") && hasUser.getPassword().equals(password))
 				loginChecker = "ADMIN";
 		}
-		if (hasMember == null) {
+		if (hasUser == null) {
 			loginChecker = "ID";
 		}
 		return loginChecker;

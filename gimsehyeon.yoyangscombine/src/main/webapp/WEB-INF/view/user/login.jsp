@@ -23,7 +23,7 @@
 						</svg>
 					</label>
 					<div class='col-10'>
-						<input type='text' class='form-control' placeholder='이메일' id='login-id' name='memberId' required/>
+						<input type='text' class='form-control' placeholder='이메일' id='login-id' name='userId' required/>
 					</div>
 				</div>
 				<div class='form-group row'>

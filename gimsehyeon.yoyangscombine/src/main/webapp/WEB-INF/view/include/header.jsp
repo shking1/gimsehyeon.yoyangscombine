@@ -2,16 +2,16 @@
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <header>
 	<div id='headertexthref'>
-		<c:if test='${memberId == null}'>
+		<c:if test='${userId == null}'>
 			<a href='/gimsehyeon.yoyangscombine/user/login' style='display:line'>로그인</a>
 		</c:if>
-		<c:if test='${memberId != null}'>
+		<c:if test='${userId != null}'>
 			<c:choose>
-				<c:when test='${memberId.equals("admin")}'>
+				<c:when test='${userId.equals("admin")}'>
 					관리자계정
 				</c:when>
 				<c:otherwise>
-					${memberName}님 환영합니다. <br>
+					${userName}님 환영합니다. <br>
 					<a href='/gimsehyeon.yoyangscombine/common/mypage'>마이페이지 </a>
 				</c:otherwise>
 			</c:choose>

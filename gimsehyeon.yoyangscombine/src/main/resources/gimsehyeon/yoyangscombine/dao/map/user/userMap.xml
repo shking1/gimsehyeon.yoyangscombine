@@ -3,22 +3,21 @@
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <mapper namespace='gimsehyeon.yoyangscombine.dao.map.user.UserMap'>
 	<!-- 로그인 -->
-	<select id='selectMember' resultMap='memberMap'>
-		select member_num, member_status, member_id, patient_name, sana_name, profile_img_filename,
-				join_date , member_name, password, num_of_report
-		from members
-		where member_id = #{memberId}
+	<select id='selectUser' resultMap='userMap'>
+		select user_num, user_id, patient_name, sana_name, profile_img_filename,
+				join_date , user_name, password, num_of_report
+		from users
+		where user_id = #{userId}
 	</select>
 	
-	<resultMap id='memberMap' type='member'>
-		<id 	property='memberNum'			column='member_num'/>
-		<result	property='memberStatus'			column='member_status'/>
-		<result	property='memberId'				column='member_id'/>
+	<resultMap id='userMap' type='user'>
+		<id 	property='userNum'				column='user_num'/>
+		<result	property='userId'				column='user_id'/>
 		<result	property='patientName'			column='patient_name'/>
 		<result	property='sanaName'				column='sana_name'/>
 		<result property='profileImgFilename'	column='profile_img_filename'/>
 		<result property='joinDate'				column='join_date'/>
-		<result property='memberName'			column='member_name'/>
+		<result property='userName'				column='user_name'/>
 		<result property='password'				column='password'/>
 		<result property='numOfReport'			column='num_of_report'/>
 	</resultMap>

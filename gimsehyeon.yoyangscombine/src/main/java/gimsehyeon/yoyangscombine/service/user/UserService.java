@@ -1,8 +1,8 @@
 package gimsehyeon.yoyangscombine.service.user;
 
-import gimsehyeon.yoyangscombine.domain.Member;
+import gimsehyeon.yoyangscombine.domain.User;
 
 public interface UserService {
-	Member getMember(String memberId);
-	String loginCheck(String memberId, String password);
+	User getUser(String userId);
+	String loginCheck(String userId, String password);
 }

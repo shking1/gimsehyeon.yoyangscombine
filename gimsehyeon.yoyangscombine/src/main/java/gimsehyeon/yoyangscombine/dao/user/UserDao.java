@@ -1,7 +1,7 @@
 package gimsehyeon.yoyangscombine.dao.user;
 
-import gimsehyeon.yoyangscombine.domain.Member;
+import gimsehyeon.yoyangscombine.domain.User;
 
 public interface UserDao {
-	Member selectMember(String memberId);
+	User selectUser(String userId);
 }

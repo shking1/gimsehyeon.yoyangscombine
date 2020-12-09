@@ -21,10 +21,10 @@ public class UserController {
 	}
 	
 	@PostMapping("/user/login")
-	public String login(@RequestParam("memberId") String memberId,
+	public String login(@RequestParam("userId") String userId,
 						@RequestParam("password") String password, Model model, HttpSession session) {
 		String view = "";
-		String loginChecker = userService.loginCheck(memberId, password);
+		String loginChecker = userService.loginCheck(userId, password);
 		
 		if(loginChecker.equals("ID")) {
 			model.addAttribute("msg", "일치하는 아이디가 없습니다.");
@@ -35,12 +35,12 @@ public class UserController {
 			view = "user/login";
 		}
 		if(loginChecker.equals("SUCCESS")) {
-			session.setAttribute("memberId", memberId);
-			session.setAttribute("memberName", userService.getMember(memberId).getMemberName());
+			session.setAttribute("userId", userId);
+			session.setAttribute("userName", userService.getUser(userId).getUserName());
 			view = "redirect:../";
 		}
 		if(loginChecker.equals("ADMIN")) {
-			session.setAttribute("memberId", memberId);
+			session.setAttribute("userId", userId);
 			view = "redirect:../admin";
 		}
 		
