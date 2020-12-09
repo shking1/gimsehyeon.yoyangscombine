@@ -38,23 +38,5 @@ public class UserServiceImpl implements UserService {
 			loginChecker = "ID";
 		}
 		return loginChecker;
-
-		/*
-
-		if(hasMember != null)
-			hasPw = hasMember.getPassword();
-		if(hasMember == null)
-			loginChecker = "ID";
-		if(hasMember != null && !hasPw.equals(password)) { //가져온 값이 널이 아니고 비밀번호가 틀렸을 경우
-		//	hasMember = null;
-			loginChecker = "PW";
-		}
-		if(hasMember != null && hasPw.equals(password)) { //가져온 값이 널이 아니고 비밀번호가 맞았을 경우
-			loginChecker = "SUCCESS";
-		}
-		if(hasMember.getMemberId().equals(memberId) && hasMember.getPassword().equals(password))
-			loginChecker = "ADMIN";
-		
-		return loginChecker;*/
 	}
 }
