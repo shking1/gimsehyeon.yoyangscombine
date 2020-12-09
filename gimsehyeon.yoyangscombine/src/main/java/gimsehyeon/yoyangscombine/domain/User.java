@@ -14,8 +14,6 @@ import lombok.Setter;
 public class User {
 	private int userNum;
 	private String userId;
-	private String patientName;
-	private String sanaName;
 	private byte[] profileImgFilename;
 	private LocalDate joinDate;
 	private String userName;

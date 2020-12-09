@@ -4,7 +4,7 @@
 <mapper namespace='gimsehyeon.yoyangscombine.dao.map.user.UserMap'>
 	<!-- 로그인 -->
 	<select id='selectUser' resultMap='userMap'>
-		select user_num, user_id, patient_name, sana_name, profile_img_filename,
+		select user_num, user_id, profile_img_filename,
 				join_date , user_name, password, num_of_report
 		from users
 		where user_id = #{userId}
@@ -13,8 +13,6 @@
 	<resultMap id='userMap' type='user'>
 		<id 	property='userNum'				column='user_num'/>
 		<result	property='userId'				column='user_id'/>
-		<result	property='patientName'			column='patient_name'/>
-		<result	property='sanaName'				column='sana_name'/>
 		<result property='profileImgFilename'	column='profile_img_filename'/>
 		<result property='joinDate'				column='join_date'/>
 		<result property='userName'				column='user_name'/>
