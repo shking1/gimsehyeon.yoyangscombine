@@ -16,7 +16,8 @@
 				</c:otherwise>
 			</c:choose>
 			<a href='/gimsehyeon.yoyangscombine/user/logout' style='display:line'>로그아웃</a>
-		</c:if>
+		</c:if><br>
+		${msg}
 	</div>
 	<div id = 'headertext'>
 		<h1><a href='/gimsehyeon.yoyangscombine'>요양스컴바인</a></h1>

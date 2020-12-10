@@ -40,4 +40,9 @@ public class UserServiceImpl implements UserService {
 		}
 		return loginChecker;
 	}
+	
+	@Override
+	public int addUser(String userId, String userName, String password) {
+		return userDao.insertUser(userId, userName, password);
+	}
 }

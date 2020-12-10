@@ -5,7 +5,7 @@
 	<!-- 로그인 -->
 	<select id='selectUser' resultMap='userMap'>
 		select user_num, user_id, profile_img_filename,
-				join_date , user_name, password, num_of_report
+				join_date, user_name, password, num_of_report
 		from users
 		where user_id = #{userId}
 	</select>
@@ -19,4 +19,10 @@
 		<result property='password'				column='password'/>
 		<result property='numOfReport'			column='num_of_report'/>
 	</resultMap>
+	
+	<!-- 회원가입 -->
+	<insert id='insertUser'>
+		insert into users(user_num, user_id, user_name, join_date, password, num_of_report)
+		values(usernum_seq.nextval, #{userId}, #{userName}, sysdate, #{password}, 0)
+	</insert>
 </mapper>

@@ -14,4 +14,9 @@ public class UserDaoImpl implements UserDao {
 	public User selectUser(String userId) {
 		return userMap.selectUser(userId);
 	}
+	
+	@Override
+	public int insertUser(String userId, String userName, String password) {
+		return userMap.insertUser(userId, userName, password);
+	}
 }
