@@ -49,15 +49,15 @@ public class CommunicationServiceImpl implements CommunicationService {
 	}
 
 	@Override
-	public void modifyComm(Communication comm) throws Exception {
+	public boolean modifyComm(Communication comm) throws Exception {
 		// TODO Auto-generated method stub
-
+		return commDao.updateComm(comm) > 0;
 	}
 
 	@Override
-	public void removeComm(int communicationNum) throws Exception {
+	public boolean removeComm(int communicationNum) throws Exception {
 		// TODO Auto-generated method stub
-
+		return commDao.deleteComm(communicationNum) > 0;
 	}
 
 	@Override

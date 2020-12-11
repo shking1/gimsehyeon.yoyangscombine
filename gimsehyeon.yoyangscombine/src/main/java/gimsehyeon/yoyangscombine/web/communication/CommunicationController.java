@@ -11,10 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,6 +24,7 @@ import gimsehyeon.yoyangscombine.service.communication.pager.Pager;
 public class CommunicationController {
 	 @Autowired private CommunicationService commService;
 	 
+	 //게시판 화면 Controller
 	 @RequestMapping("/communication")
 	 public String allCommunications(Model model,
 			 @RequestParam(defaultValue="all") String searchOption,
@@ -50,25 +49,53 @@ public class CommunicationController {
 		 return "communication/list";	
 	 }
 	 
+	 //게시글 작성 화면 이동 Controller
 	 @GetMapping("/communication/write")
-	 public String writeCommunication() {
+	 public String writeCommunicationIn() {
 		 return "communication/write";
 	 }
 	 
+	 @PostMapping("/communication/write")
+	 public String writeCommunicationOut() {
+		 return "communication/write";
+	 }
+	 
+	 //게시글 수정 Controller
+	 @PostMapping("/communication/update")
+	 public String updateComm(@ModelAttribute Communication comm, @RequestParam int communicationNum,
+			 @RequestParam String communicationTitle, @RequestParam String communicationPost) throws Exception {
+		 System.out.println("communicationNum : " + communicationNum);
+		 System.out.println("communicationTitle : " + communicationTitle);
+		 System.out.println("communicationPost : " + communicationPost);
+		 comm.setCommunicationNum(communicationNum);
+		 comm.setCommunicationTitle(communicationTitle);
+		 comm.setCommunicationPost(communicationPost);
+		 commService.modifyComm(comm);
+		 return "redirect:../communication";
+	 }
+	 
+	 //게시글 작성 Controller
 	 @PostMapping("/communication/insert")
 	 public String insertCommunication(@ModelAttribute Communication comm, HttpSession session) throws Exception {
 		 //로그인한 사용자의 아이디
 		 String writer = (String)session.getAttribute("userName");
-		 System.out.println(writer);
 		 comm.setWriter(writer);
 		 //레코드가 저장됨
 		 commService.writeComm(comm);
 		 //목록 갱신
-		 return "redirect:./";
+		 return "redirect:../communication";
 	 }
 	 
-	 @RequestMapping(value = "/communication/post", method = RequestMethod.GET)
-	 public ModelAndView commPost(@RequestParam int communicationNum, 
+	 //게시글 삭제 Controller
+	 @PostMapping("/communication/delete")
+	 public String deleteCommunication(@RequestParam int communicationNum) throws Exception {
+		 commService.removeComm(communicationNum);
+		 return "redirect:../communication";
+	 }
+	 
+	 //해당 게시물 상세보기 화면으로 이동 Controller
+	 @GetMapping("/communication/post")
+	 public ModelAndView commPostIn(@RequestParam int communicationNum, 
 			 @RequestParam int curPage, @RequestParam String searchOption,
 			 @RequestParam String keyWord) throws Exception{
 		 ModelAndView mav = new ModelAndView();
@@ -80,6 +107,20 @@ public class CommunicationController {
 		 return mav;
 	 }
 	 
+	 @PostMapping("/communication/post")
+	 public ModelAndView commPostOut(@RequestParam int communicationNum, 
+			 @RequestParam int curPage, @RequestParam String searchOption,
+			 @RequestParam String keyWord) throws Exception{
+		 ModelAndView mav = new ModelAndView();
+		 mav.setViewName("communication/post");
+		 mav.addObject("commPost", commService.readComm(communicationNum));
+		 mav.addObject("curPage", curPage);
+		 mav.addObject("searchOption", searchOption);
+		 mav.addObject("keyWord", keyWord);
+		 return mav;
+	 }
+	 
+	//게시글 수정 화면으로 이동 Controller
 	 @RequestMapping("communication/editPost")
 	 public String editPost(@RequestParam int communicationNum, Model model) throws Exception {
 		 model.addAttribute("comm", commService.readComm(communicationNum));

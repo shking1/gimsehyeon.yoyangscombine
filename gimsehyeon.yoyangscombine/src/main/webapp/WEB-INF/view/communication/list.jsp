@@ -125,7 +125,7 @@ function commClick(commNum) {
 	        	</form>
 	
 				<div>
-					<a href='../sanatorium/01.html' id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
+					<a href='/gimsehyeon.yoyangscombine/communication' id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
 				</div>
 				<br> 
 				<div>
@@ -219,13 +219,15 @@ function commClick(commNum) {
 							
 							<input type='submit' class='btn btn-secondary' value='검색'>
 						</div>
-						<button type='button' id='btnWrite' class='btn btn-secondary float-right'>글쓰기</button>
+						<c:if test='${sessionScope.userName != null}'>
+							<button type='button' id='btnWrite' class='btn btn-secondary float-right'>글쓰기</button>
+						</c:if>
 					</form>
 				</div>
 			</div>
 		</div>
+		<!-- include: footer-->
+		<jsp:include page='../include/footer.jsp'/>
+		<!-- include: footer-->
 	</div>
 </body>
-<!-- include: footer-->
-<jsp:include page='../include/footer.jsp'/>
-<!-- include: footer-->

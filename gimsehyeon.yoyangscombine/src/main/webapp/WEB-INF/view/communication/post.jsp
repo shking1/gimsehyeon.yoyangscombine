@@ -6,7 +6,7 @@
 <!-- include:lib -->
 <%@ include file='../include/lib.jsp'%>
 <!-- /include:lib -->
-<title>Insert title here</title>
+<title>게시글 상세보기</title>
 <style>
 .fileDrop {
 	width: 600px;
@@ -91,9 +91,18 @@ span {
 }
 </style>
 <script>
+// $(function(){
+// 	$('#btnDelete').click(function(){
+// 		$('#deleteBoard').modal('show');
+// 	});
+// });
+function deleteModal() {
+	$('#deleteBoard').modal('show');
+}
 $(function(){
-	$("btnDelete").click(function(){
-		$("$deleteBorad").modal("show");
+	$("#btnRemove").click(function(){
+		document.commPostForm.action = "./delete";
+		document.commPostForm.submit();
 	});
 });
 function btnUpdate(commNum) {
@@ -144,7 +153,7 @@ function btnUpdate(commNum) {
 			</form>
 			<br>
 			<div>
-				<a href='01.html' id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
+				<a href='/gimsehyeon.yoyangscombine/communication' id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
 			</div>
 			<br>
 			<div>
@@ -155,7 +164,7 @@ function btnUpdate(commNum) {
 		<div class='col-9' style='overflow:scroll; width:540px; height:800px;'>
 			<br>
 			<div class='row justify-content-center'>
-				<form name='commPostForm'>
+				<form name='commPostForm' method='post'>
 					<div class='row form-group ml-3'>
 						<label for='boradTitle'><b style='font-size: 24px;'>제목 : </b></label>
 						<div class='ml-2'>
@@ -176,8 +185,8 @@ function btnUpdate(commNum) {
 						<div>
 							<input type='hidden' name='communicationNum' value='${commPost.communicationNum}'>
 							<c:if test='${sessionScope.userName == commPost.writer }'>
-								<button id='btnDelete' class='btn btn-secondary'>삭제</button>
-<%-- 								<button onClick="btnUpdate('${commPost.communicationNum})" class='btn btn-secondary'>수정</button> --%>
+								<a class='btn btn-secondary' onClick='deleteModal()'>삭제</a>
+								
 								<a class='btn btn-secondary'
 									href='/gimsehyeon.yoyangscombine/communication/editPost?communicationNum=${commPost.communicationNum}'>수정</a>
 							</c:if>
@@ -186,6 +195,50 @@ function btnUpdate(commNum) {
 					</div>
 				</form>
 			</div>
+			
+			<div id='deleteBoard' class='modal fade' role='dialog' tabindex='-1'>
+				<div class='modal-dialog'>
+					<div class='modal-content'>
+						<div class='modal-header'>
+							<button type='button' class='close' data-dismiss='modal'>
+								<span>&times;</span>
+							</button>
+						</div>
+
+						<div class='modal-body text-center'>
+							<p style='font-size: 20px;'>
+								정말 삭제하시겠습니까? <br>
+								삭제된 글은 복구되지 않습니다.
+							</p>
+						</div>
+
+						<div class='modal-footer'>
+							<button type='button' class='btn btn-secondary' data-dismiss='modal'>취소</button>
+							<button class='btn btn-secondary' id='btnRemove'>삭제</button>
+						</div>
+					</div>
+				</div>
+<!-- 				<div id='deleteBoradSuccess' class='modal fade' tabindex='-1'> -->
+<!-- 					<div class='modal-dialog'> -->
+<!-- 						<div class='modal-content'> -->
+<!-- 							<div class='modal-header'> -->
+<!-- 								<button type='button' class='close' data-dismiss='modal'> -->
+<!-- 									<span>&times;</span> -->
+<!-- 								</button> -->
+<!-- 							</div> -->
+	
+<!-- 							<div class='modal-body text-center'> -->
+<!-- 								<p style='font-size: 20px;'>게시글이 삭제되었습니다.</p> -->
+<!-- 							</div> -->
+	
+<!-- 							<div class='modal-footer'> -->
+<!-- 								<a href='01.html' class='btn btn-secondary'>확인</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+			</div>
+			
 			<div class='justify-content-center' style='width: 540px;'>
 				<form style='width: 357px; margin: auto;'>
 					<p style='font-size: 20px;'>댓글</p>
@@ -232,49 +285,6 @@ function btnUpdate(commNum) {
 				<div class='row' style='width: 400px; margin: auto;'>
 					<button type='button' class='btn btn-secondary' onclick='history.back()'>뒤로가기</button>
 				</div>	
-			</div>
-
-			<div id='deleteBorad' class='modal fade' tabindex='-1'>
-				<div class='modal-dialog'>
-					<div class='modal-content'>
-						<div class='modal-header'>
-							<button type='button' class='close' data-dismiss='modal'>
-								<span>&times;</span>
-							</button>
-						</div>
-
-						<div class='modal-body text-center'>
-							<p style='font-size: 20px;'>
-								정말 삭제하시겠습니까? <br>
-								삭제된 글은 복구되지 않습니다.
-							</p>
-						</div>
-
-						<div class='modal-footer'>
-							<button type='button' class='btn btn-secondary' data-dismiss='modal'>취소</button>
-							<a class='btn btn-secondary' data-toggle='modal' data-target='#deleteBoradSuccess'>삭제</a>
-						</div>
-					</div>
-				</div>
-				<div id='deleteBoradSuccess' class='modal fade' tabindex='-1'>
-					<div class='modal-dialog'>
-						<div class='modal-content'>
-							<div class='modal-header'>
-								<button type='button' class='close' data-dismiss='modal'>
-									<span>&times;</span>
-								</button>
-							</div>
-	
-							<div class='modal-body text-center'>
-								<p style='font-size: 20px;'>게시글이 삭제되었습니다.</p>
-							</div>
-	
-							<div class='modal-footer'>
-								<a href='01.html' class='btn btn-secondary'>확인</a>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 			
 			<div class='modal fade' id='reportReview'>
@@ -368,8 +378,8 @@ function btnUpdate(commNum) {
 			</div>
 		</div>
 	</div>
+	<!-- include: footer-->
+	<jsp:include page='../include/footer.jsp'/>
+	<!-- include: footer-->
 </div>
 </body>
-<!-- include: footer-->
-<jsp:include page='../include/footer.jsp'/>
-<!-- include: footer-->

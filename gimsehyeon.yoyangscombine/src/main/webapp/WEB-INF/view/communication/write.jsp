@@ -5,7 +5,6 @@
 <!-- include:lib -->
 <%@ include file='../include/lib.jsp'%>
 <!-- /include:lib -->
-<script type='text/javascript' src='../res/ckeditor/ckeditor.js'></script>
 <style>
 #border {
 	width: 120px;
@@ -66,16 +65,12 @@ ul {
 </style>
 <script>
 $(function(){
-	$("#btnBack").click(function(){
-		location.href="./";
-	});
-	
 	$("#btnSave").click(function(){
 		document.saveCommunication.submit();
 	});
 });
 </script>
-<title>Insert title here</title>
+<title>게시글 작성</title>
 </head>
 <body>
 	<br>
@@ -120,7 +115,7 @@ $(function(){
 				</form>
 				<br>
 				<div>
-					<a href='01.html' id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
+					<a href='/gimsehyeon.yoyangscombine/communication' id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
 				</div>
 				<br>
 				<div>
@@ -141,7 +136,7 @@ $(function(){
 							</label>
 							<div class='ml-2'>
 								<input type='text' class='form-control col-xs-4' id='communicationTitle'
-									placeholder='제목을 입력하세요.' name='communicationTitle'>
+									placeholder='제목을 입력하세요.' name='communicationTitle' required />
 							</div> 
 						</div>
 						<div style='font-size: 12px;' class='row ml-2'>
@@ -152,14 +147,13 @@ $(function(){
 						<hr>
 						<div class='row form-group justify-content-center'>
 							<textarea class='from-control' rows='20' cols='50' 
-								name='communicationPost' id='communicationPost' placeholder='내용을 입력하세요.'></textarea>
+								name='communicationPost' id='communicationPost' placeholder='내용을 입력하세요.' required></textarea>
 						</div>
 						<hr>
 						<div class='row justify-content-end'>
 							<div class='col-5'>
-								<button type='button' class='btn btn-secondary' id='btnBack'>취소</button>
-								<button type='button' class='btn btn-secondary' id='btnSave'>작성</button>
-			<!-- 					<a type='button' class='btn btn-secondary' data-toggle='modal' data-target='#addCommunication'>작성</a> -->
+								<button type='button' class='btn btn-secondary'  onclick='history.back()'>취소</button>
+								<button type='submit' class='btn btn-secondary'>작성</button> <!-- id='btnSave' -->
 							</div>
 						</div>
 					</form>
@@ -207,8 +201,8 @@ $(function(){
 	<!-- 			</div> -->
 	<!-- 		</div> -->
 	<!-- 	</div> -->
+		<!-- include: footer-->
+		<jsp:include page='../include/footer.jsp'/>
+		<!-- include: footer-->
 	</div>
 </body>
-<!-- include: footer-->
-<jsp:include page='../include/footer.jsp'/>
-<!-- include: footer-->

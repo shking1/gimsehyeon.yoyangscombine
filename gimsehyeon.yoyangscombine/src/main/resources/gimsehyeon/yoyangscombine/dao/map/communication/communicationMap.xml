@@ -60,4 +60,15 @@
 		insert into communications (communication_num, communication_title, communication_post, writer) 
 		values (communicationnum_seq.nextval, #{communicationTitle}, #{communicationPost}, #{writer})
 	</insert>
+	
+	<update id='updateComm'>
+		update communications
+		set communication_title = #{communicationTitle}, communication_post = #{communicationPost}, writing_date = sysdate
+		where communication_num = #{communicationNum}
+	</update>
+	
+	<delete id='deleteComm'>
+		delete from communications
+		where communication_num = #{communicationNum}
+	</delete>
 </mapper>

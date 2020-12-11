@@ -56,15 +56,15 @@ public class CommunicationDaoImpl implements CommunicationDao {
 	}
 
 	@Override
-	public void updateComm(Communication comm) throws Exception {
+	public int updateComm(Communication comm) throws Exception {
 		// TODO Auto-generated method stub
-
+		return commMap.updateComm(comm);
 	}
-
+ 
 	@Override
-	public void deleteComm(int communicationNum) throws Exception {
+	public int deleteComm(int communicationNum) throws Exception {
 		// TODO Auto-generated method stub
-
+		return commMap.deleteComm(communicationNum);
 	}
 
 	@Override

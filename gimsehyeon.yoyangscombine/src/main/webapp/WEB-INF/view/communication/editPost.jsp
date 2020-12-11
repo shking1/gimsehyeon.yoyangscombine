@@ -6,8 +6,7 @@
 <!-- include:lib -->
 <%@ include file='../include/lib.jsp'%>
 <!-- /include:lib -->
-<script type='text/javascript' src='../res/ckeditor/ckeditor.js'></script>
-<title>Insert title here</title>
+<title>게시글 수정</title>
 <style>
 .fileDrop {
 	width: 600px;
@@ -91,17 +90,6 @@ span {
    height:100px;
 }
 </style>
-<script>
-$(function(){
-// 	$("#btnBack").click(function(){
-// 		location.href="./";
-// 	});
-	
-	$("btnDelete").click(function(){
-		$("$deleteBorad").modal("show");
-	});
-});
-</script>
 </head>
 <body>
 <br>
@@ -146,7 +134,7 @@ $(function(){
 			</form>
 			<br>
 			<div>
-				<a href='01.html' id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
+				<a href='/gimsehyeon.yoyangscombine/communication' id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
 			</div>
 			<br>
 			<div>
@@ -157,14 +145,14 @@ $(function(){
 		<div class='col-9' style='overflow:scroll; width:540px; height:800px;'>
 			<br>
 			<div class='row justify-content-center'>
-				<form name='commEditForm' method='post' enctype='multipart/form-data'>
+				<form name='commEditForm' method='post' action='./update'>
 					<div class='row form-group ml-3'>
 						<label for='communicationTitle'>
 								<b style='font-size: 24px;'>제목 : </b>
 							</label>
 							<div class='ml-2'>
 								<input type='text' class='form-control col-xs-4' id='communicationTitle'
-									name='communicationTitle' value='${comm.communicationTitle}'>
+									name='communicationTitle' value='${comm.communicationTitle}' required>
 							</div> 
 					</div>
 					<div style='font-size: 16px;' class='row ml-3'>
@@ -174,13 +162,13 @@ $(function(){
 					</div>
 					<hr>
 					<div class='form-group'>
-						<textarea class='form-control-plaintext' style='font-size: 18px;' rows='10' cols='50' readonly>${comm.communicationPost}
-						</textarea>
+						<textarea name='communicationPost' class='form-control' style='font-size: 18px;' rows='10' cols='50' required>${comm.communicationPost}</textarea>
 					</div>
 					<div class='row justify-content-end'>
 						<div>							
-							<button id='btnDelete' class='btn btn-secondary' onclick='history.go(-1)'>취소</button>
-							<button id='btnUpdate' class='btn btn-secondary'>수정</button>						
+							<button class='btn btn-secondary' onclick='history.go(-1)'>취소</button>
+							<input type='hidden' name='communicationNum' value='${comm.communicationNum}'>
+								<button type='submit' class='btn btn-secondary'>수정</button>						
 						</div>
 					</div>
 				</form>
@@ -191,7 +179,7 @@ $(function(){
 			        <div class='modal-content'>
 			            <div class='modal-header'>
 			                <h5 class='modal-title'>신고하기</h5>
-			                <button type='button' class='close' data-dismiss='modal' tableindex='-1'>
+			                <button type='button' class='close' data-dismiss='modal' tabindex='-1'>
 			                    <span>&times;</span>
 			                </button>
 			            </div>
@@ -233,8 +221,8 @@ $(function(){
 			</div>
 		</div>
 	</div>
+	<!-- include: footer-->
+	<jsp:include page='../include/footer.jsp'/>
+	<!-- include: footer-->
 </div>
 </body>
-<!-- include: footer-->
-<jsp:include page='../include/footer.jsp'/>
-<!-- include: footer-->

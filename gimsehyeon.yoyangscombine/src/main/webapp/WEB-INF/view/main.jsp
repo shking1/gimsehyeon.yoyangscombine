@@ -29,7 +29,7 @@
 </div>
 <div id='box2'>
 	수많은 보호자님들의 선택! 정보는 나눌수록 넓어집니다.
-	<a href='communication/01.html' style='display:line'>자유게시판 바로가기</a>
+	<a href='/gimsehyeon.yoyangscombine/communication' style='display:line'>자유게시판 바로가기</a>
 	<br><br><br>
 </div>
 <!-- include: footer -->

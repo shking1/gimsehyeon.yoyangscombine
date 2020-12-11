@@ -17,6 +17,6 @@ public interface CommunicationMap {
 	int countComm(@Param("searchOption") String searchOption, @Param("keyWord") String keyWord) throws Exception;	//게시물 레코드 갯수 계산
 	int insertComm(Communication comm) throws Exception;	//게시글 작성
 	Communication showComm(@Param("communicationNum") int communicationNum) throws Exception;	//게시글 읽기
-	void updateComm(Communication comm) throws Exception;	//게시글 수정
-	void delete(int communicationNum) throws Exception;	//게시글 삭제
+	int updateComm(Communication comm) throws Exception;	//게시글 수정
+	int deleteComm(@Param("communicationNum") int communicationNum) throws Exception;	//게시글 삭제
 }
