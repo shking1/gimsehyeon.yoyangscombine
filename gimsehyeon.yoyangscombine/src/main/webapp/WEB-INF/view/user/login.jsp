@@ -40,7 +40,7 @@
 				<div class='form-group row'>
 					<button type='submit' id='login'
 						class='btn btn-primary mt-3 ml-2' href='#' style='width: 45%'>로그인</button>
-					<a type='button' class='btn btn-secondary mt-3 ml-2' href='02.html'
+					<a type='button' class='btn btn-secondary mt-3 ml-2' href='join'
 						style='width: 45%'>회원가입</a>
 					<span></span><br>
 					${msg}
