@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='gimsehyeon.yoyangscombine.dao.map.communication.CommunicationMap'>
+	<select id='selectComms' resultMap='communicationMap'>
+		<include refid='pagingHeader'/>
+		select communication_num, writer, communication_title, communication_post, writing_date, likes
+		from communications
+		<include refid='search'/>
+		order by communication_num desc
+		<include refid='pagingFooter'/>
+	</select>
+	
+	<select id='countComm' resultType='int'>
+		select count(*)
+		from communications
+		<include refid='search'/>
+	</select>
+	
+	<select id='showComm' resultMap='communicationMap'>
+		select communication_num, writer, communication_title, communication_post, writing_date, likes
+		from communications
+		where communication_num = #{communicationNum}
+	</select>
+	
+	<sql id='search'>
+		<choose>
+			<when test="searchOption == 'all'">
+				where (writer like '%'||#{keyWord}||'%' or
+						communication_title like '%'||#{keyWord}||'%')
+			</when>
+			<otherwise>
+				where ${searchOption} like '%'||#{keyWord}||'%'
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<sql id='pagingHeader'>
+		select *
+		from ( select rownum as rn, A.*
+			   from (
+	</sql>
+	
+	<sql id='pagingFooter'>
+				) A
+			  ) 
+		where rn between #{start} and #{end}
+	</sql>
+
+	<resultMap id='communicationMap' type='communication'>
+		<id 	property='communicationNum'		column='communication_num'/>
+		<result	property='writer'				column='writer'/>
+		<result	property='communicationTitle'	column='communication_title'/>
+		<result	property='communicationPost'	column='communication_post'/>
+		<result	property='writingDate'			column='writing_date'/>
+		<result property='likes'				column='likes'/>
+	</resultMap>
+	
+	<insert id='insertComm'>
+		insert into communications (communication_num, communication_title, communication_post, writer) 
+		values (communicationnum_seq.nextval, #{communicationTitle}, #{communicationPost}, #{writer})
+	</insert>
+</mapper>

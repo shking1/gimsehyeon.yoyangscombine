@@ -27,13 +27,20 @@
 			</array>
 		</property>
 	</bean>
-	
+	<!-- 파일 업로드에 필요한 bean -->
 	<bean id='multipartResolver' class='org.springframework.web.multipart.commons.CommonsMultipartResolver'>
-		<property name='maxUploadSize' value='524280'/>
-		<property name='maxInMemorySize' value='5242880'/>
+		<!-- 파일 업로드 최대 용량(byte) -->
+		<property name='maxUploadSize' value='10485760'/>
+		<property name='maxInMemorySize' value='10485760'/>
 		<property name='defaultEncoding' value='utf-8'/>
 	</bean>
 	<context:property-placeholder location='classpath:gimsehyeon/yoyangscombine/config/application.properties'/>
+	
+	<!-- 파일 업로드를 위한 디렉토리 설정 -->
+	<!-- String uploadPath = new String("c:/DEV/upload") -->
+	<bean id='uploadPath' class='java.lang.String'>
+		<constructor-arg value='C:/DEV/upload' />
+	</bean>
 	
 	<mybatis:scan base-package='gimsehyeon.yoyangscombine.dao.map.**'/>
 	
@@ -57,5 +64,4 @@
 		<property name='dataSource' ref='dataSource'/>
 	</bean>
 	<tx:annotation-driven />
-	
 </beans>
