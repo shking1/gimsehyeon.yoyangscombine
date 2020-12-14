@@ -15,6 +15,11 @@ public class UserServiceImpl implements UserService {
 	public User getUser(String userId) {
 		return userDao.selectUser(userId);
 	}
+	
+	@Override
+	public int getDeletedUser(String userId) {
+		return userDao.selectDeletedUser(userId);
+	}
 
 	@Override
 	public String loginCheck(String userId, String password) {
@@ -26,17 +31,18 @@ public class UserServiceImpl implements UserService {
 
 		if (hasUser != null) {
 			hasPw = hasUser.getPassword();
-			if (!hasPw.equals(password)) {
-				loginChecker = "PW";
-			}
-			if (hasPw.equals(password)) {
-				loginChecker = "SUCCESS";
-			}
-			if (hasUser.getUserId().equals("admin") && hasUser.getPassword().equals(password))
+			
+			if(getDeletedUser(userId) != 0)	//탈퇴 회원일 시
+				loginChecker = "DELETED_USER";
+			else if (!hasPw.equals(password))
+				loginChecker = "PW";			//비밀번호 오류
+			else if (hasPw.equals(password))
+				loginChecker = "SUCCESS";		//성공
+			else if (hasUser.getUserId().equals("admin") && hasUser.getPassword().equals(password))
 				loginChecker = "ADMIN";
 		}
-		if (hasUser == null) {
-			loginChecker = "ID";
+		else if (hasUser == null) {
+			loginChecker = "ID";				//부존재 ID
 		}
 		return loginChecker;
 	}

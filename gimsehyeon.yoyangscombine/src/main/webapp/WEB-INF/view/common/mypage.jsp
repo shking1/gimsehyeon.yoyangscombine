@@ -122,7 +122,7 @@
 				<div id ='buttons' class='container'>
 					<div class='form-group row'>
 						<button type='button' id='btn-brother' class='btn btn-secondary mt-2' onclick="location.href = '../user/03.html'" style='width: 70px'>정보수정</button> 
-						<button type='button' id='btn-brother' class='btn btn-secondary mt-2 ml-1' onclick="location.href = '../user/06.html'" style='width: 70px'>회원탈퇴</button> 
+						<button type='button' id='btn-brother' class='btn btn-secondary mt-2 ml-1' onclick="location.href = '../user/withdraw'" style='width: 70px'>회원탈퇴</button> 
 						<button type='button' id='btn-brother' class='btn btn-secondary mt-2 ml-1' data-toggle='modal' data-target='#pw_fix' style='width: 90px'>비밀번호 수정</button>    
 					</div>
 				</div>

@@ -10,6 +10,17 @@
 		where user_id = #{userId}
 	</select>
 	
+	<!-- 탈퇴 회원 확인 - 반환 값이 0이 아니면 탈퇴회원이므로 로그인 차단 -->
+	<select id='selectDeletedUser' resultType='int'>
+		select count(*) from users
+		where user_num = (select user_num
+							from deletedusers
+							where user_num = (select user_num
+											from users
+											where user_id = #{userId})
+						)
+	</select>
+	
 	<resultMap id='userMap' type='user'>
 		<id 	property='userNum'				column='user_num'/>
 		<result	property='userId'				column='user_id'/>
@@ -32,5 +43,10 @@
 	<insert id='insertUser'>
 		insert into users(user_num, user_id, user_name, join_date, password, num_of_report)
 		values(usernum_seq.nextval, #{userId}, #{userName}, sysdate, #{password}, 0)
+	</insert>
+	
+	<!-- 회원탈퇴 -->
+	<insert id='insertDeletedUser'>
+		
 	</insert>
 </mapper>

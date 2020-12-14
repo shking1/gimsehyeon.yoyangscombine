@@ -31,6 +31,10 @@ public class UserController {
 		String view = "";
 		String loginChecker = userService.loginCheck(userId, password);
 		
+		if(loginChecker.equals("DELETED_USER")) {
+			model.addAttribute("msg", "이미 탈퇴한 회원입니다.");
+			view = "user/login";
+		}
 		if(loginChecker.equals("ID")) {
 			model.addAttribute("msg", "일치하는 아이디가 없습니다.");
 			view = "user/login";
@@ -101,5 +105,11 @@ public class UserController {
         String code = Integer.toString(authCode);
         
 		return code;
+	}
+	
+	//회원 탈퇴
+	@GetMapping("/user/withdraw")
+	public String withdraw() {
+		return "user/withdraw";
 	}
 }

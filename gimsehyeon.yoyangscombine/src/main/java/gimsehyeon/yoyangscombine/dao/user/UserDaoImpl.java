@@ -16,6 +16,11 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Override
+	public int selectDeletedUser(String userId) {
+		return userMap.selectDeletedUser(userId);
+	}
+	
+	@Override
 	public int insertUser(String userId, String userName, String password) {
 		return userMap.insertUser(userId, userName, password);
 	}
