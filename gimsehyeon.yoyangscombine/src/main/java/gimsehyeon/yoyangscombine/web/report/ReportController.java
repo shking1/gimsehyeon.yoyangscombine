@@ -1,13 +1,13 @@
 package gimsehyeon.yoyangscombine.web.report;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-import gimsehyeon.yoyangscombine.service.report.ReportService;
-
+@Controller
+@SessionAttributes("report")
 public class ReportController {
-	@Autowired private ReportService reportService;
 	
 	@GetMapping("/report/report")
 	public String reportBoard() {
