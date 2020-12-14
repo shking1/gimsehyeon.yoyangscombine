@@ -1,0 +1,35 @@
+<%@ page language='java' contentType='text/html; charset=utf-8' pageEncoding='utf-8' %>
+<%@ page isErrorPage='true' %>
+<!-- include:lib -->
+<%@ include file='../../include/lib.jsp' %>
+<!-- /include:lib -->
+<style>
+#error_img {
+	width: 500px;
+	height: 240px;
+	border: 1px solid black;
+	margin-top: 40px;
+	margin-left: 10px;
+}
+</style>
+<br><br><br><br>
+<title>Error - 404</title>
+<div class='container'>
+<div class='row justify-content-center'>
+	<div class='col-10'>
+	<div class='ml-2'>
+		<h4>ERROR - 404</h4><br>페이지를 찾을 수 없습니다.
+	</div>
+	<div id='error_img'>로고이미지 500x240</div>
+	<br>
+	<div class='ml-2'>
+		세계최강 요양원 검색사이트<br><a href='../..'>메인으로 돌아가기</a>
+		<br>	
+		INFO: 
+		(주)요양스컴바인 대표 김세현 서울시 00동 00로 00길 00-00 <br>
+		고객문의: 대표번호 0000-0000 | 이메일 yoyangsCombined@yoyang.kr 2020ⓒ All rights reserved
+		<br>
+	</div>
+	</div>
+</div>
+</div>
