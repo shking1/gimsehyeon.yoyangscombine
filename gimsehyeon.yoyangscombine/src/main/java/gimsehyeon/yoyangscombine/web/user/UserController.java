@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import gimsehyeon.yoyangscombine.service.mail.MailService;
 import gimsehyeon.yoyangscombine.service.user.UserService;
 
 @Controller
+@SessionAttributes("user")
 public class UserController {
 	@Autowired private UserService userService;
 	@Autowired private MailService mailService;
@@ -31,6 +33,10 @@ public class UserController {
 		String view = "";
 		String loginChecker = userService.loginCheck(userId, password);
 		
+		if(loginChecker.equals("DELETED_USER")) {
+			model.addAttribute("msg", "이미 탈퇴한 회원입니다.");
+			view = "user/login";
+		}
 		if(loginChecker.equals("ID")) {
 			model.addAttribute("msg", "일치하는 아이디가 없습니다.");
 			view = "user/login";
@@ -42,10 +48,12 @@ public class UserController {
 		if(loginChecker.equals("SUCCESS")) {
 			session.setAttribute("userId", userId);
 			session.setAttribute("userName", userService.getUser(userId).getUserName());
+			session.setAttribute("user", userService.getUser(userId));	//다른 페이지에서 user객체를 사용할 수 있게 하기 위함.
 			view = "redirect:../";
 		}
 		if(loginChecker.equals("ADMIN")) {
 			session.setAttribute("userId", userId);
+			session.setAttribute("user", userService.getUser(userId));
 			view = "redirect:../admin";
 		}
 		
@@ -75,6 +83,14 @@ public class UserController {
 		return "main";
 	}
 	
+	//아이디 중복 체크
+	@GetMapping("/user/userChk")
+	@ResponseBody
+	public int userChk(@RequestParam String userId) {
+		return userService.getUserChk(userId);
+	}
+	
+	//인증 이메일
 	@GetMapping("/user/createEmailCheck")
 	@ResponseBody
 	public String createEmailCheck(@RequestParam String userId) throws Exception{
@@ -91,5 +107,22 @@ public class UserController {
         String code = Integer.toString(authCode);
         
 		return code;
+	}
+	
+	//회원 탈퇴
+	@GetMapping("/user/withdraw")
+	public String withdraw(Model model, HttpSession session) {
+		return "user/withdraw";
+	}
+	
+	@GetMapping("/user/withdrawProc")
+	@ResponseBody
+	public boolean withdrawProc(@RequestParam String userId, Model model, HttpSession session) {
+		boolean isDelUser = false;
+		session.invalidate();	//session invalidate를 하지 않으면 탈퇴한 회원으로 여전히 로그인 되어 있는 기현상이 벌어짐. 
+		
+		if(userService.addDeletedUser(userId) != 0) isDelUser = true;
+		
+		return isDelUser;
 	}
 }

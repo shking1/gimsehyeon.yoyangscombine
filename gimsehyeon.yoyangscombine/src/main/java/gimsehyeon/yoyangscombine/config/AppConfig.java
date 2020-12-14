@@ -38,6 +38,7 @@ public class AppConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(loginInterceptor()).addPathPatterns("/communication/**");
+		registry.addInterceptor(loginInterceptor()).addPathPatterns("/common/**");
 		registry.addInterceptor(adminInterceptor()).addPathPatterns("/admin/**");
 	}
 	

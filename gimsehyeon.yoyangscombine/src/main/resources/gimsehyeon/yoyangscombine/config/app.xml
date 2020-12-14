@@ -45,7 +45,7 @@
 	<mybatis:scan base-package='gimsehyeon.yoyangscombine.dao.map.**'/>
 	
 	<bean id='mailSender' class='org.springframework.mail.javamail.JavaMailSenderImpl'>
-		<property name='username' value='shking28@gmail.com'/>
+		<property name='username' value='shking28'/>
 		<property name='password' value='jpsgphouawolurbv'/>
 		<property name='javaMailProperties'>
 			<props>
