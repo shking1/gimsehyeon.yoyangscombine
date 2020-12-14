@@ -22,8 +22,8 @@
 	
 	<!-- 회원가입 -->
 	<!-- 아이디 중복 확인 -->
-	<select id='selectUserChk' resultMap='userMap'>
-		select user_id
+	<select id='selectUserChk' resultType='int'>
+		select count(*)
 		from users
 		where user_id = #{userId}
 	</select>

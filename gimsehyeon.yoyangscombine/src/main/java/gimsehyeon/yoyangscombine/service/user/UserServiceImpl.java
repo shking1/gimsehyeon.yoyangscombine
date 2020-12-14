@@ -45,4 +45,9 @@ public class UserServiceImpl implements UserService {
 	public int addUser(String userId, String userName, String password) {
 		return userDao.insertUser(userId, userName, password);
 	}
+	
+	@Override
+	public int getUserChk(String userId) {
+		return userDao.selectUserChk(userId);
+	}
 }

@@ -75,6 +75,14 @@ public class UserController {
 		return "main";
 	}
 	
+	//아이디 중복 체크
+	@GetMapping("/user/userChk")
+	@ResponseBody
+	public int userChk(@RequestParam String userId) {
+		return userService.getUserChk(userId);
+	}
+	
+	//인증 이메일
 	@GetMapping("/user/createEmailCheck")
 	@ResponseBody
 	public String createEmailCheck(@RequestParam String userId) throws Exception{
