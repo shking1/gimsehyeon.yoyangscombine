@@ -52,7 +52,7 @@ $(() => {
 					else $("#submit").attr("disabled", "disabled");
 				}
 			}
-		});  // ajax 끝
+		});
 	});
 	
 	let code = "";

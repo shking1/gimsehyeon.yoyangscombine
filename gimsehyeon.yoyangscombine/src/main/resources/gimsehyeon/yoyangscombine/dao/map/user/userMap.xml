@@ -47,6 +47,9 @@
 	
 	<!-- 회원탈퇴 -->
 	<insert id='insertDeletedUser'>
-		
+		insert into deletedusers(user_num, deleted_date)
+		values((select user_num
+				from users
+				where user_id = #{userId}), sysdate)
 	</insert>
 </mapper>

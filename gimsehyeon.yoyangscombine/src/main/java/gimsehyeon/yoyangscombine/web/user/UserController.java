@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import gimsehyeon.yoyangscombine.service.mail.MailService;
 import gimsehyeon.yoyangscombine.service.user.UserService;
 
 @Controller
+@SessionAttributes("user")
 public class UserController {
 	@Autowired private UserService userService;
 	@Autowired private MailService mailService;
@@ -109,7 +111,18 @@ public class UserController {
 	
 	//회원 탈퇴
 	@GetMapping("/user/withdraw")
-	public String withdraw() {
+	public String withdraw(Model model, HttpSession session) {
 		return "user/withdraw";
+	}
+	
+	@GetMapping("/user/withdrawProc")
+	@ResponseBody
+	public boolean withdrawProc(@RequestParam String userId, Model model, HttpSession session) {
+		boolean isDelUser = false;
+		session.invalidate();	//session invalidate를 하지 않으면 탈퇴한 회원으로 여전히 로그인 되어 있는 기현상이 벌어짐. 
+		
+		if(userService.addDeletedUser(userId) != 0) isDelUser = true;
+		
+		return isDelUser;
 	}
 }
