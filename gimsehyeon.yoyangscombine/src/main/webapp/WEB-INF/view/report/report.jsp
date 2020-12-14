@@ -62,6 +62,8 @@ ul {
 }
 </style>
 <script>
+
+
 </script>
 </head>
 <div class = 'container'>
@@ -144,7 +146,7 @@ ul {
 					</button>
 					</div>
 					<div class='modal-body'>
-						<h6>신고사유 : 명예훼손</h6>
+						<h6>신고사유 : ${reportCode}</h6>
 						신고자 : 박성식이 <br>
 						비매너유저 : 안녕하세요<br>
 						게시글확인 : <a href='#'>No.1234</a><br>

@@ -1,5 +1,7 @@
 package gimsehyeon.yoyangscombine.service.report;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,16 @@ public class ReportServiceImpl implements ReportService{
 	@Override
 	public Report getReport(int reportNum) {
 		return reportDao.showReport(reportNum);
+	}
+	
+	@Override
+	public int calcReport(int reportNum) throws Exception{
+		return reportDao.countReport(reportNum);
+	}
+	
+	@Override
+	public List<Report> getReport(int start, int end) throws Exception{
+		return reportDao.countReport(start, end);
 	}
 
 }
