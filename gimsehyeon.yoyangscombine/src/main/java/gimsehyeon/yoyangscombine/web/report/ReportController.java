@@ -9,7 +9,7 @@ import gimsehyeon.yoyangscombine.service.report.ReportService;
 public class ReportController {
 	@Autowired private ReportService reportService;
 	
-	@GetMapping("/report")
+	@GetMapping("/report/report")
 	public String reportBoard() {
 		return "report/report";
 	}
