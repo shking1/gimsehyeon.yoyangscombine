@@ -1,4 +1,5 @@
 <head>
+<%@ page language='java' contentType='text/html; charset=utf-8' pageEncoding='utf-8'%>
 <!-- include:lib -->
 <%@ include file='../include/lib.jsp'%>
 <!-- /include:lib -->
