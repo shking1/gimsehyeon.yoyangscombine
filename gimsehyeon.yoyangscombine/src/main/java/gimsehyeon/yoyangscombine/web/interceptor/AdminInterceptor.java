@@ -13,8 +13,10 @@ public class AdminInterceptor implements HandlerInterceptor {
 		
 		if(userId == null) response.sendRedirect(request.getContextPath() + "/user/login");
 		else if(!userId.equals("admin")) {
+			isLogged = true;
 			response.sendRedirect(request.getContextPath() + "/");
 		}
+		else isLogged = true;
 		
 		return isLogged;
 	}
