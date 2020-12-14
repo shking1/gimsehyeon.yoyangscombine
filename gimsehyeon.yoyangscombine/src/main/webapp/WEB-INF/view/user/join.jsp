@@ -1,5 +1,4 @@
 <%@ page language='java' contentType='text/html; charset=utf-8' pageEncoding='utf-8' %>
-<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <!-- include:lib -->
 <%@ include file='../include/lib.jsp' %>
 <!-- /include:lib -->
@@ -60,7 +59,7 @@ $(() => {
 	
 	/* 인증번호 이메일 전송 */
 	$("#emailBtn").click(function(){
-		let email = $("#join-userMail").val();        // 입력한 이메일
+		let email = $("#join-userMail").val();	// 입력한 이메일
 		
 		$.ajax({
 			type:"GET",

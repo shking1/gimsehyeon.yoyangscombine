@@ -42,10 +42,12 @@ public class UserController {
 		if(loginChecker.equals("SUCCESS")) {
 			session.setAttribute("userId", userId);
 			session.setAttribute("userName", userService.getUser(userId).getUserName());
+			session.setAttribute("user", userService.getUser(userId));	//다른 페이지에서 user객체를 사용할 수 있게 하기 위함.
 			view = "redirect:../";
 		}
 		if(loginChecker.equals("ADMIN")) {
 			session.setAttribute("userId", userId);
+			session.setAttribute("user", userService.getUser(userId));
 			view = "redirect:../admin";
 		}
 		
