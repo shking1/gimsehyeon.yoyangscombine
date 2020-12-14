@@ -1,4 +1,4 @@
-package gimsehyeon.yoyangscombine.web.user;
+package gimsehyeon.yoyangscombine.web.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,9 +13,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 		
 		if(userId != null) {
 			isLogged = true;
-			if(!userId.equals("admin")) {
-				response.sendRedirect(request.getContextPath() + "/");
-			}
 		}
 		else response.sendRedirect(request.getContextPath() + "/user/login");
 		

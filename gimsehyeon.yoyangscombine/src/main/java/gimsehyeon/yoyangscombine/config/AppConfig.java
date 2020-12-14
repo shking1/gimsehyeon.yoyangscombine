@@ -11,7 +11,8 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import gimsehyeon.yoyangscombine.web.user.LoginInterceptor;
+import gimsehyeon.yoyangscombine.web.interceptor.AdminInterceptor;
+import gimsehyeon.yoyangscombine.web.interceptor.LoginInterceptor;
 
 @Configuration
 @EnableWebMvc
@@ -37,11 +38,16 @@ public class AppConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(loginInterceptor()).addPathPatterns("/communication/**");
-		registry.addInterceptor(loginInterceptor()).addPathPatterns("/admin/**");
+		registry.addInterceptor(adminInterceptor()).addPathPatterns("/admin/**");
 	}
 	
 	@Bean
 	public LoginInterceptor loginInterceptor() {
 		return new LoginInterceptor();
+	}
+	
+	@Bean
+	public AdminInterceptor adminInterceptor() {
+		return new AdminInterceptor();
 	}
 }

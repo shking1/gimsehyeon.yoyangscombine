@@ -21,6 +21,14 @@
 	</resultMap>
 	
 	<!-- 회원가입 -->
+	<!-- 아이디 중복 확인 -->
+	<select id='selectUserChk' resultMap='userMap'>
+		select user_id
+		from users
+		where user_id = #{userId}
+	</select>
+	
+	<!-- 회원데이터 삽입 -->
 	<insert id='insertUser'>
 		insert into users(user_num, user_id, user_name, join_date, password, num_of_report)
 		values(usernum_seq.nextval, #{userId}, #{userName}, sysdate, #{password}, 0)
