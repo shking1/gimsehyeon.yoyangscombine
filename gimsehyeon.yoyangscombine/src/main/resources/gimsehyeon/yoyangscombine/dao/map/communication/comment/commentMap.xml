@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org/DTD Mapper 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='gimsehyeon.yoyangscombine.dao.map.communication.comment.CommentMap'>
+	<insert id='insertComment'>
+		insert into comments (comment_num, communication_num, writer, comment_post)
+		values(commentnum_seq.nextval, #{communicationNum}, #{writer}, #{commentPost})
+	</insert>
+	
+	<select id='countComment' resultType='int'>
+		select count(*)
+		from comments
+		where communication_num = #{communicationNum}
+	</select>
+	
+	<select id='showComment' resultMap='commentMap'>
+		select comment_num, communication_num, writer, writing_date, comment_post
+		from comments
+		where comment_num = #{commentNum}
+	</select>
+	
+	<select id='selectComments' resultMap='commentMap'>
+		<include refid='pagingHeader' />
+		select comment_num, communication_num, writer, writing_date, comment_post
+		from comments
+		where communication_num = #{communicationNum}
+		order by comment_num desc
+		<include refid='pagingFooter' />
+	</select>
+	
+	<sql id='pagingHeader'>
+		select *
+		from ( select rownum as rn, A.*
+			   from (
+	</sql>
+	
+	<sql id='pagingFooter'>
+				) A
+			  ) 
+		where rn between #{start} and #{end}
+	</sql>	
+	
+	<resultMap id='commentMap' type='comment'>
+		<id 	property='commentNum'			column='comment_num'/>
+		<result	property='communicationNum'		column='communication_num'/>
+		<result	property='writer'				column='writer'/>
+		<result	property='writingDate'			column='writing_date'/>
+		<result	property='commentPost'			column='comment_post'/>
+	</resultMap>
+	
+	<delete id='deleteComment'>
+		delete from comments
+		where comment_num = #{commentNum}
+	</delete>
+	
+	<update id='updateComment'>
+		update comments
+		set comment_post = #{commentPost}, writing_date = sysdate
+		where comment_num = #{commentNum}
+	</update>
+</mapper>

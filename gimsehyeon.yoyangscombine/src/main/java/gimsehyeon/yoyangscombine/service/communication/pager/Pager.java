@@ -6,7 +6,7 @@ import lombok.Setter;
 
 public class Pager {
 	//페이지당 게시물 수
-	public static final int PAGE_SCALE = 10;
+	public static final int PAGE_SCALE = 7;
 	//화면당 페이지 수
 	public static final int BLOCK_SCALE = 5;
 	private int curPage;	//현재페이지

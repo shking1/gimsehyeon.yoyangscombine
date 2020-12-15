@@ -154,7 +154,11 @@ function commClick(commNum) {
 							<c:forEach var='list' items='${comms.lists}'>
 								<tr onClick="commClick('${list.communicationNum}');">
 									<td>${list.communicationNum}</td>
-									<td>${list.communicationTitle}</td>
+									<td>${list.communicationTitle}
+										<c:if test='${list.cnt > 0}'>
+											<span style='color: red; font-size: 14px;'> (${list.cnt})</span>
+										</c:if>
+									</td>
 									<td>${list.writer}</td>
 									<td>${list.writingDate}</td>
 								</tr>

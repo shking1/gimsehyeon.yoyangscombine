@@ -1,7 +1,6 @@
 <%@ page language='java' contentType='text/html; charset=utf-8'	pageEncoding='utf-8'%>
 <%@ taglib prefix='form' uri='http://www.springframework.org/tags/form'%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
-<%@ taglib prefix='fmt' uri='http://java.sun.com/jsp/jstl/fmt' %>
 <head>
 <!-- include:lib -->
 <%@ include file='../include/lib.jsp'%>
@@ -91,11 +90,10 @@ span {
 }
 </style>
 <script>
-// $(function(){
-// 	$('#btnDelete').click(function(){
-// 		$('#deleteBoard').modal('show');
-// 	});
-// });
+function back() {
+
+	location.href = document.referrer;
+}
 function deleteModal() {
 	$('#deleteBoard').modal('show');
 }
@@ -104,7 +102,43 @@ $(function(){
 		document.commPostForm.action = "./delete";
 		document.commPostForm.submit();
 	});
+	
+	commentList("1");
+	$("#btnComment").click(function(){
+		comment();
+	});
 });
+
+function comment() {
+	var commentPost = $("#commentPost").val();
+	var communicationNum = "${commPost.communicationNum}";
+	var param = {
+		"commentPost" : commentPost,
+		"communicationNum" : communicationNum	
+	};
+	
+	$.ajax({
+		type : "post",
+		url : "../comment/insert",
+		data : param,
+		success : function() {
+			commentList("1");
+		}
+	});
+}
+
+function commentList(num) {
+	$.ajax({
+		type : "post",
+		url : "../comment/list?communicationNum=${commPost.communicationNum}"
+			+ "&curPage=" + num,
+		success : function(result) {
+			document.getElementById("commentPost").value ='';
+			$("#commentList").html(result);
+		}
+	});
+}
+
 function btnUpdate(commNum) {
 	location.href = "editPost?&communicationNum=" + commNum;
 }
@@ -160,7 +194,7 @@ function btnUpdate(commNum) {
 				<a href='../sanatorium/02.html' id='btn-brother' type='button' class='btn btn-secondary'>캘린더</a>
 			</div>
 		</div>
-
+	
 		<div class='col-9' style='overflow:scroll; width:540px; height:800px;'>
 			<br>
 			<div class='row justify-content-center'>
@@ -218,72 +252,26 @@ function btnUpdate(commNum) {
 						</div>
 					</div>
 				</div>
-<!-- 				<div id='deleteBoradSuccess' class='modal fade' tabindex='-1'> -->
-<!-- 					<div class='modal-dialog'> -->
-<!-- 						<div class='modal-content'> -->
-<!-- 							<div class='modal-header'> -->
-<!-- 								<button type='button' class='close' data-dismiss='modal'> -->
-<!-- 									<span>&times;</span> -->
-<!-- 								</button> -->
-<!-- 							</div> -->
-	
-<!-- 							<div class='modal-body text-center'> -->
-<!-- 								<p style='font-size: 20px;'>게시글이 삭제되었습니다.</p> -->
-<!-- 							</div> -->
-	
-<!-- 							<div class='modal-footer'> -->
-<!-- 								<a href='01.html' class='btn btn-secondary'>확인</a> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
 			</div>
 			
 			<div class='justify-content-center' style='width: 540px;'>
-				<form style='width: 357px; margin: auto;'>
+				<div style='width: 357px; margin: auto;'>
 					<p style='font-size: 20px;'>댓글</p>
 					<hr>
-					<div class='row form-group justify-content-center'>
-						<div class='col-9 p-0'>
-							<input type='text' class='form-control' id='repleTitle' placeholder='댓글을 입력하세요.'>
+					<c:if test='${sessionScope.userName != null}'>
+						<div class='row form-group justify-content-center'>
+							<div class='col-9 p-0'>
+								<input type='text' class='form-control' id='commentPost' name='commentPost' placeholder='댓글을 입력하세요.'>
+							</div>
+							<input type='hidden' name='communicationNum' value='${commPost.communicationNum}'>
+							<button type='button' id='btnComment' class='btn btn-secondary col-2'>작성</button>		
 						</div>
-						<a type='button' class='btn btn-secondary col-2' data-toggle='modal' data-target='#addReple'>작성</a>		
-					</div>
-				</form>
-<!-- 				<div class='row' style='width: 400px; margin: auto;'> -->
-<!-- 					<p class='mr-4' id='repleWriter'> 작성자 : 최한석 <br> 작성일 : 2020-11-25 </p> -->
-<!-- 					<div class='ml-2 justify-content-end'> -->
-<!-- 						<div> -->
-<!-- 							<a type='button' class='btn btn-secondary' data-toggle='modal' data-target='#deleteReple'>삭제</a> -->
-<!-- 							<a type='button' class='btn btn-secondary' id='modifyReple'>수정</a> -->
-<!-- 							<a type='button' class='btn btn-secondary' data-toggle='modal' data-target='#reportReview'>신고하기</a> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<input class='form-control-plaintext' id='comment' style='font-size: 18px;' placeholder='환영합니다~~~~' readonly> <br> -->
-<!-- 					<nav> -->
-<!-- 						<div class='nav'> -->
-<!-- 							<a class='nav-link' data-toggle='tab' href='#commentRepleShow'>댓글(1)</a> -->
-<!-- 						</div> -->
-<!-- 					</nav> -->
-<!-- 					<div class='tab-content'> -->
-<!-- 						<div class='tab-pane fade' id='commentRepleShow'> -->
-<!-- 							<div class='row ml-1' style='width: 400px; margin: auto;'> -->
-<!-- 								<p class='mr-2' id='repleWriter'> ㄴ작성자 : 한아름 <br> 　작성일 : 2020-11-25 </p> -->
-<!-- 								<div class='ml-1 justify-content-end'> -->
-<!-- 									<div> -->
-<!-- 										<a type='button' class='btn btn-secondary' data-toggle='modal' data-target='#deleteComment'>삭제</a> -->
-<!-- 										<a type='button' class='btn btn-secondary' data-toggle='modal' data-target='#modifyComment'>수정</a> -->
-<!-- 										<a type='button' class='btn btn-secondary' data-toggle='modal' data-target='#reportReview'>신고하기</a> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 								<input class='form-control-plaintext' id='comment' style='font-size: 18px;' placeholder='　잘부탁드립니다!' readonly> <br> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
+					</c:if>
+				</div>
+				<div id='commentList' class='row' style='width: 450px; margin:auto;'></div>
 				<br>
 				<div class='row' style='width: 400px; margin: auto;'>
-					<button type='button' class='btn btn-secondary' onclick='history.back()'>뒤로가기</button>
+					<a href='/gimsehyeon.yoyangscombine/communication' class='btn btn-secondary'>목록보기</a>
 				</div>	
 			</div>
 			
@@ -292,7 +280,7 @@ function btnUpdate(commNum) {
 			        <div class='modal-content'>
 			            <div class='modal-header'>
 			                <h5 class='modal-title'>신고하기</h5>
-			                <button type='button' class='close' data-dismiss='modal' tableindex='-1'>
+			                <button type='button' class='close' data-dismiss='modal' tabindex='-1'>
 			                    <span>&times;</span>
 			                </button>
 			            </div>
@@ -331,50 +319,6 @@ function btnUpdate(commNum) {
 			            </div>
 			        </div>
 			    </div>
-			</div>
-			
-			<div id='deleteReple' class='modal fade' tabindex='-1'>
-				<div class='modal-dialog'>
-					<div class='modal-content'>
-						<div class='modal-header'>
-							<button type='button' class='close' data-dismiss='modal'>
-								<span>&times;</span>
-							</button>
-						</div>
-
-						<div class='modal-body text-center'>
-							<p style='font-size: 20px;'>
-								댓글을 <br>
-								삭제하시겠습니까?
-							</p>
-						</div>
-
-						<div class='modal-footer'>
-							<button type='button' class='btn btn-secondary' data-dismiss='modal'>취소</button>
-							<a class='btn btn-secondary' data-toggle='modal' data-target='#deleteRepleSuccess'>삭제</a>
-						</div>
-					</div>
-				</div>
-				
-				<div id='deleteRepleSuccess' class='modal fade' tabindex='-1'>
-					<div class='modal-dialog'>
-						<div class='modal-content'>
-							<div class='modal-header'>
-								<button type='button' class='close' data-dismiss='modal'>
-									<span>&times;</span>
-								</button>
-							</div>
-	
-							<div class='modal-body text-center'>
-								<p style='font-size: 20px;'>댓글이 삭제되었습니다.</p>
-							</div>
-	
-							<div class='modal-footer'>
-								<a href='03.html' class='btn btn-secondary'>확인</a>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>

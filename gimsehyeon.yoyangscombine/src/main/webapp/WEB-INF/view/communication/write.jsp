@@ -63,13 +63,6 @@ ul {
 	width: 100px;
 }
 </style>
-<script>
-$(function(){
-	$("#btnSave").click(function(){
-		document.saveCommunication.submit();
-	});
-});
-</script>
 <title>게시글 작성</title>
 </head>
 <body>
@@ -160,47 +153,6 @@ $(function(){
 				</div>
 			</div>
 		</div>
-	<!-- 	<div id='addCommunication' class='modal fade' tabindex='-1'> -->
-	<!-- 		<div class='modal-dialog'> -->
-	<!-- 			<div class='modal-content'> -->
-	<!-- 				<div class='modal-header'> -->
-	<!-- 					<button type='button' class='close' data-dismiss='modal'> -->
-	<!-- 						<span>&times;</span> -->
-	<!-- 					</button> -->
-	<!-- 				</div> -->
-	
-	<!-- 				<div class='modal-body text-center'> -->
-	<!-- 					<p style='font-size: 20px;'>작성을 완료하시겠습니까?</p> -->
-	<!-- 				</div> -->
-	
-	<!-- 				<div class='modal-footer'> -->
-	<!-- 					<button type='button' class='btn btn-secondary' -->
-	<!-- 						data-dismiss='modal'>취소</button> -->
-	<!-- 					<a class='btn btn-secondary' data-toggle='modal' -->
-	<!-- 						data-target='#addCommunicationSuccess'>확인</a> -->
-	<!-- 				</div> -->
-	<!-- 			</div> -->
-	<!-- 		</div> -->
-	<!-- 		<div id='addCommunicationSuccess' class='modal fade' tabindex='-1'> -->
-	<!-- 			<div class='modal-dialog'> -->
-	<!-- 				<div class='modal-content'> -->
-	<!-- 					<div class='modal-header'> -->
-	<!-- 						<button type='button' class='close' data-dismiss='modal'> -->
-	<!-- 							<span>&times;</span> -->
-	<!-- 						</button> -->
-	<!-- 					</div> -->
-	
-	<!-- 					<div class='modal-body text-center'> -->
-	<!-- 						<p style='font-size: 20px;'>게시글이 작성되었습니다.</p> -->
-	<!-- 					</div> -->
-	
-	<!-- 					<div class='modal-footer'> -->
-	<!-- 						<a href='01.html' class='btn btn-secondary'>확인</a> -->
-	<!-- 					</div> -->
-	<!-- 				</div> -->
-	<!-- 			</div> -->
-	<!-- 		</div> -->
-	<!-- 	</div> -->
 		<!-- include: footer-->
 		<jsp:include page='../include/footer.jsp'/>
 		<!-- include: footer-->

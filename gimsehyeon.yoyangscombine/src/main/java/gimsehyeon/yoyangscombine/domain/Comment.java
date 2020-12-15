@@ -18,29 +18,28 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Communication {
+public class Comment {
 	@NotBlank @NotNull
-	private int communicationNum;
+	private Integer commentNum;
+	@NotBlank @NotNull
+	private Integer communicationNum;
+	private String commentPost;
 	@NotBlank @NotNull
 	private String writer;
-	@NotBlank @NotNull
-	private String communicationTitle;
-	private String communicationPost;
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonFormat(pattern = "yyyy-MM-dd a HH:mm:ss", timezone="Asia/Seoul")
 	private LocalDate writingDate;
-	private int cnt;
 	
-	public Communication(int communicationNum) {
-		this.communicationNum = communicationNum;
+	public Comment(Integer commentNum) {
+		this.commentNum = commentNum;
 	}
 	
 	@Override
 	public String toString() {
-		return String.format("commNum : %d, "
+		return String.format("commentNum : %d, "
+				+ "communicationNum : %d, "
+				+ "commentPost : %s, "
 				+ "writer : %s, "
-				+ "commTitle : %s, "
-				+ "commPost : %s, "
-				+ "wDate : %s", communicationNum, writer, communicationTitle, communicationTitle, writingDate);
+				+ "wDate : %s", commentNum, communicationNum, commentPost, writer, writingDate);
 	}
 }
