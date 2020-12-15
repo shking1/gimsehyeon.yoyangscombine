@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import gimsehyeon.yoyangscombine.domain.User;
 import gimsehyeon.yoyangscombine.service.mail.MailService;
 import gimsehyeon.yoyangscombine.service.user.UserService;
 
@@ -124,5 +125,32 @@ public class UserController {
 		if(userService.addDeletedUser(userId) != 0) isDelUser = true;
 		
 		return isDelUser;
+	}
+	
+	//회원 수정
+	@GetMapping("/user/fixUser")
+	public String fixUser(Model model, HttpSession session) {
+		return "user/fixUser";
+	}
+	
+	@PostMapping("/user/fixUserProc")
+	@ResponseBody
+	public boolean fixUserProc(User user) {
+		boolean isFixedUser = false;
+		
+		if(userService.fixUser(user.getUserId(), user.getUserName()) != 0) isFixedUser = true;
+		
+		return isFixedUser;
+	}
+	
+	//비밀번호 수정
+	@PostMapping("/user/fixPasswordProc")
+	@ResponseBody
+	public boolean fixPasswordProc(User user) {
+		boolean isFixedPw = false;
+		
+		if(userService.fixPassword(user.getUserId(), user.getPassword()) != 0) isFixedPw = true;
+		
+		return isFixedPw;
 	}
 }

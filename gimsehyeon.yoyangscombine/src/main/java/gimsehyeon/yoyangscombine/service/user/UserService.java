@@ -9,4 +9,6 @@ public interface UserService {
 	String loginCheck(String userId, String password);
 	int addUser(String userId, String userName, String password);
 	int addDeletedUser(String userId);
+	int fixUser(String userId, String userName);
+	int fixPassword(String userId, String password);
 }

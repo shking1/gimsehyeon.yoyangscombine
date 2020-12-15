@@ -52,4 +52,18 @@
 				from users
 				where user_id = #{userId}), sysdate)
 	</insert>
+	
+	<!-- 회원정보 수정 -->
+	<update id='updateUser'>
+		update users
+		set user_name = #{userName}
+		where user_id = #{userId}
+	</update>
+	
+	<!-- 비밀번호 수정 -->
+	<update id='updatePassword'>
+		update users
+		set password = #{password}
+		where user_id = #{userId}
+	</update>
 </mapper>

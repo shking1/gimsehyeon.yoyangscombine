@@ -63,4 +63,14 @@ public class UserServiceImpl implements UserService {
 	public int addDeletedUser(String userId) {
 		return userDao.insertDeletedUser(userId);
 	}
+	
+	@Override
+	public int fixUser(String userId, String userName) {
+		return userDao.updateUser(userId, userName);
+	}
+	
+	@Override
+	public int fixPassword(String userId, String password) {
+		return userDao.updatePassword(userId, password);
+	}
 }
