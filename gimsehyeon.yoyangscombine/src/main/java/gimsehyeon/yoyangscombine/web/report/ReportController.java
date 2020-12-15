@@ -23,8 +23,7 @@ public class ReportController {
 		Pager pager = new Pager(count, curPage);
 		int start = pager.getPageBegin();
 		int end = pager.getPageEnd();
-		
-
+	
 		return "report/report";
 	}
 
