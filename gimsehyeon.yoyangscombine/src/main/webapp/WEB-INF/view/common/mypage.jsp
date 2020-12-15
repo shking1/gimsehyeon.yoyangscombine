@@ -1,4 +1,8 @@
 <%@ page language='java' contentType='text/html; charset=utf-8' pageEncoding='utf-8' %>
+<%@ page import='gimsehyeon.yoyangscombine.domain.User' %>
+<%
+	User user = (User)session.getAttribute("user");
+%>
 <!-- include:lib -->
 <%@ include file='../include/lib.jsp' %>
 <!-- /include:lib -->
@@ -21,8 +25,68 @@
 {
 	font-size:3pt;
 }
-
 </style>
+<script>
+$(() => {
+	let isPwCheck = false;
+	
+	//비밀번호 수정(모달창)
+	$(function(){
+		$("#passwordConfirm-success").hide();
+		$("#passwordConfirm-danger").hide();
+		$("#passwordConfirm-lastPwErr").hide();
+		$("input").keyup(function(){
+			let lastPw = $("#last_pw").val();
+			let pwd1 = $("#new_pw").val();
+			let pwd2 = $("#check_pw").val();
+			let userPwd = `${user.getPassword()}`;
+			
+			if(lastPw != "" || pwd1 != "" || pwd2 != "") {
+				if(lastPw == userPwd && pwd1 == pwd2 && pwd1 != "" && pwd2 != "") {
+					$("#passwordConfirm-success").show();
+					$("#passwordConfirm-danger").hide();
+					$("#passwordConfirm-lastPwErr").hide();
+					isPwCheck = true;
+				} else if(lastPw != userPwd) {
+					$("#passwordConfirm-success").hide();
+					$("#passwordConfirm-danger").hide();
+					$("#passwordConfirm-lastPwErr").show();
+					isPwCheck = false;
+				} else if(pwd1 != pwd2) {
+					$("#passwordConfirm-success").hide();
+					$("#passwordConfirm-danger").show();
+					$("#passwordConfirm-lastPwErr").hide();
+					isPwCheck = false;
+				} else {
+					$("#passwordConfirm-success").hide();
+					$("#passwordConfirm-danger").hide();
+					$("#passwordConfirm-lastPwErr").hide();
+					isPwCheck = false;
+				}
+			}
+			
+			if(isPwCheck) $("#fixPwProc").removeAttr("disabled");
+			else $("#fixPwProc").attr("disabled", "disabled");
+		});
+	});
+	
+	$("#fixPwProc").click(function(){
+		let user = {
+			userId: `${user.getUserId()}`,
+			password: $("#new_pw").val()
+		}
+		
+		$.ajax({
+			type : "POST",
+			url : "../user/fixPasswordProc",
+			data : user,
+			success : function(data){
+				
+	        }
+		});
+	});
+});
+</script>
 <div class='container'>
 <!-- include:header -->
 <jsp:include page='../include/header.jsp'/>
@@ -80,16 +144,19 @@
 								<form>
 									<div class='form-gruop'>
 										<label for='last_pw' class='col-form-label'>기존 비밀번호를 입력하세요. </label>
-										<input type='password' class='form-control' id='last_pw' placeholder='기존 비밀번호' />
+										<input type='password' class='form-control' id='last_pw' name='lastPw' placeholder='기존 비밀번호' />
 									</div>
 									<div class='form-gruop'>
 										<label for='new_pw' class='col-form-label'>새로운 비밀번호를 입력하세요. </label>
-										<input type='password' class='form-control' id='new_pw' placeholder='새로운 비밀번호'/>
+										<input type='password' class='form-control' id='new_pw' name='password' placeholder='새로운 비밀번호'/>
 									</div>
 									<div class='form-gruop'>
 										<label for='check_pw' class='col-form-label'>비밀번호를 다시 한번 입력하세요.</label>
-										<input type='password' class='form-control' id='check_pw' placeholder = '새 비밀번호 확인'/>
+										<input type='password' class='form-control' id='check_pw' placeholder='새 비밀번호 확인'/>
 									</div>
+									<div class='alert alert-success' id='passwordConfirm-success'>비밀번호 변경이 가능합니다.</div>
+									<div class='alert alert-danger' id='passwordConfirm-danger'>새로운 비밀번호가 확인란과 일치하지 않습니다. 다시 확인하세요.</div>
+									<div class='alert alert-danger' id='passwordConfirm-lastPwErr'>기존 비밀번호가 틀립니다.</div>
 								</form>
 							</div>
 				               
@@ -103,17 +170,17 @@
 											</button>
 										</div>
 										<div class='modal-body'>
-											<p>성공적으로 수정되었습니다.</p>
+											<p>비밀번호가 변경되었습니다.</p>
 										</div>
 										<div class='modal-footer'>
-											<button type='button' class='btn btn-secondary' data-dismiss='modal'>닫기</button>
+											<button type='button' class='btn btn-secondary' data-dismiss='modal' onClick='window.location.reload()'>확인</button>
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class='modal-footer'>
-								<button type='button' class='btn btn-secondary' data-dismiss='modal'>닫기</button>
-								<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#real_mod'>확인</button>
+								<button type='button' class='btn btn-secondary' data-dismiss='modal'>취소</button>
+								<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#real_mod' id='fixPwProc' disabled='disabled'>수정</button>
 							</div>
 						</div>
 					</div>
@@ -121,7 +188,7 @@
 
 				<div id ='buttons' class='container'>
 					<div class='form-group row'>
-						<button type='button' id='btn-brother' class='btn btn-secondary mt-2' onclick="location.href = '../user/03.html'" style='width: 70px'>정보수정</button> 
+						<button type='button' id='btn-brother' class='btn btn-secondary mt-2' onclick="location.href = '../user/fixUser'" style='width: 70px'>정보수정</button> 
 						<button type='button' id='btn-brother' class='btn btn-secondary mt-2 ml-1' onclick="location.href = '../user/withdraw'" style='width: 70px'>회원탈퇴</button> 
 						<button type='button' id='btn-brother' class='btn btn-secondary mt-2 ml-1' data-toggle='modal' data-target='#pw_fix' style='width: 90px'>비밀번호 수정</button>    
 					</div>

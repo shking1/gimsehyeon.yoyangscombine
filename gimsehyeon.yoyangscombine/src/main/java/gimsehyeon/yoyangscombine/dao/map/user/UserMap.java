@@ -13,4 +13,6 @@ public interface UserMap {
 	int insertUser(@Param("userId") String userId,
 			@Param("userName") String userName, @Param("password") String password);
 	int insertDeletedUser(@Param("userId") String userId);
+	int updateUser(@Param("userId") String userId, @Param("userName") String userName);
+	int updatePassword(@Param("userId") String userId, @Param("password") String password);
 }

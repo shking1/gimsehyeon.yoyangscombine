@@ -8,4 +8,6 @@ public interface UserDao {
 	int selectUserChk(String userId);
 	int insertUser(String userId, String userName, String password);
 	int insertDeletedUser(String userId);
+	int updateUser(String userId, String userName);
+	int updatePassword(String userId, String password);
 }
