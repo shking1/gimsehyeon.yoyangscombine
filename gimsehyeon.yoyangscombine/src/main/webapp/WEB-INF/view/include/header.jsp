@@ -20,7 +20,16 @@
 		${msg}
 	</div>
 	<div id = 'headertext'>
-		<h1><a href='<%= request.getContextPath() %>'>요양스컴바인</a></h1>
+		<c:if test='${userId != null}'>
+			<c:choose>
+				<c:when test='${userId.equals("admin")}'>
+					<h1><a href='<%= request.getContextPath() %>/admin'>요양스컴바인</a></h1>
+				</c:when>
+				<c:otherwise>
+					<h1><a href='<%= request.getContextPath() %>'>요양스컴바인</a></h1>
+				</c:otherwise>
+			</c:choose>
+		</c:if>
 	</div>
 	<hr>
 </header>
