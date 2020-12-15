@@ -12,6 +12,18 @@
 		<include refid='pagingFooter'/>
 	</select>
 	
+	<sql id='pagingHeader'>
+		select *
+		from ( select rownum as rn, A.*
+			   from (
+	</sql>
+	
+	<sql id='pagingFooter'>
+				) A
+			  ) 
+		where rn between #{start} and #{end}
+	</sql>
+	
 	<resultMap id='reportMap' type='report'>
 		<id		property='reportNum'	column='report_num'/>
 		<result property='reporter'		column='reporter'/>
