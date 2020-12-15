@@ -25,13 +25,13 @@
 	</sql>
 	
 	<resultMap id='reportMap' type='report'>
-		<id		property='reportNum'	column='report_num'/>
-		<result property='reporter'		column='reporter'/>
-		<result property='reportCode'	column='report_code'/>
+		<id		property='reportNum'			column='report_num'/>
+		<result property='reporter'				column='reporter'/>
+		<result property='reportCode'			column='report_code'/>
 		<result property='reportReceptionDate'	column='report_reception_date'/>
-		<result property='communicationNum'	column='communication_num'/>
-		<result property='commentNum'	column='comment_num'/>
-		<result property='reviewNum'	column='review_num'/>
+		<result property='communicationNum'		column='communication_num'/>
+		<result property='commentNum'			column='comment_num'/>
+		<result property='reviewNum'			column='review_num'/>
 	</resultMap>
 	
 </mapper>
