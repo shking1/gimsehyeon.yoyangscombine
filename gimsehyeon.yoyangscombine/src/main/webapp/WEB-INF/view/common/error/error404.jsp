@@ -23,7 +23,7 @@
 	<div id='error_img'>로고이미지 500x240</div>
 	<br>
 	<div class='ml-2'>
-		세계최강 요양원 검색사이트<br><a href='../..'>메인으로 돌아가기</a>
+		세계최강 요양원 검색사이트<br><a href='<%= request.getContextPath() %>'>메인으로 돌아가기</a>
 		<br>	
 		INFO: 
 		(주)요양스컴바인 대표 김세현 서울시 00동 00로 00길 00-00 <br>

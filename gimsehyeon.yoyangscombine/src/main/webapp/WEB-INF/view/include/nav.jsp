@@ -2,7 +2,7 @@
 <div id='common-header'>
 	<ol>
 		<li id='gnb-li'>
-		<a href='/gimsehyeon.yoyangscombine/admin'><button id='gnb_btn'>회원관리</button></a>
+		<a href='<%= request.getContextPath() %>/admin'><button id='gnb_btn'>회원관리</button></a>
 		</li>
 		<li id='gnb-li'>
 		<a href="#"><button id='gnb_btn'>신고접수</button></a>
