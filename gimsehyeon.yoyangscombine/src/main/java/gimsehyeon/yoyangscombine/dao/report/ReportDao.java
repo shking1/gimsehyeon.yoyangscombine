@@ -6,6 +6,6 @@ import gimsehyeon.yoyangscombine.domain.Report;
 
 public interface ReportDao {
 	Report showReport(Integer reportNum);
-	List<Report> countReport(int start, int end) throws Exception;
+	List<Report> selectReports(int start, int end) throws Exception;
 	int countReport(Integer reportNum);
 }

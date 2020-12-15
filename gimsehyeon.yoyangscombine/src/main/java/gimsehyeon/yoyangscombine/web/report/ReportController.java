@@ -18,23 +18,26 @@ import gimsehyeon.yoyangscombine.service.communication.pager.Pager;
 import gimsehyeon.yoyangscombine.service.report.ReportService;
 
 @Controller
-@SessionAttributes("report")
+//@SessionAttributes("report")
 public class ReportController {
 	@Autowired private ReportService reportService;	
 	
-	@RequestMapping("/report")
-	public String allReport(Model model,Integer reportNum, @RequestParam(defaultValue="1") int curPage) throws Exception{
-		int count = reportService.calcReport(reportNum);
-		Pager pager = new Pager(count, curPage);
-		int start = pager.getPageBegin();
-		int end = pager.getPageEnd();
+	@RequestMapping("report")
+	public String allReport(Model model,
+			@RequestParam(defaultValue="1") int curPage) throws Exception{
+//		System.out.println(reportNum);
+//		int count = reportService.calcReport(reportNum);
+//		Pager pager = new Pager(count, curPage);
+//		int start = pager.getPageBegin();
+//		int end = pager.getPageEnd();
 		//reportboard
-		List<Report> boards = reportService.getReport(start, end);
+		List<Report> boards = reportService.getReports(0, 0);
 		Map<String, Object> reports = new HashMap<>();
 		reports.put("boards", boards);
-		reports.put("count", count);
-		reports.put("pager", pager);
+//		reports.put("count", count);
+//		reports.put("pager", pager);
 		model.addAttribute("reports", reports);
+		System.out.println(boards);
 		return "report/report";
 	}
 

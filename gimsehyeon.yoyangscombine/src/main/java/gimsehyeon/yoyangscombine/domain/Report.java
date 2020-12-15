@@ -21,8 +21,15 @@ public class Report {
 	private int reportCode;	//분류
 	private LocalDate reportReceptionDate;	//작성일
 	private String reportContent;	//제목(내용)
-	
+	private int communicationNum;
+	private int commentNum;
+	private int reviewNum;
 	public Report(int reportNum) {
 		this.reportNum = reportNum;
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("reportNum : %d", reportNum);
 	}
 }

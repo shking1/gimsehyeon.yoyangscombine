@@ -1,5 +1,6 @@
-<head>
 <%@ page language='java' contentType='text/html; charset=utf-8' pageEncoding='utf-8'%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
+<head>
 <!-- include:lib -->
 <%@ include file='../include/lib.jsp'%>
 <!-- /include:lib -->
@@ -77,7 +78,6 @@ ul {
 			<div class='justify-content-center'>
 			<h4 id='board-title' style="text-align:left">신고 게시판</h4>
 				<table class='table table-sm table-hover table-striped text-center'>
-				
 					<thead>
 						<tr>
 							<th></th>
@@ -89,38 +89,35 @@ ul {
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items var='report' items='${reports.boards}'>
+					<c:forEach var='report' items='${reports.boards}'>
 	<tr id='#reportContents'>
 		<td>${report.reportNum}</td>
 		<td>
-			<c:choose>
-				<c:when test="${report.reportCode eq '1'}">
-				도배/광고성
-				</c:when>
-				<c:when test="${report.reportCode eq '2'}">
-				선정성/폭력성
-				</c:when>
-				<c:when test="${report.reportCode eq '3'}">
-				명예훼손
-				</c:when>
-				<c:when test="${report.reportCode eq '4'}">
-				자살암시/유해성
-				</c:when>
-				<c:otherwise>
-				기타
-				</c:otherwise>
-			</c:choose>
+		${report.reportCode}
+<%-- 			<c:choose> --%>
+<%-- 				<c:when test="${report.reportCode eq '1'}"> --%>
+<!-- 				도배/광고성 -->
+<%-- 				</c:when> --%>
+<%-- 				<c:when test="${report.reportCode eq '2'}"> --%>
+<!-- 				선정성/폭력성 -->
+<%-- 				</c:when> --%>
+<%-- 				<c:when test="${report.reportCode eq '3'}"> --%>
+<!-- 				명예훼손 -->
+<%-- 				</c:when> --%>
+<%-- 				<c:when test="${report.reportCode eq '4'}"> --%>
+<!-- 				자살암시/유해성 -->
+<%-- 				</c:when> --%>
+<%-- 				<c:otherwise> --%>
+<!-- 				기타 -->
+<%-- 				</c:otherwise> --%>
+<%-- 			</c:choose> --%>
 		</td>
 		<td>${report.content}</td>
 		<td>${report.reporter}</td>
 		<td>${report.reportReceptionDate}</td>
 	</tr>
 </c:forEach>
-					</tbody>
-				</table>
-				<hr>
-				<!-- 페이지 네비게이션 -->
-							<tr>
+<tr>
 								<td colspan='5' align='center'>
 									<c:if test='${comms.pager.curBlock > 1}'>
 										<a href="javascript:list('1')">[처음]</a>&nbsp;
@@ -150,6 +147,39 @@ ul {
 									</c:if>
 								</td>
 							</tr>
+<!-- 						<tr> -->
+<!-- 							<td><input type='radio' name='reportSelect'></td> -->
+<!-- 							<td>123</td> -->
+<!-- 							<td>명예훼손</td> -->
+<!-- 							<td><a style='color: black; text-decoration: none;' data-toggle='modal' data-target='#reportCheck'>안녕하세요 이...</a></td> -->
+<!-- 							<td>kent@d..</td> -->
+<!-- 							<td>2020-11-01</td> -->
+<!-- 						</tr> -->
+
+<!-- 						<tr id='#reportContents'> -->
+<!-- 							<td><input type='radio' name='reportSelect'></td> -->
+<!-- 							<td>122</td> -->
+<!-- 							<td>도배/광고성</td> -->
+<!-- 							<td><a style='color: black; text-decoration: none;' data-toggle='modal' data-target='#reportCheck'>게시판이 더러...</a></td> -->
+<!-- 							<td>tast@na..</td> -->
+<!-- 							<td>2020-10-19</td> -->
+<!-- 						</tr> -->
+						
+<!-- 						<tr> -->
+						
+<!-- 							<td><input type='radio' name='reportSelect'></td> -->
+<!-- 							<td>121</td> -->
+<!-- 							<td>기타</td> -->
+<!-- 							<td><a style='color: black; text-decoration: none;' data-toggle='modal' data-target='#reportCheck'>정지부탁드립니...</a></td> -->
+<!-- 							<td>tanke@...</td> -->
+<!-- 							<td>2020-10-01</td> -->
+<!-- 						</tr> -->
+					</tbody>
+					
+				</table>
+				<hr>
+				<!-- 페이지 네비게이션 -->
+							
 				<div class='float-right'>
 					<a class='btn btn-secondary' data-toggle='modal' data-target='#reportAccept'>수락</a>
 					<a class='btn btn-secondary' data-toggle='modal' data-target='#reportCancel'>기각</a>

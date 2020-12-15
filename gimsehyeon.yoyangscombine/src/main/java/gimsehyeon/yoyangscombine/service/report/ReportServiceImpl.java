@@ -24,8 +24,8 @@ public class ReportServiceImpl implements ReportService{
 	}
 	
 	@Override
-	public List<Report> getReport(int start, int end) throws Exception{
-		return reportDao.countReport(start, end);
+	public List<Report> getReports(int start, int end) throws Exception{
+		return reportDao.selectReports(start, end);
 	}
 
 }

@@ -17,9 +17,9 @@ public class ReportDaoImpl implements ReportDao {
 		return reportMap.showReport(reportNum);
 	}
 	@Override
-	public List<Report> countReport(int start, int end)throws Exception {
+	public List<Report> selectReports(int start, int end)throws Exception {
 		// TODO Auto-generated method stub
-		return reportMap.countReport(start, end);
+		return reportMap.selectReports(start, end);
 	}
 	@Override
 	public int countReport(Integer reportNum) {

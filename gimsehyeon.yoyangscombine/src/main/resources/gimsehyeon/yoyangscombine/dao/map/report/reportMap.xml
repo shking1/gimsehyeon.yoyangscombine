@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <mapper namespace='gimsehyeon.yoyangscombine.dao.map.report.ReportMap'>
-	<select id='selectReport' resultMap='reportMap'>
-		<include refid='pagingHeader'/>
+	<select id='selectReports' resultMap='reportMap'>
+<!-- 		<include refid='pagingHeader'/> -->
 		select report_num, reporter, report_code, report_reception_date, report_content, 
-			communicaton_num, comment_num, review_num
+			communication_num, comment_num, review_num
 		from contents_of_report
 		
 		order by report_num desc
-		<include refid='pagingFooter'/>
+<!-- 		<include refid='pagingFooter'/> -->
 	</select>
 	
 	<select id='countReport' resultType='int'>
@@ -33,6 +33,7 @@
 		<id		property='reportNum'			column='report_num'/>
 		<result property='reporter'				column='reporter'/>
 		<result property='reportCode'			column='report_code'/>
+		<result property='reportContent'		column='report_content'/>
 		<result property='reportReceptionDate'	column='report_reception_date'/>
 		<result property='communicationNum'		column='communication_num'/>
 		<result property='commentNum'			column='comment_num'/>

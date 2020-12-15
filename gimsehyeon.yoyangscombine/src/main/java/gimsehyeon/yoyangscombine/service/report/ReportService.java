@@ -7,5 +7,5 @@ import gimsehyeon.yoyangscombine.domain.Report;
 public interface ReportService {
 	Report getReport(Integer reportNum);
 	int calcReport(Integer reportNum) throws Exception;
-	List<Report> getReport(int start, int end) throws Exception;
+	List<Report> getReports(int start, int end) throws Exception;
 }
