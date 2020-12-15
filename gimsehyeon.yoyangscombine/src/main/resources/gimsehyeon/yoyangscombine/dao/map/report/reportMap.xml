@@ -12,6 +12,11 @@
 		<include refid='pagingFooter'/>
 	</select>
 	
+	<select id='countReport' resultType='int'>
+		select count(*)
+		from contents_of_report
+	</select>
+	
 	<sql id='pagingHeader'>
 		select *
 		from ( select rownum as rn, A.*
