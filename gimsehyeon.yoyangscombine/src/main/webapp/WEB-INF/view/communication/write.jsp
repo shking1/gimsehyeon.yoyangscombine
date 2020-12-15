@@ -63,13 +63,6 @@ ul {
 	width: 100px;
 }
 </style>
-<script>
-$(function(){
-	$("#btnSave").click(function(){
-		document.saveCommunication.submit();
-	});
-});
-</script>
 <title>게시글 작성</title>
 </head>
 <body>
