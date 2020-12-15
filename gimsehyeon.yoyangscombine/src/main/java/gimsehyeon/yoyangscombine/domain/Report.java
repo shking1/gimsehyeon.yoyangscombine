@@ -2,6 +2,8 @@ package gimsehyeon.yoyangscombine.domain;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Report {
+	@NotNull
 	private int reportNum;	//No.
 	private int reporter;	//작성자
 	private int reportCode;	//분류
