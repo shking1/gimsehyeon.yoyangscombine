@@ -4,8 +4,11 @@
 <mapper namespace='gimsehyeon.yoyangscombine.dao.map.communication.CommunicationMap'>
 	<select id='selectComms' resultMap='communicationMap'>
 		<include refid='pagingHeader'/>
-		select communication_num, writer, communication_title, communication_post, writing_date, likes
-		from communications
+		select communication_num, writer, communication_title, communication_post, writing_date,
+			(select count(*) 
+			 from comments 
+			 where communication_num = c.communication_num) cnt
+		from communications c
 		<include refid='search'/>
 		order by communication_num desc
 		<include refid='pagingFooter'/>
@@ -18,7 +21,7 @@
 	</select>
 	
 	<select id='showComm' resultMap='communicationMap'>
-		select communication_num, writer, communication_title, communication_post, writing_date, likes
+		select communication_num, writer, communication_title, communication_post, writing_date
 		from communications
 		where communication_num = #{communicationNum}
 	</select>
@@ -53,7 +56,6 @@
 		<result	property='communicationTitle'	column='communication_title'/>
 		<result	property='communicationPost'	column='communication_post'/>
 		<result	property='writingDate'			column='writing_date'/>
-		<result property='likes'				column='likes'/>
 	</resultMap>
 	
 	<insert id='insertComm'>

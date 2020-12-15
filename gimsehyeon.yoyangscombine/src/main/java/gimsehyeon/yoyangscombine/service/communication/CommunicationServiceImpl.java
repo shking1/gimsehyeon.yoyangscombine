@@ -11,30 +11,6 @@ import gimsehyeon.yoyangscombine.domain.Communication;
 @Service
 public class CommunicationServiceImpl implements CommunicationService {
 	@Autowired private CommunicationDao commDao;
-	
-	@Override
-	public List<String> getFiles(int communicationNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addFile(String fullName) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void modifyFile(String fullName, int communicationNum) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void removeFile(String fullName) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public List<Communication> getComms(int start, int end, String searchOption, String keyWord) throws Exception {
