@@ -89,47 +89,67 @@ ul {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td><input type='radio' name='reportSelect'></td>
-							<td>123</td>
-							<td>명예훼손</td>
-							<td><a style='color: black; text-decoration: none;' data-toggle='modal' data-target='#reportCheck'>안녕하세요 이...</a></td>
-							<td>kent@d..</td>
-							<td>2020-11-01</td>
-						</tr>
-
-						<tr id='#reportContents'>
-							<td><input type='radio' name='reportSelect'></td>
-							<td>122</td>
-							<td>도배/광고성</td>
-							<td><a style='color: black; text-decoration: none;' data-toggle='modal' data-target='#reportCheck'>게시판이 더러...</a></td>
-							<td>tast@na..</td>
-							<td>2020-10-19</td>
-						</tr>
-						
-						<tr>
-						
-							<td><input type='radio' name='reportSelect'></td>
-							<td>121</td>
-							<td>기타</td>
-							<td><a style='color: black; text-decoration: none;' data-toggle='modal' data-target='#reportCheck'>정지부탁드립니...</a></td>
-							<td>tanke@...</td>
-							<td>2020-10-01</td>
-						</tr>
+						<c:forEach items var='report' items='${reports.boards}'>
+	<tr id='#reportContents'>
+		<td>${report.reportNum}</td>
+		<td>
+			<c:choose>
+				<c:when test="${report.reportCode eq '1'}">
+				도배/광고성
+				</c:when>
+				<c:when test="${report.reportCode eq '2'}">
+				선정성/폭력성
+				</c:when>
+				<c:when test="${report.reportCode eq '3'}">
+				명예훼손
+				</c:when>
+				<c:when test="${report.reportCode eq '4'}">
+				자살암시/유해성
+				</c:when>
+				<c:otherwise>
+				기타
+				</c:otherwise>
+			</c:choose>
+		</td>
+		<td>${report.content}</td>
+		<td>${report.reporter}</td>
+		<td>${report.reportReceptionDate}</td>
+	</tr>
+</c:forEach>
 					</tbody>
 				</table>
 				<hr>
-				<div>
-					<ul class='pagination justify-content-center'>
-						<li><a href='#' style='margin-right: 5px;' class='text-secondary'> ◀ </a></li>
-						<li><a href='#' style='margin-right: 5px;' class='text-secondary'> 1 </a></li>
-						<li><a href='#' style='margin-right: 5px;' class='text-secondary'> 2 </a></li>
-						<li><a href='#' style='margin-right: 5px;' class='text-secondary'> 3 </a></li>
-						<li><a href='#' style='margin-right: 5px;' class='text-secondary'> 4 </a></li>
-						<li><a href='#' style='margin-right: 5px;' class='text-secondary'> 5 </a></li>
-						<li><a href='#' style='margin-right: 5px;' class='text-secondary'> ▶ </a></li>
-					</ul>
-				</div>
+				<!-- 페이지 네비게이션 -->
+							<tr>
+								<td colspan='5' align='center'>
+									<c:if test='${comms.pager.curBlock > 1}'>
+										<a href="javascript:list('1')">[처음]</a>&nbsp;
+									</c:if>
+									
+									<c:if test='${comms.pager.curBlock > 1}'>
+										<a href="javascript:list('${comms.pager.prevPage}')">◀</a>&nbsp;
+									</c:if>
+									
+									<c:forEach var='num' begin='${comms.pager.blockBegin}' end='${comms.pager.blockEnd}'>
+										<c:choose>
+											<c:when test='${num == comms.pager.curPage}'>
+												<span style='color:red;'>${num}</span>&nbsp;
+											</c:when>
+											<c:otherwise>
+												<a href="javascript:list('${num}')">${num}</a>&nbsp;
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+									
+									<c:if test='${comms.pager.curBlock <= comms.pager.totalBlock}'>
+										<a href="javascript:list('${comms.pager.nextPage}')">▶</a>&nbsp;
+									</c:if>
+									
+									<c:if test='${comms.pager.curPage <= comms.pager.totalPage}'>
+										<a href="javascript:list('${comms.pager.totalPage}')">[끝]</a>&nbsp;
+									</c:if>
+								</td>
+							</tr>
 				<div class='float-right'>
 					<a class='btn btn-secondary' data-toggle='modal' data-target='#reportAccept'>수락</a>
 					<a class='btn btn-secondary' data-toggle='modal' data-target='#reportCancel'>기각</a>
