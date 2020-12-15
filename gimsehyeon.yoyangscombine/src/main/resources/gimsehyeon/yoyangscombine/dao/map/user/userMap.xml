@@ -10,6 +10,19 @@
 		where user_id = #{userId}
 	</select>
 	
+	<select id='selectUsers' resultMap='userMap'>
+		select user_num, user_id, profile_img_filename,
+				join_date, user_name, password, num_of_report
+		from users
+	</select>
+	
+	<select id='countUser' resultType='int'>
+		select count(*)
+		from users
+		<include refid='search'/>
+	</select>
+	
+	
 	<!-- 탈퇴 회원 확인 - 반환 값이 0이 아니면 탈퇴회원이므로 로그인 차단 -->
 	<select id='selectDeletedUser' resultType='int'>
 		select count(*) from users

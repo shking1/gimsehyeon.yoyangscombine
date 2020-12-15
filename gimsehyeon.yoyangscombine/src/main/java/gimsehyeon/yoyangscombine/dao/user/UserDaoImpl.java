@@ -1,5 +1,7 @@
 package gimsehyeon.yoyangscombine.dao.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -43,5 +45,15 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public int updatePassword(String userId, String password) {
 		return userMap.updatePassword(userId, password);
+	}
+
+	@Override
+	public List<User> selectUsers(int start, int end, String searchOption, String keyWord) {
+		return userMap.selectUsers(start, end, searchOption, keyWord);
+	}
+
+	@Override
+	public int countUser(String searchOption, String keyWord) {
+		return userMap.countUser(searchOption, keyWord);
 	}
 }

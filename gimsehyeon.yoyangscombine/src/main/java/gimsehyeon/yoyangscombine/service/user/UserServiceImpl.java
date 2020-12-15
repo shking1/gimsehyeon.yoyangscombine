@@ -1,5 +1,7 @@
 package gimsehyeon.yoyangscombine.service.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,14 +65,28 @@ public class UserServiceImpl implements UserService {
 	public int addDeletedUser(String userId) {
 		return userDao.insertDeletedUser(userId);
 	}
-	
+
+	@Override
+	public List<User> getUsers(int start, int end, String searchOption, String keyWord) {
+		// TODO Auto-generated method stub
+		return userDao.selectUsers(start, end, searchOption, keyWord);
+	}
+
 	@Override
 	public int fixUser(String userId, String userName) {
+		// TODO Auto-generated method stub
 		return userDao.updateUser(userId, userName);
 	}
-	
+
 	@Override
 	public int fixPassword(String userId, String password) {
+		// TODO Auto-generated method stub
 		return userDao.updatePassword(userId, password);
+	}
+
+	@Override
+	public int calcUser(String searchOption, String keyWord) throws Exception {
+		// TODO Auto-generated method stub
+		return userDao.countUser(searchOption, keyWord);
 	}
 }
