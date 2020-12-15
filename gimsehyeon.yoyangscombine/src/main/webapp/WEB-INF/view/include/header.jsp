@@ -1,4 +1,4 @@
-<%@ page language='java' contentType='text/html; charset=utf-8' pageEncoding='utf-8' %>
+<%@ page language='java' contentType='text/html; charset=utf-8' pageEncoding='utf-8' isELIgnored='false' %>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <header>
 	<div id='headertexthref'>
@@ -11,7 +11,7 @@
 					관리자계정
 				</c:when>
 				<c:otherwise>
-					${userName}님 환영합니다. <br>
+					${user.getUserName()}님 환영합니다. <br>
 					<a href='<%= request.getContextPath() %>/common/mypage'>마이페이지 </a>
 				</c:otherwise>
 			</c:choose>

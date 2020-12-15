@@ -3,19 +3,32 @@
 	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <mapper namespace='gimsehyeon.yoyangscombine.dao.map.report.ReportMap'>
 	<select id='selectReports' resultMap='reportMap'>
-<!-- 		<include refid='pagingHeader'/> -->
+		<include refid='pagingHeader'/>
 		select report_num, reporter, report_code, report_reception_date, report_content, 
 			communication_num, comment_num, review_num
 		from contents_of_report
 		
 		order by report_num desc
-<!-- 		<include refid='pagingFooter'/> -->
+		<include refid='pagingFooter'/>
 	</select>
 	
 	<select id='countReport' resultType='int'>
 		select count(*)
 		from contents_of_report
+		<include refid='search'/>
 	</select>
+	
+	<sql id='search'>
+		<choose>
+			<when test="searchOption == 'all'">
+				where (reporter like '%'||#{keyWord}||'%' or
+						report_content like '%'||#{keyWord}||'%')
+			</when>
+			<otherwise>
+				where ${searchOption} like '%'||#{keyWord}||'%'
+			</otherwise>
+		</choose>
+	</sql>
 	
 	<sql id='pagingHeader'>
 		select *

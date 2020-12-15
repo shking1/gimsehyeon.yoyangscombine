@@ -8,6 +8,6 @@ import gimsehyeon.yoyangscombine.domain.Report;
 
 public interface ReportMap {
 	Report showReport(@Param("reportNum") Integer reportNum);
-	List<Report> selectReports(int start, int end) throws Exception;
-	int countReport(@Param("reportNum")Integer reportNum);
+	List<Report> selectReports(@Param("start")int start, @Param("end") int end) throws Exception;
+	int countReport(@Param("searchOption")String searchOption, @Param("keyWord") String keyWord);
 }

@@ -22,8 +22,8 @@ public class ReportDaoImpl implements ReportDao {
 		return reportMap.selectReports(start, end);
 	}
 	@Override
-	public int countReport(Integer reportNum) {
+	public int countReport(String searchOption, String keyWord) {
 		// TODO Auto-generated method stub
-		return reportMap.countReport(reportNum);
+		return reportMap.countReport(searchOption, keyWord);
 	}
 }

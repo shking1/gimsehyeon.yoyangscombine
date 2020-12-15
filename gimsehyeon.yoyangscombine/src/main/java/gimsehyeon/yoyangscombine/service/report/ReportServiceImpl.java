@@ -19,8 +19,8 @@ public class ReportServiceImpl implements ReportService{
 	}
 	
 	@Override
-	public int calcReport(Integer reportNum) throws Exception{
-		return reportDao.countReport(reportNum);
+	public int calcReport(String searchOption, String keyWord) throws Exception{
+		return reportDao.countReport(searchOption, keyWord);
 	}
 	
 	@Override

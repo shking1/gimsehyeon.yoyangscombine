@@ -11,33 +11,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import gimsehyeon.yoyangscombine.domain.Report;
 import gimsehyeon.yoyangscombine.service.communication.pager.Pager;
 import gimsehyeon.yoyangscombine.service.report.ReportService;
 
 @Controller
-//@SessionAttributes("report")
 public class ReportController {
 	@Autowired private ReportService reportService;	
 	
 	@RequestMapping("report")
-	public String allReport(Model model,
-			@RequestParam(defaultValue="1") int curPage) throws Exception{
-//		System.out.println(reportNum);
-//		int count = reportService.calcReport(reportNum);
-//		Pager pager = new Pager(count, curPage);
-//		int start = pager.getPageBegin();
-//		int end = pager.getPageEnd();
+	public String allReport(Model model, Integer reportNum, @RequestParam(defaultValue = "all") String searchOption,
+			@RequestParam(defaultValue = "") String keyWord, @RequestParam(defaultValue="1") int curPage) throws Exception{
+		int count = reportService.calcReport(searchOption, keyWord);
+		Pager pager = new Pager(count, curPage);
+		int start = pager.getPageBegin();
+		int end = pager.getPageEnd();
 		//reportboard
-		List<Report> boards = reportService.getReports(0, 0);
+		List<Report> boards = reportService.getReports(start, end);
 		Map<String, Object> reports = new HashMap<>();
 		reports.put("boards", boards);
-//		reports.put("count", count);
-//		reports.put("pager", pager);
+		reports.put("count", count);
+		reports.put("pager", pager);
 		model.addAttribute("reports", reports);
-		System.out.println(boards);
 		return "report/report";
 	}
 
