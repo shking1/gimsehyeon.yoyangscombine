@@ -16,7 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Report {
 	@NotBlank @NotNull
-	private int reportNum;	//No.
+	private Integer reportNum;	//No.
 	private int reporter;	//작성자
 	private int reportCode;	//분류
 	private LocalDate reportReceptionDate;	//작성일

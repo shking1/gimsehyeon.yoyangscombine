@@ -18,7 +18,7 @@ public class ReportController {
 	@Autowired private ReportService reportService;	
 	
 	@RequestMapping("/report")
-	public String allReport(Model model,int reportNum, @RequestParam(defaultValue="1") int curPage) throws Exception{
+	public String allReport(Model model,Integer reportNum, @RequestParam(defaultValue="1") int curPage) throws Exception{
 		int count = reportService.calcReport(reportNum);
 		Pager pager = new Pager(count, curPage);
 		int start = pager.getPageBegin();

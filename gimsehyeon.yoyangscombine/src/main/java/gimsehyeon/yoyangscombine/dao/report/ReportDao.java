@@ -5,7 +5,7 @@ import java.util.List;
 import gimsehyeon.yoyangscombine.domain.Report;
 
 public interface ReportDao {
-	Report showReport(int reportNum);
+	Report showReport(Integer reportNum);
 	List<Report> countReport(int start, int end) throws Exception;
-	int countReport(int reportNum) throws Exception;
+	int countReport(Integer reportNum) throws Exception;
 }

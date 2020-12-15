@@ -14,12 +14,12 @@ public class ReportServiceImpl implements ReportService{
 	private ReportDao reportDao;
 	
 	@Override
-	public Report getReport(int reportNum) {
+	public Report getReport(Integer reportNum) {
 		return reportDao.showReport(reportNum);
 	}
 	
 	@Override
-	public int calcReport(int reportNum) throws Exception{
+	public int calcReport(Integer reportNum) throws Exception{
 		return reportDao.countReport(reportNum);
 	}
 	

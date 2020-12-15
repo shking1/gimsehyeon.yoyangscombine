@@ -13,12 +13,12 @@ public class ReportDaoImpl implements ReportDao {
 	@Autowired private ReportMap reportMap;
 	
 	@Override
-	public Report showReport(int reportNum) {
+	public Report showReport(Integer reportNum) {
 		return reportMap.showReport(reportNum);
 	}
 	
 	@Override
-	public int countReport(int reportNum) throws Exception{
+	public int countReport(Integer reportNum) throws Exception{
 		return reportMap.countReport(reportNum);
 	}
 
