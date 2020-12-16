@@ -133,7 +133,7 @@ function commClick(commNum) {
 				</form>   
 				<br><br>
 				<div>
-				   <a href="../communication" id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
+				   <a href="./communication" id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
 				</div>
 				<br> 
 				<div>
