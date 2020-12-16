@@ -2,11 +2,9 @@
 <head>
 <!-- include:lib -->
 <%@ include file='../include/lib.jsp' %>
-
 <!-- /include:lib -->
 <title>Sanatorium01</title>
 </head>
-
 <style>
 #border {
    width: 120px;
@@ -66,17 +64,14 @@ ul {
 }
 </style>
 <div class='container'>
-
-
-<header>
-</header>
 <br>
-<!-- /include:header -->
+<!-- include: header -->
+<%@ include file='../include/header.jsp' %>
+<!-- /include: header -->
    <div class='row'>
       <div class='col-3 justify-content-center text-center'>
          <form action='01.process'>
-         <ul>
-         
+         <ul>     
             <li id='search-li'><select id="search-dropdown-o" name="siDoCd">
                   <option value="42">강원도</option>
                   <option value="41">경기도</option>
@@ -107,16 +102,13 @@ ul {
                   <option value="busan">부평동</option>
             </select></li>
          </ul>
-
                <div class="input-group">
                   <input type="text" class="form-control" placeholder="Search">
                   <div class="input-group-btn">
                      <button type="submit" style="margin-bottom: 10px;" class="btn btn-default"><i class="fa fa-search"></i></button>
                   </div>
                </div>
-         
-         </form>
-         
+         </form>   
          <br><br>
          <div>
             <a href="../communication" id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
@@ -259,7 +251,6 @@ public  static String getTagValue(String tag, Element eElement) {
     return nValue.getNodeValue();
 }
 %>
-
       </div>
    </div>
 </div>
