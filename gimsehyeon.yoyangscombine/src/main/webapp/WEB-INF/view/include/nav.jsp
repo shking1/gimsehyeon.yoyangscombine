@@ -5,10 +5,14 @@
 		<a href='<%= request.getContextPath() %>/admin'><button id='gnb_btn'>회원관리</button></a>
 		</li>
 		<li id='gnb-li'>
-		<a href="#"><button id='gnb_btn'>신고접수</button></a>
+		<a href='/gimsehyeon.yoyangscombine/report'><button id='gnb_btn'>신고접수</button></a>
+	
 		</li>
 		<li id='gnb-li'>
-		<a href="#"><button id='gnb_btn'>게시물 관리</button></a>
+		<a href='#'><button id='gnb_btn'>게시물 관리</button></a>
+		</li>
+		<li id='gnb-li'>
+		<a href='<%= request.getContextPath() %>/admin/common/image'><button id='gnb_btn'>로고 관리</button></a>
 		</li>
 	</ol>
 </div>

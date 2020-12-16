@@ -115,13 +115,23 @@ $(() => {
 		});
 	});
 });
+
+var imgError = function (image) {
+	image.onerror = "";
+	var parent = image.parentElement;
+	var parentTag = parent.innerHTML;
+	var brokenImageTag = image.outerHTML;
+	parent.innerHTML = parentTag.replace(brokenImageTag, 
+	      `<div id='join_img' OnClick="location.href ='..'" style='cursor:pointer;'>로고이미지 150x80</div>`);
+	return true;
+}
 </script>
 <body>
 <div class='container'>
 	<div class='form-family'>
 		<div class='row justify-content-center'>
 			<div>
-				<div id='join_img' OnClick="location.href ='..'" style='cursor:pointer;'>로고이미지 150x80</div>
+				<a href='..'><img src='../img/logo.png' id='join_img' onerror='imgError(this);'></a>
 				<br>
 				<div>
 					<h4>지금 바로 가입하세요!</h4>

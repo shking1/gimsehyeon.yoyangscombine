@@ -1,13 +1,23 @@
 <%@ page language='java' contentType='text/html; charset=utf-8' pageEncoding='utf-8' %>
-<%@ taglib prefix='form' uri='http://www.springframework.org/tags/form' %>
 <!-- include:lib -->
 <%@ include file='../include/lib.jsp' %>
 <!-- /include:lib -->
+<script>
+var imgError = function (image) {
+	image.onerror = "";
+	var parent = image.parentElement;
+	var parentTag = parent.innerHTML;
+	var brokenImageTag = image.outerHTML;
+	parent.innerHTML = parentTag.replace(brokenImageTag, 
+	      `<div id='login_img' OnClick="location.href ='..'" style='cursor:pointer;'>로고이미지 150x80</div>`);
+	return true;
+}
+</script>
 <title>로그인</title>
 <div class='container'>
 	<div class='row'>
 		<div class='col-md-5' id='login-border'>
-			<div id='login_img' OnClick="location.href ='..'" style='cursor:pointer;'>로고이미지 150x80</div>
+			<a href='..'><img src='../img/logo.png' id='login_img' onerror='imgError(this);'></a>
 			<br>
 			<div class='ml-2'>
 				세계 최고의 요양원을 찾아 드리는 <br> 요양원계의 헤르메스... 그건 바로
