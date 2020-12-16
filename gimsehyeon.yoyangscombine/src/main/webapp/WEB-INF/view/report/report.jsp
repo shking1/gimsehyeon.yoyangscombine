@@ -63,6 +63,10 @@ ul {
 }
 </style>
 <script>
+function reportOnModal(){
+	$('#reportCheck').modal('show');
+}
+
 function list(page){
 	location.href = link + "?searchOption=${reports.searchOption}" 
 			+ "&keyWord=${reports.keyWord}"
@@ -115,7 +119,7 @@ function list(page){
 				</c:otherwise>
 			</c:choose>
 		</td>
-		<td>${report.reportContent}</td>
+		<td onClick='reportOnModal()'>${report.reportContent}</td>
 		<td>${report.reporter}</td>
 		<td>${report.reportReceptionDate}</td>
 	</tr>
@@ -166,13 +170,32 @@ function list(page){
 					</button>
 					</div>
 					<div class='modal-body'>
-						<h6>신고사유 : ${reportCode}</h6>
-						신고자 : 박성식이 <br>
-						비매너유저 : 안녕하세요<br>
+					<c:forEach var='report' items='${reports.boards}'>
+						<h6>신고사유 : 
+							<c:choose>
+								<c:when test="${report.reportCode eq '1'}">
+								도배/광고성
+								</c:when>
+								<c:when test="${report.reportCode eq '2'}">
+								선정성/폭력성
+								</c:when>
+								<c:when test="${report.reportCode eq '3'}">
+								명예훼손
+								</c:when>
+								<c:when test="${report.reportCode eq '4'}">
+								자살암시/유해성
+								</c:when>
+								<c:otherwise>
+								기타
+								</c:otherwise>
+							</c:choose>
+						</h6>
+						신고자 : ${report.reporter}<br>
+						비매너유저 : 외부값<br>
 						게시글확인 : <a href='#'>No.1234</a><br>
 						
-						안녕하세요 이 사람 자꾸 사람들한테 욕하고 다녀니네요;; 빨리 정지 부탁드려요 <br>
-						
+						${report.reportContent}<br>
+					</c:forEach>	
 					</div>
 
 					<div class='modal-footer'>
