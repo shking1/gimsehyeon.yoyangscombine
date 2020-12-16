@@ -97,6 +97,11 @@ function back() {
 function deleteModal() {
 	$('#deleteBoard').modal('show');
 }
+
+function reportModal(){
+	$('#reportReview').modal('show');
+}
+
 $(function(){
 	$("#btnRemove").click(function(){
 		document.commPostForm.action = "./delete";
@@ -224,7 +229,7 @@ function btnUpdate(commNum) {
 								<a class='btn btn-secondary'
 									href='/gimsehyeon.yoyangscombine/communication/editPost?communicationNum=${commPost.communicationNum}'>수정</a>
 							</c:if>
-								<button id='btnReport' class='btn btn-secondary'>신고하기</button>
+								<a class='btn btn-secondary' onClick='reportModal()'>신고하기</a>
 						</div>
 					</div>
 				</form>
@@ -315,7 +320,7 @@ function btnUpdate(commNum) {
 			                <p>신고완료</p>
 			            </div>
 			            <div class='modal-footer'>
-			                <a href='01.html' class='btn btn-secondary'>확인</a>
+			                <a href='/gimsehyeon.yoyangscombine/communication' class='btn btn-secondary'>확인</a>
 			            </div>
 			        </div>
 			    </div>
