@@ -118,7 +118,7 @@ ul {
 			</div>
 			<br> 
 			<div>
-			   <a href="02" id='btn-brother' type='button' class='btn btn-secondary'>캘린더</a>
+			   <a href="../sanatorium/02" id='btn-brother' type='button' class='btn btn-secondary'>캘린더</a>
 			</div>
 		</div>
 		
