@@ -25,7 +25,7 @@
 		<option value='busan'>부산</option>
 	</select>
 	<input id='search' type='text'  title='검색' value='실버~ 요양원' placeholder='지역선택 후 요양원을 검색하세요' autofocus>
-	<a href='sanatorium/01.html'><button id='search-button'>검색</button></a>
+	<a href='sanatorium/01'><button id='search-button'>검색</button></a>
 </div>
 <div id='box2'>
 	수많은 보호자님들의 선택! 정보는 나눌수록 넓어집니다.

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org/DTD Mapper 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='gimsehyeon.yoyangscombine.dao.map.sanatorium.SanatoriumMap'>
+	
+	<select id='selectSana' resultMap='sanaMap'>
+		select sana_num, sana_name from gimsehyeon.sanatoriums  
+		where sana_name = #{sanaName}
+	</select>
+	
+	<insert id='insertSana'>
+		insert into gimsehyeon.sanatoriums (sana_num, sana_name) 
+		values (gimsehyeon.sanatoriums_seq.nextval , #{sanaName})
+	</insert>
+		
+		
+	<resultMap id='sanaMap' type='sanatorium'>
+		<id 	property='sanaNum'				column='sana_num'/>
+		<result	property='sanaName'				column='sana_name'/>
+	</resultMap>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org/DTD Mapper 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='gimsehyeon.yoyangscombine.dao.map.review.ReviewMap'>
+	<!-- 로그인 -->
+	<insert id='insertReview' >
+		insert into gimsehyeon.reviews (review_num, writer,review_post, writing_date,sana_name) 
+		values (gimsehyeon.reviews_seq.nextval ,#{writer}, #{reviewPost}, sysdate, #{sanaName})
+	</insert>
+	
+	<select id='selectReviews' resultMap='reviewMap'>
+		select review_num, writer, review_post ,sana_name, writing_date from gimsehyeon.reviews  
+		where sana_name = #{sanaName} order by review_num desc
+	</select>
+	
+	<update id='updateReview'>
+		update gimsehyeon.reviews
+		set review_post = #{reviewPost} , writing_date = sysdate
+		where review_num = #{reviewNum}
+	</update>
+	
+	<delete id='deleteReview'>
+		delete from gimsehyeon.reviews 
+		where review_num = #{reviewNum}
+	</delete>
+	
+	
+	<resultMap id='reviewMap' type='review'>
+		<id 	property='reviewNum'				column='review_num'/>
+		<result	property='sanaNum'				column='sana_num'/>
+		<result property='writer'               column='writer'/>
+		<result property='writingDate'               column='writing_date'/>
+
+		<result property='userNum'				column='user_num'/>
+		<!-- <result property='writingDate'				column='writingDate'/> -->
+		<result property='reviewPost'				column='review_post'/>
+	
+	</resultMap>
+</mapper>
