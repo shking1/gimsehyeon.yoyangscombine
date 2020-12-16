@@ -6,10 +6,14 @@
 <!-- /include:lib -->
 <title>Main(admin)</title>
 </head>
-<script>
-<!--
 
-//-->
+<script>
+var link = window.location.pathname;
+function list(page){
+	location.href = link + "?searchOption=${users.searchOption}" 
+			+ "&keyWord=${users.keyWord}"
+			+ "&curPage=" + page;
+}
 </script>
 <body id='main-admin-body'>
 <br>
@@ -80,10 +84,34 @@
    </tbody>
 </table>
 <div class='search-brother'>
-   <input id='search-man' type='text'  
-   style='border:1px solid'
-   title='검색' placeholder='아이디나 이름을 입력하세요..' autofocus>
-   <button id='search-btn-admin' type='button' class='btn btn-dark'>검색</button>
+   <form name='searchForm' action='./admin'>
+		<div class='row form-group justify-content-center'>
+			<select style='width: 100px;' class='form-control selectpicker noborder' name='searchOption'>
+				<c:choose>
+					<c:when test="${users.searchOption == 'all'}">
+						<option value='all' selected>전체</option>
+						<option value='user_id'>회원아이디</option>
+						<option value='user_name'>회원이름</option>
+					</c:when>
+					<c:when test="${users.searchOption == 'user_id'}">
+						<option value='all'>전체</option>
+						<option value='user_id' selected>회원아이디</option>
+						<option value='user_name'>회원이름</option>
+					</c:when>
+					<c:when test="${users.searchOption == 'user_name'}">
+						<option value='all'>전체</option>
+						<option value='user_id'>회원아이디</option>
+						<option value='user_name' selected>회원이름</option>
+					</c:when>
+				</c:choose>
+			</select>
+			
+			<input type='text' style='width: 300px;' class='form-control' placeholder='검색어를 입력하세요.'
+				name='keyWord' value='${users.keyWord}'>
+			
+			<input type='submit' class='btn btn-secondary' value='검색'>
+		</div>
+	</form>
 </div>
 </div>
 <!-- 리스트 게시판 끝-->

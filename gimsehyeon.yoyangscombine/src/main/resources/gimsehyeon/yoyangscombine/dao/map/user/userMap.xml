@@ -11,9 +11,12 @@
 	</select>
 	
 	<select id='selectUsers' resultMap='userMap'>
+		<include refid='pagingHeader'/>
 		select user_num, user_id, profile_img_filename,
 				join_date, user_name, password, num_of_report
 		from users
+		<include refid='search'/>
+		<include refid='pagingFooter'/>
 	</select>
 	
 	<select id='countUser' resultType='int'>
@@ -22,6 +25,29 @@
 		<include refid='search'/>
 	</select>
 	
+	<sql id='search'>
+		<choose>
+			<when test="searchOption == 'all'">
+				where (user_id like '%'||#{keyWord}||'%' or
+						user_name like '%'||#{keyWord}||'%')
+			</when>
+			<otherwise>
+				where ${searchOption} like '%'||#{keyWord}||'%'
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<sql id='pagingHeader'>
+		select *
+		from ( select rownum as rn, A.*
+			   from (
+	</sql>
+	
+	<sql id='pagingFooter'>
+				) A
+			  ) 
+		where rn between #{start} and #{end}
+	</sql>
 	
 	<!-- 탈퇴 회원 확인 - 반환 값이 0이 아니면 탈퇴회원이므로 로그인 차단 -->
 	<select id='selectDeletedUser' resultType='int'>
