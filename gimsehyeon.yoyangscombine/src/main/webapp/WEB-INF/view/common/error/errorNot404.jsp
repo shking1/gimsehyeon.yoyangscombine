@@ -12,6 +12,17 @@
 	margin-left: 10px;
 }
 </style>
+<script>
+var imgError = function (image) {
+	image.onerror = "";
+	var parent = image.parentElement;
+	var parentTag = parent.innerHTML;
+	var brokenImageTag = image.outerHTML;
+	parent.innerHTML = parentTag.replace(brokenImageTag, 
+	      `<div id='error_img'>로고이미지 500x240</div>`);
+	return true;
+}
+</script>
 <br><br><br><br>
 <title>Error</title>
 <div class='container'>
@@ -20,7 +31,7 @@
 		<div class='ml-2'>
 			<h4>ERROR</h4><br>잘못된 접근입니다.
 		</div>
-		<div id='error_img'>로고이미지 500x240</div>
+		<a href='<%= request.getContextPath() %>'><img src='<%= request.getContextPath() %>/img/logo.png' id='error_img' onerror='imgError(this);'></a>
 		<br>
 		<div class='ml-2'>
 			세계최강 요양원 검색사이트<br><a href='<%= request.getContextPath() %>'>메인으로 돌아가기</a>

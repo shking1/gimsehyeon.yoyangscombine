@@ -131,7 +131,7 @@ var imgError = function (image) {
 	<div class='form-family'>
 		<div class='row justify-content-center'>
 			<div>
-				<a href='..'><img src='../img/logo.PNG' id='join_img' onerror='imgError(this);'></a>
+				<a href='..'><img src='../img/logo.png' id='join_img' onerror='imgError(this);'></a>
 				<br>
 				<div>
 					<h4>지금 바로 가입하세요!</h4>
