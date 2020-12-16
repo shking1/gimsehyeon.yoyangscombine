@@ -99,48 +99,55 @@ span {
 	<!-- include: header-->
 	<div class='row'>
 		<div class='col-3 justify-content-center text-center'>
-			<ul>
-				<li id='search-li'>
-					<select id='search-dropdown-o' name='city-search-dropdown-o'>
-						<option value='seoul'>서울</option>
-						<option value='incheon'>인천</option>
-						<option value='busan'>부산</option>
-					</select>
-				</li>
-				<li id='search-li'>
-					<select id='search-dropdown-o' name='country-search-dropdown-o'>
-						<option value='seoul'>가평군</option>
-						<option value='incheon'>양평군</option>
-						<option value='busan'>영천군</option>
-					</select>
-				</li>
-				<li id='search-li'>
-					<select id='search-dropdown-o' name='district-search-dropdown-o'>
-						<option value='seoul'>관양동</option>
-						<option value='incheon'>비산동</option>
-						<option value='busan'>부평동</option>
-					</select>
-				</li>
-			</ul>
-			<form class='navbar-form pull-left' role='search'>
-				<div class='input-group'>
-					<input type='text' class='form-control' placeholder='Search'>
-					<div class='input-group-btn'>
-						<button type='submit' style='margin-bottom: 10px;' class='btn btn-default'>
-							<i class='fa fa-search'></i>
-						</button>
+			<form action='../sanatorium/01.process'>
+				<ul>     
+					<li id='search-li'><select id="search-dropdown-o" name="siDoCd">
+						<option value="42">강원도</option>
+						<option value="41">경기도</option>
+						<option value="48">경상남도</option>
+						<option value="47">경상북도</option>
+						<option value="29">광주광역시</option>
+						<option value="27">대구광역시</option>
+						<option value="30">대전광역시</option>
+						<option value="26">부산광역시</option>
+						<option value="11">서울특별시</option>
+						<option value="36">세종특별자치시</option>
+						<option value="31">울산광역시</option>
+						<option value="28">인천광역시</option>
+						<option value="46">전라남도</option>
+						<option value="45">전라북도</option>
+						<option value="50">제주도</option>
+						<option value="44">충청남도</option>
+						<option value="43">충청북도</option>
+					</select></li>
+					<li id='search-li'><select id="search-dropdown-o" name="country-search-dropdown-o">
+						<option value="seoul">가평군</option>
+						<option value="incheon">양평군</option>
+						<option value="busan">영천군</option>
+					</select></li>
+					<li id='search-li'><select id="search-dropdown-o" name="district-search-dropdown-o">
+						<option value="seoul">관양동</option>
+						<option value="incheon">비산동</option>
+						<option value="busan">부평동</option>
+					</select></li>
+				</ul>
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search">
+						<div class="input-group-btn">
+						   <button type="submit" style="margin-bottom: 10px;" class="btn btn-default"><i class="fa fa-search"></i></button>
+						</div>
 					</div>
-				</div>
-			</form>
-			<br>
+			</form>   
+			<br><br>
 			<div>
-				<a href='/gimsehyeon.yoyangscombine/communication' id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
+			   <a href="../communication" id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
 			</div>
-			<br>
+			<br> 
 			<div>
-				<a href='../sanatorium/02' id='btn-brother' type='button' class='btn btn-secondary'>캘린더</a>
+			   <a href="02" id='btn-brother' type='button' class='btn btn-secondary'>캘린더</a>
 			</div>
 		</div>
+      
 
 		<div class='col-9' style='overflow:scroll; width:540px; height:800px;'>
 			<br>

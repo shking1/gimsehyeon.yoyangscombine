@@ -119,7 +119,7 @@ ul {
          </div>
       </div>
  
-<div class='col-9'>
+<div class='col-9' style='overflow:scroll; width:540px; height:800px;'>
 
 <%
  StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/B550928/searchLtcInsttService/getLtcInsttSeachList"); /*URL*/
@@ -253,4 +253,5 @@ public  static String getTagValue(String tag, Element eElement) {
 %>
       </div>
    </div>
+   <%@ include file='../include/footer.jsp' %>
 </div>

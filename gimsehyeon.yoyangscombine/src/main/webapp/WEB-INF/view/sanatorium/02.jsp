@@ -187,21 +187,33 @@ ul {
 </script>
 </head>
 <div class='container'>
-<!-- include:header -->
-<header>
 <!-- include: header-->
 <jsp:include page='../include/header.jsp'/>
 <!-- include: header-->
-</header>
 
 <br>
 <div class='row'>
       <div class='col-3 justify-content-center text-center'>
-         <ul>
-            <li id='search-li'><select id="search-dropdown-o" name="city-search-dropdown-o">
-                  <option value="seoul">서울</option>
-                  <option value="incheon">인천</option>
-                  <option value="busan">부산</option>
+         <form action='01.process'>
+         <ul>     
+            <li id='search-li'><select id="search-dropdown-o" name="siDoCd">
+                  <option value="42">강원도</option>
+                  <option value="41">경기도</option>
+                  <option value="48">경상남도</option>
+                  <option value="47">경상북도</option>
+                  <option value="29">광주광역시</option>
+                  <option value="27">대구광역시</option>
+                  <option value="30">대전광역시</option>
+                  <option value="26">부산광역시</option>
+                  <option value="11">서울특별시</option>
+                  <option value="36">세종특별자치시</option>
+                  <option value="31">울산광역시</option>
+                  <option value="28">인천광역시</option>
+                  <option value="46">전라남도</option>
+                  <option value="45">전라북도</option>
+                  <option value="50">제주도</option>
+                  <option value="44">충청남도</option>
+                  <option value="43">충청북도</option>
             </select></li>
             <li id='search-li'><select id="search-dropdown-o" name="country-search-dropdown-o">
                   <option value="seoul">가평군</option>
@@ -214,21 +226,20 @@ ul {
                   <option value="busan">부평동</option>
             </select></li>
          </ul>
-         <form class="navbar-form pull-left" role="search">
                <div class="input-group">
                   <input type="text" class="form-control" placeholder="Search">
                   <div class="input-group-btn">
                      <button type="submit" style="margin-bottom: 10px;" class="btn btn-default"><i class="fa fa-search"></i></button>
                   </div>
                </div>
-         </form> 
-          <br><br>
+         </form>   
+         <br><br>
          <div>
             <a href="../communication" id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
          </div>
          <br> 
          <div>
-            <a href="01.html" id='btn-brother' type='button' class='btn btn-secondary'>캘린더</a>
+            <a href="02" id='btn-brother' type='button' class='btn btn-secondary'>캘린더</a>
          </div>
       </div>
 
@@ -245,18 +256,6 @@ ul {
     </div>
     </div>
     <!-- include:footer -->
-<footer id='main-footer'>
-<hr size="2" color="gray" align="left">	
-	<div id='footer-pre-div'>
-	<pre>
-INFO: 
-(주)요양스컴바인 대표 김세현 서울시 00동 00로 00길 00-00 
-고객문의: 대표번호 0000-0000 | 이메일 yoyangsCombined@yoyang.kr 2020ⓒ All rights reserved<br>
-	
-요양스컴바인에서 최적의 요양원을 검색하세요. 대한민국 대표 요양원 관리 사이트 요양스컴바인은 수백개의 요양원을 검색하여, 
-고객님께서 본인에게 딱 맞는 곳을 찾아 지속적으로 돌봐드릴 수 있도록 도와드립니다. 
-	</pre>
-	</div>
-</footer>
-<!-- /include:footer -->
-    </div>
+	<%@ include file='../include/footer.jsp' %>
+	<!-- /include:footer -->
+</div>
