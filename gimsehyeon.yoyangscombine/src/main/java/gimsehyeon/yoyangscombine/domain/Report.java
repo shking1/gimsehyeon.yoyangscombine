@@ -24,10 +24,13 @@ public class Report {
 	private int communicationNum;
 	private int commentNum;
 	private int reviewNum;
+	
 	public Report(int reportNum) {
 		this.reportNum = reportNum;
 	}
 	
+	
+
 	@Override
 	public String toString() {
 		return String.format("reportNum : %d", reportNum);

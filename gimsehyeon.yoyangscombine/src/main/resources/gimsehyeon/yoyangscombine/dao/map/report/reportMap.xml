@@ -18,6 +18,11 @@
 		<include refid='search'/>
 	</select>
 	
+	<insert id='insertReport'>
+		insert into contents_of_report (report_num, reporter,report_code, report_reception_date, report_content) 
+		values (gimsehyeon.reportnum_seq.nextval ,#{reporter}, #{reportCode}, sysdate, #{reportContent}) 
+	</insert>
+	
 	<sql id='search'>
 		<choose>
 			<when test="searchOption == 'all'">

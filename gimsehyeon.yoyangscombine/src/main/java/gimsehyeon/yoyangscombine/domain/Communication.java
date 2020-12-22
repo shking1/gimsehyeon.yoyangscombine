@@ -31,6 +31,8 @@ public class Communication {
 	private LocalDate writingDate;
 	private int cnt;
 	
+	
+
 	public Communication(int communicationNum) {
 		this.communicationNum = communicationNum;
 	}

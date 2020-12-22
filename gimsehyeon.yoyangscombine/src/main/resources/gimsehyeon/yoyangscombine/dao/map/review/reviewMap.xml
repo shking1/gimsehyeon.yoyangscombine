@@ -27,12 +27,9 @@
 	
 	<resultMap id='reviewMap' type='review'>
 		<id 	property='reviewNum'				column='review_num'/>
-		<result	property='sanaNum'				column='sana_num'/>
+		<result	property='sanaName'				column='sana_name'/>
 		<result property='writer'               column='writer'/>
 		<result property='writingDate'               column='writing_date'/>
-
-		<result property='userNum'				column='user_num'/>
-		<!-- <result property='writingDate'				column='writingDate'/> -->
 		<result property='reviewPost'				column='review_post'/>
 	
 	</resultMap>

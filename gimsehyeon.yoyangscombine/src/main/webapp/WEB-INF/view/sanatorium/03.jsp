@@ -146,6 +146,7 @@ button[data-target*='Review'] {
 list-style: none;
 margin-left: 1px;
 }
+
 </style>
 
 
@@ -213,7 +214,7 @@ margin-left: 1px;
                         <div class='card-body'>
                         		
                             	<h6 id ='reviewWriter-h5' class='card-title'>${reviewlist.writer}</h5>
-                            	<div id='fixReviewPost-div'>
+                            	<div id='fixReviewPost-div' name='fixReviewPost-div'>
                             		<form  method='post' action='./fixReview'>
                             		<input type='hidden' name='reviewNum' id='reviewNum' value='${reviewlist.reviewNum}'/>
                             		<input type='text' name='reviewPost' id='reviewPost'/>
@@ -227,8 +228,8 @@ margin-left: 1px;
                               
                                 <h6 class='card-subtitle'></h6>
                                 <form  method='post' action='./delReview'>
-                                <button type='button' id='fixreport-btn'class='btn btn-secondary' data-dismiss='modal' data-toggle='modal'
-                                   		data-target='#reportReview'>신고</button>
+                                <button type='button' id='report-btn' data-target='#reportReview' data-reporter='${sessionScope.userId}' class='btn btn-secondary' data-dismiss='modal' data-toggle='modal'
+                                   		>신고</button>
                                   <c:if test='${sessionScope.userName == reviewlist.writer}'>
                                   		
                                   		 <button type='button' id='inputfixReview-btn' class='btn btn-secondary'>수정</button>
@@ -263,25 +264,42 @@ margin-left: 1px;
 </div>
 <script>
 
-$('#fixReviewPost-div').hide();
-    var HOME_PATH = window.HOME_PATH || '.';
 
-    var position = new naver.maps.LatLng(37.3595704, 127.105399);
-    var mapOptions = {
-        center: position,
-        zoom: 15
-    };
-    var map = new naver.maps.Map('map', mapOptions);
-   
-    $("#inputfixReview-btn").click(function(){
+
+var HOME_PATH = window.HOME_PATH || '.';
+var position = new naver.maps.LatLng(37.3595704, 127.105399);
+var mapOptions = {
+    center: position,
+    zoom: 15
+};
+var map = new naver.maps.Map('map', mapOptions);
+
+var reporter;
+
+
+$(document).ready(function() {
+	$('#fixReviewPost-div').hide(); 
+	
+	$("#inputfixReview-btn").click(function(){
 		
-    	$('#fixReviewPost-div').show();
-    	$('#reviewPost-div').hide();
-    	$("#inputfixReview-btn").hide();
-    	
-    });
-    
+		$('#fixReviewPost-div').show();
+		$('#reviewPost-div').hide();
+		$("#inputfixReview-btn").hide();
+		
+	});
+	
+	$("#reportReview").on('show.bs.modal', function(e) {
+		reporter = $(e.relatedTarget).data('reporter');
+		$('#reporter').val(reporter);
+		$('#reportCode').val($('#reportreason-dropdown').val());
+		
+	});
 
+});
+
+	
+	    	
+	  
 </script>
 
 
@@ -334,63 +352,28 @@ $('#fixReviewPost-div').hide();
                 </button>
             </div>
             <div class='modal-body'>
+           	<form id='report-form' method='post' action='./addReport'>
                 <select id="reportreason-dropdown" class='justify-content-center' name="reportreason-dropdown">
-                    <option value="advertising">도배/광고성</option>
-                    <option value="violence">선정성/폭력성</option>
-                    <option value="defamation">명예훼손</option>
-                    <option value="hazard">자살암시/유해성</option>
+                    <option value="1">도배/광고성</option>
+                    <option value="2">선정성/폭력성</option>
+                    <option value="3">명예훼손</option>
+                    <option value="4">자살암시/유해성</option>
                     <option value="other">기타</option>
                 </select>
-                <textarea id='reporttext'></textarea>
+                <textarea id='reporttext' name='reportContent'></textarea>
+                <input type='hidden' id='reporter' name='reporter'/>
+                <input type='hidden' id='reportCode' name='reportCode'/>
             </div>
             <div class='modal-footer'>
                 <button type='button' class='btn btn-secondary' data-dismiss='modal'>취소</button>
-                <button type='button' class='btn btn-primary' data-dismiss='modal' data-toggle='modal'
-                    data-target='#confirmReport'>신고</button>
+                <button type='submit' id='confirmReport-btn' class='btn btn-primary'>신고</button>
+               </form>
             </div>
         </div>
     </div>
 </div>
 
-<div id='confirmReport' class='modal fade' tabindex='-1'>
-    <div class='modal-dialog'>
-        <div class='modal-content'>
-            <div class='modal-header'>
-                <h5 class='modal-title'>완료</h5>
-                <button type='button' class='close' data-dismiss='modal'>
-                    <span>&times;</span>
-                </button>
-            </div>
-            <div class='modal-body'>
-                <p>신고완료</p>
-            </div>
-            <div class='modal-footer'>
 
-                <button type='button' class='btn btn-primary' data-dismiss='modal' data-toggle='modal'
-                    data-target='#ConfirmDelSalary'>확인</button></a>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div id='confirmReport' class='modal fade' tabindex='-1'>
-    <div class='modal-dialog'>
-        <div class='modal-content'>
-            <div class='modal-header'>
-                <h5 class='modal-title'>완료</h5>
-                <button type='button' class='close' data-dismiss='modal'>
-                    <span>&times;</span>
-                </button>
-            </div>
-            <div class='modal-body'>
-                <p>신고완료</p>
-            </div>
-            <div class='modal-footer'>
 
-                <button type='button' class='btn btn-primary' data-dismiss='modal' data-toggle='modal'
-                    data-target='#ConfirmDelSalary'>확인</button></a>
-            </div>
-        </div>
-    </div>
-</div>
 

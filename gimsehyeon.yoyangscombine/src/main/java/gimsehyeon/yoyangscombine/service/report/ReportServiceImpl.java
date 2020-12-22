@@ -1,5 +1,6 @@
 package gimsehyeon.yoyangscombine.service.report;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +29,9 @@ public class ReportServiceImpl implements ReportService{
 		return reportDao.selectReports(start, end);
 	}
 
+	@Override
+	public Integer addReport(int reporter, int reportCode,  String reportContent) {
+		
+		return reportDao.insertReport(reporter, reportCode, reportContent);
+	}
 }

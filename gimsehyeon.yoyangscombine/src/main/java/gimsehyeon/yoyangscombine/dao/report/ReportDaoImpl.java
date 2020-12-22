@@ -1,5 +1,6 @@
 package gimsehyeon.yoyangscombine.dao.report;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,11 @@ public class ReportDaoImpl implements ReportDao {
 	public int countReport(String searchOption, String keyWord) {
 		// TODO Auto-generated method stub
 		return reportMap.countReport(searchOption, keyWord);
+	}
+	@Override
+	public Integer insertReport(int reporter, int reportCode, 
+			String reportContent) {
+		
+		return reportMap.insertReport(reporter, reportCode,  reportContent);
 	}
 }

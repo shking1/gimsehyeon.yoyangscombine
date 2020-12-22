@@ -34,6 +34,10 @@ public class Comment {
 		this.commentNum = commentNum;
 	}
 	
+	
+	
+
+
 	@Override
 	public String toString() {
 		return String.format("commentNum : %d, "
