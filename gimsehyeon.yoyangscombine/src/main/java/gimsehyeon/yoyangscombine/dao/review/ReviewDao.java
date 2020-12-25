@@ -13,5 +13,6 @@ public interface ReviewDao {
 	List<Review> selectReviews(String sanaName);
 	Integer updateReview(int reviewNum,String reviewPost);
 	Integer deleteReview( int reviewNum);
+	Review selectReview( int reviewNum);
 	
 }

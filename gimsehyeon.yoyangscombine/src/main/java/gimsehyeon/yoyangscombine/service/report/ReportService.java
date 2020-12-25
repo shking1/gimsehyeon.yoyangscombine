@@ -12,5 +12,5 @@ public interface ReportService {
 	int calcReport(String searchOption, String keyWord) throws Exception;
 	List<Report> getReports(int start, int end) throws Exception;
 	Integer addReport( int reporter,  int reportCode, 
-			String reportContent);
+			String reportContent, int reviewNum);
 }

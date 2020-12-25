@@ -228,7 +228,7 @@ margin-left: 1px;
                               
                                 <h6 class='card-subtitle'></h6>
                                 <form  method='post' action='./delReview'>
-                                <button type='button' id='report-btn' data-target='#reportReview' data-reporter='${sessionScope.userId}' class='btn btn-secondary' data-dismiss='modal' data-toggle='modal'
+                                <button type='button' id='report-btn' data-target='#reportReview' data-reporter='${sessionScope.userId}' data-reviewnum='${reviewlist.reviewNum}' class='btn btn-secondary' data-dismiss='modal' data-toggle='modal'
                                    		>신고</button>
                                   <c:if test='${sessionScope.userName == reviewlist.writer}'>
                                   		
@@ -275,6 +275,7 @@ var mapOptions = {
 var map = new naver.maps.Map('map', mapOptions);
 
 var reporter;
+var reviewNum;
 
 
 $(document).ready(function() {
@@ -290,11 +291,13 @@ $(document).ready(function() {
 	
 	$("#reportReview").on('show.bs.modal', function(e) {
 		reporter = $(e.relatedTarget).data('reporter');
+		reviewNum =  $(e.relatedTarget).data('reviewnum');
 		$('#reporter').val(reporter);
+		$('#reportReviewNum').val(reviewNum);
+		$("#reporttext").text(reviewNum);
 		$('#reportCode').val($('#reportreason-dropdown').val());
 		
 	});
-
 });
 
 	
@@ -363,6 +366,7 @@ $(document).ready(function() {
                 <textarea id='reporttext' name='reportContent'></textarea>
                 <input type='hidden' id='reporter' name='reporter'/>
                 <input type='hidden' id='reportCode' name='reportCode'/>
+                <input type='hidden' id='reportReviewNum' name='reviewNum'/>
             </div>
             <div class='modal-footer'>
                 <button type='button' class='btn btn-secondary' data-dismiss='modal'>취소</button>

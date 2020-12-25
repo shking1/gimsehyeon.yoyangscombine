@@ -31,6 +31,7 @@ public class Report {
 	
 	
 
+
 	@Override
 	public String toString() {
 		return String.format("reportNum : %d", reportNum);

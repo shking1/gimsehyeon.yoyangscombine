@@ -30,8 +30,8 @@ public class ReportServiceImpl implements ReportService{
 	}
 
 	@Override
-	public Integer addReport(int reporter, int reportCode,  String reportContent) {
+	public Integer addReport(int reporter, int reportCode,  String reportContent, int reviewNum) {
 		
-		return reportDao.insertReport(reporter, reportCode, reportContent);
+		return reportDao.insertReport(reporter, reportCode, reportContent, reviewNum);
 	}
 }

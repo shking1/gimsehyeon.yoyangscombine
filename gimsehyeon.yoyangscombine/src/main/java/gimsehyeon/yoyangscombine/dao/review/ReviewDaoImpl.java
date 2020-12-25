@@ -42,6 +42,13 @@ public class ReviewDaoImpl implements ReviewDao {
 		return reviewMap.deleteReview(reviewNum);
 	}
 
+
+	@Override
+	public Review selectReview(int reviewNum) {
+		
+		return reviewMap.selectReview(reviewNum);
+	}
+
 	
 
 	

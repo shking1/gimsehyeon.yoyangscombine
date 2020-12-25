@@ -12,5 +12,5 @@ public interface ReportDao {
 	List<Report> selectReports(int start, int end) throws Exception;
 	int countReport(String searchOption, String keyWord);
 	Integer insertReport( int reporter, int reportCode, 
-			  String reportContent);
+			  String reportContent, int reviewNum);
 }

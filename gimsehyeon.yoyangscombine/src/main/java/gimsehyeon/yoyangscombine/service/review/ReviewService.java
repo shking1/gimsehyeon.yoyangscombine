@@ -15,4 +15,6 @@ public interface ReviewService {
 	Integer fixReview(int reviewNum,String reviewPost);
 	
 	Integer delReview( int reviewNum);
+	
+	Review getReview( int reviewNum);
 }

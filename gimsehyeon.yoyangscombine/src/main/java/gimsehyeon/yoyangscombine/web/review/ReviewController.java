@@ -29,7 +29,7 @@ public class ReviewController {
 	@Autowired private SanaService sanaService;
 	@Autowired private ReportService reportService;
 	// 후기조회
-	@RequestMapping("/sanatorium/03") //03
+	@RequestMapping("/sanatorium/03") 
 	public String getreview(Model model,HttpSession session) {
 		
 		String sanaName = (String)session.getAttribute("sanaName");
@@ -81,13 +81,13 @@ public class ReviewController {
 	   
 	@PostMapping("/sanatorium/addReport")
 	public String addReport(@RequestParam("reporter") String reporter, @RequestParam("reportCode") String reportCode,
-							@RequestParam("reportContent") String reportContent){
+							@RequestParam("reportContent") String reportContent, @RequestParam("reviewNum") int reviewNum){
 			
 			User user = userService.getUser(reporter);
 			
-			if(user != null) {
-				reportService.addReport(user.getUserNum(), Integer.parseInt(reportCode), reportContent);	
-			}
+			
+				reportService.addReport(user.getUserNum(), Integer.parseInt(reportCode), reportContent,reviewNum);	
+			
 			
 			return "redirect:../sanatorium/03";
 		}

@@ -192,7 +192,14 @@ function list(page){
 						</h6>
 						신고자 : ${report.reporter}<br>
 						비매너유저 : 외부값<br>
-						게시글확인 : <a href='#'>No.1234</a><br>
+						<c:choose>
+							<c:when test='${report.reviewNum > 0}'>
+						  		게시글확인 : <a href="report/${report.reviewNum}">No.${report.reviewNum}</a>
+						  	</c:when>
+						 	<c:otherwise>
+								게시글확인 : <a href='#'>No.1234</a><br>
+							</c:otherwise>
+						</c:choose>
 						
 						${report.reportContent}<br>
 					</c:forEach>	

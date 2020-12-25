@@ -19,8 +19,8 @@
 	</select>
 	
 	<insert id='insertReport'>
-		insert into contents_of_report (report_num, reporter,report_code, report_reception_date, report_content) 
-		values (gimsehyeon.reportnum_seq.nextval ,#{reporter}, #{reportCode}, sysdate, #{reportContent}) 
+		insert into contents_of_report (report_num, reporter,report_code, report_reception_date, report_content, review_num) 
+		values (gimsehyeon.reportnum_seq.nextval ,#{reporter}, #{reportCode}, sysdate, #{reportContent}, #{reviewNum}) 
 	</insert>
 	
 	<sql id='search'>

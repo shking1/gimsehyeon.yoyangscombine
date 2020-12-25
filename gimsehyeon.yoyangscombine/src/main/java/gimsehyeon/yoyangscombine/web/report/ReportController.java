@@ -4,21 +4,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import gimsehyeon.yoyangscombine.domain.Report;
+import gimsehyeon.yoyangscombine.domain.Review;
 import gimsehyeon.yoyangscombine.service.communication.pager.Pager;
 import gimsehyeon.yoyangscombine.service.report.ReportService;
+import gimsehyeon.yoyangscombine.service.review.ReviewService;
+
 
 @Controller
 public class ReportController {
 	@Autowired private ReportService reportService;	
+	@Autowired private ReviewService reviewService;
 	
 	@RequestMapping("report")
 	public String allReport(Model model, Integer reportNum, @RequestParam(defaultValue = "all") String searchOption,
@@ -47,5 +54,10 @@ public class ReportController {
 		return "report/report";
 	}
 	
-	
+	@GetMapping("/report/{reviewNum}")
+	public String findEmployee(@PathVariable int reviewNum,HttpSession session) { 
+		 Review review = reviewService.getReview(reviewNum);
+		 session.setAttribute("sanaName", review.getSanaName());
+		return "redirect:../sanatorium/03";
+	}
 }

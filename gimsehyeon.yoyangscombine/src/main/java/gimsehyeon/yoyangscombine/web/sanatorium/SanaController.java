@@ -36,6 +36,4 @@ public class SanaController {
 		session.setAttribute("sanaName", sanaName);
 		return "redirect:../sanatorium/03";
 	}
-	
-	
 }

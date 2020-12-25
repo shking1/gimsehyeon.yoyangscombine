@@ -29,8 +29,8 @@ public class ReportDaoImpl implements ReportDao {
 	}
 	@Override
 	public Integer insertReport(int reporter, int reportCode, 
-			String reportContent) {
+			String reportContent , int reviewNum) {
 		
-		return reportMap.insertReport(reporter, reportCode,  reportContent);
+		return reportMap.insertReport(reporter, reportCode,  reportContent, reviewNum);
 	}
 }

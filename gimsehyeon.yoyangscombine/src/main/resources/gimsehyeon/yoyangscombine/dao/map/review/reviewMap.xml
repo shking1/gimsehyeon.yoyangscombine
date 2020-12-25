@@ -13,6 +13,10 @@
 		where sana_name = #{sanaName} order by review_num desc
 	</select>
 	
+	<select id='selectReview' resultMap='reviewMap'>
+		select sana_name, writer, review_post, writing_date from gimsehyeon.reviews  where review_num = #{reviewNum}
+	</select>
+	
 	<update id='updateReview'>
 		update gimsehyeon.reviews
 		set review_post = #{reviewPost} , writing_date = sysdate
@@ -31,6 +35,5 @@
 		<result property='writer'               column='writer'/>
 		<result property='writingDate'               column='writing_date'/>
 		<result property='reviewPost'				column='review_post'/>
-	
 	</resultMap>
 </mapper>

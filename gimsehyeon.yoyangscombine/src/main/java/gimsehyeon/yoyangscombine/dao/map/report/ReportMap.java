@@ -12,5 +12,5 @@ public interface ReportMap {
 	List<Report> selectReports(@Param("start")int start, @Param("end") int end) throws Exception;
 	int countReport(@Param("searchOption")String searchOption, @Param("keyWord") String keyWord);
 	Integer insertReport(@Param("reporter") int reporter, @Param("reportCode") int reportCode, 
-					@Param("reportContent") String reportContent);
+					@Param("reportContent") String reportContent, @Param("reviewNum") int reviewNum);
 }
