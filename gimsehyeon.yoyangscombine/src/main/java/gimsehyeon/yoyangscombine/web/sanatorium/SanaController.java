@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import gimsehyeon.yoyangscombine.domain.Sanatorium;
 import gimsehyeon.yoyangscombine.service.sanatorium.SanaService;
 
 
@@ -25,6 +26,7 @@ public class SanaController {
 	}
 	
 	
+	
 	@GetMapping("/sanatorium/02")
 	public String sana02(HttpSession session) {
 		
@@ -32,8 +34,9 @@ public class SanaController {
 	}
 	
 	@PostMapping("/sanatorium/getReviewlist")
-	public String getSanadata( @RequestParam("sanaName") String sanaName,HttpSession session) {
+	public String getSanadata( @RequestParam("sanaName") String sanaName, @RequestParam("addr") String addr,HttpSession session) {
 		session.setAttribute("sanaName", sanaName);
+		session.setAttribute("addr", addr);
 		return "redirect:../sanatorium/03";
 	}
 }

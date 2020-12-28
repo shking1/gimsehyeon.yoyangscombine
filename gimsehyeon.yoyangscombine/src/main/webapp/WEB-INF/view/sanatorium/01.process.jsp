@@ -47,7 +47,10 @@ public  static String getTagValue(String tag, Element eElement) {
 System.out.println(st+"dddddddddddddddddddddddddddddddddddd");
 StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/B550928/searchLtcInsttService/getLtcInsttSeachList"); /*URL*/
 urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=VFE9v0yK2dxo9e%2FLXfgqpMU5SEyBdoitB7ptSaLub9KCIfC1hnDu9F18QNwIbM%2FeFSS6CfWc6hhaSHNOLuGQZg%3D%3D"); /*Service Key*/
-urlBuilder.append("&" + URLEncoder.encode("siDoCd","UTF-8") + "=" + URLEncoder.encode(st, "UTF-8")); /*공통항목 법정동 코드설명 참조*/
+urlBuilder.append("&" + URLEncoder.encode("siDoCd","UTF-8") + "=" + URLEncoder.encode(st, "UTF-8"));/*공통항목 법정동 코드설명 참조*/
+if( request.getParameter("searchName") != null){
+	urlBuilder.append("&" + URLEncoder.encode("adminNm","UTF-8") + "=" + URLEncoder.encode(request.getParameter("searchName"), "UTF-8"));/*공통항목 법정동 코드설명 참조*/
+}
 urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*공통항목 법정동 코드설명 참조*/
 
 URL url = new URL(urlBuilder.toString());

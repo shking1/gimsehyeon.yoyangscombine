@@ -92,7 +92,7 @@ ul {
             </select></li>
          </ul>
                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search">
+                  <input type="text" name='searchName' class="form-control" placeholder="Search">
                   <div class="input-group-btn">
                      <button type="submit" style="margin-bottom: 10px;" class="btn btn-default"><i class="fa fa-search"></i></button>
                   </div>
@@ -201,8 +201,9 @@ if(request.getParameterValues("urlStr")!=null){
                System.out.println(eElement2.getTextContent());
                out.println("연락처 : "+ getTagValue("locTelNo_1", eElement2)+"-"+getTagValue("locTelNo_2", eElement2)+"-"+getTagValue("locTelNo_3", eElement2)+"<br>");
                addrCode = getTagValue("siDoCd", eElement) + getTagValue("siGunGuCd", eElement) +getTagValue("BDongCd", eElement2) + getTagValue("riCd", eElement2);
-               //out.println("주소코드: "+ addrCode+"<br>");
+                
                
+            
             }
          }
          
@@ -223,6 +224,7 @@ if(request.getParameterValues("urlStr")!=null){
 						val = addr[key]; 
 						if(val ==<%=addrCode%>){
 							$('p').eq(<%=temp%>).text("주소:" + addr['시도명'] +" " + addr['시군구명']+" "+ addr['동리명']);
+							$('#addr').val(addr['시도명'] +" " + addr['시군구명']+" "+ addr['동리명']);
 						}
 					}
 				}
@@ -233,7 +235,8 @@ if(request.getParameterValues("urlStr")!=null){
 		});
 	
 </script>
-         <p></p>
+         <p ></p>
+          <input type='hidden' name='addr' id='addr'/>
           <input type='hidden' name='sanaName' id='reviewNum' value='<%=getTagValue("adminNm", eElement) %>'/>
             <a href='03'><button type='submit'>지도보기</button></a>
             </form>

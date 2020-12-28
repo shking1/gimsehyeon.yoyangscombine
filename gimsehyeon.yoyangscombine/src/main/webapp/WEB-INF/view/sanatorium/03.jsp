@@ -156,7 +156,7 @@ margin-left: 1px;
        
         <img src='#' width="300px" height="200px">
         <h3>${sanaName}</h3>
-        
+        <h5>${addr}</h5>
 
         <div class="accrodion">
             <input type='checkbox' id="viewbtn">
