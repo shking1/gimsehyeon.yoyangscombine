@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-          
-
 <%@ page import='java.io.InputStreamReader' %>
 <%@ page import='java.net.HttpURLConnection' %>
 <%@ page import='java.net.URL' %>
@@ -58,6 +56,7 @@ String urlStr = url.toString();
 %>
 <jsp:forward page='01.jsp'>
    <jsp:param name='urlStr' value='<%=urlStr%>'/>
+   <jsp:param name='selectedsiDoCd' value='<%=st%>'/>
 </jsp:forward>
 
 </body>

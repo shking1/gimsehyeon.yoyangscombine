@@ -11,54 +11,43 @@
    height: 150px;
    border: 1px solid black;
 }
-
 #border2 {
    width: 500px;
    height: 180px;
    border: 1px solid black;
    margin-left: 0px;
 }
-
 .checked {
    color: orange;
 }
-
 .list {
    margin-top: 30px;
    padding: 10px;
 }
-
 #search-li {
    list-style: none;
    margin-top: 25px;
 }
-
 #detailsearch-form {
    display: inline-block;
 }
-
 #btns {
    list-style: none;
    margin: 10px;
 }
-
 #search {
    margin-left: 40px;
    width: 50px;
 }
-
 input {
    padding: 0 0 0 0;
 }
-
 ul {
    padding: 0 0 0 0;
 }
-
 #search_input{
    width: 100px;
 }
-
 #btn-brother{
    width: 140px;
 }
@@ -73,23 +62,23 @@ ul {
          <form action='01.process'>
          <ul>     
             <li id='search-li'><select id="search-dropdown-o" name="siDoCd">
-                  <option value="42">강원도</option>
-                  <option value="41">경기도</option>
-                  <option value="48">경상남도</option>
-                  <option value="47">경상북도</option>
-                  <option value="29">광주광역시</option>
-                  <option value="27">대구광역시</option>
-                  <option value="30">대전광역시</option>
-                  <option value="26">부산광역시</option>
-                  <option value="11">서울특별시</option>
-                  <option value="36">세종특별자치시</option>
-                  <option value="31">울산광역시</option>
-                  <option value="28">인천광역시</option>
-                  <option value="46">전라남도</option>
-                  <option value="45">전라북도</option>
-                  <option value="50">제주도</option>
-                  <option value="44">충청남도</option>
-                  <option value="43">충청북도</option>
+                  <option value="42" <c:if test="${param.selectedsiDoCd == 42}">selected="selected"</c:if>>강원도</option>
+                  <option value="41"  <c:if test="${param.selectedsiDoCd == 41}">selected="selected"</c:if>>경기도</option>
+                  <option value="48" <c:if test="${param.selectedsiDoCd == 48}">selected="selected"</c:if>>경상남도</option>
+                  <option value="47" <c:if test="${param.selectedsiDoCd == 47}">selected="selected"</c:if>>경상북도</option>
+                  <option value="29" <c:if test="${param.selectedsiDoCd == 29}">selected="selected"</c:if>>광주광역시</option>
+                  <option value="27" <c:if test="${param.selectedsiDoCd == 27}">selected="selected"</c:if>>대구광역시</option>
+                  <option value="30" <c:if test="${param.selectedsiDoCd == 30}">selected="selected"</c:if>>대전광역시</option>
+                  <option value="26" <c:if test="${param.selectedsiDoCd == 26}">selected="selected"</c:if>>부산광역시</option>
+                  <option value="11" <c:if test="${param.selectedsiDoCd == 11}">selected="selected"</c:if>>서울특별시</option>
+                  <option value="36" <c:if test="${param.selectedsiDoCd == 36}">selected="selected"</c:if>>세종특별자치시</option>
+                  <option value="31" <c:if test="${param.selectedsiDoCd == 31}">selected="selected"</c:if>>울산광역시</option>
+                  <option value="28" <c:if test="${param.selectedsiDoCd == 28}">selected="selected"</c:if>>인천광역시</option>
+                  <option value="46" <c:if test="${param.selectedsiDoCd == 46}">selected="selected"</c:if>>전라남도</option>
+                  <option value="45" <c:if test="${param.selectedsiDoCd == 45}">selected="selected"</c:if>>전라북도</option>
+                  <option value="50" <c:if test="${param.selectedsiDoCd == 50}">selected="selected"</c:if>>제주도</option>
+                  <option value="44" <c:if test="${param.selectedsiDoCd == 44}">selected="selected"</c:if>>충청남도</option>
+                  <option value="43" <c:if test="${param.selectedsiDoCd == 43}">selected="selected"</c:if>>충청북도</option>
             </select></li>
             <li id='search-li'><select id="search-dropdown-o" name="country-search-dropdown-o">
                   <option value="seoul">가평군</option>
@@ -127,7 +116,6 @@ urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=VFE9v0yK2dxo
 urlBuilder.append("&" + URLEncoder.encode("siDoCd","UTF-8") + "=" + URLEncoder.encode("11", "UTF-8")); /*공통항목 법정동 코드설명 참조*/
 urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*공통항목 법정동 코드설명 참조*/
 URL url = new URL(urlBuilder.toString());
-
 if(request.getParameterValues("urlStr")!=null){
     url =new URL(request.getParameter("urlStr"));   
  }
@@ -177,6 +165,9 @@ if(request.getParameterValues("urlStr")!=null){
          oriNum = getTagValue("longTermAdminSym", eElement);
          numKind = getTagValue("adminPttnCd", eElement);
          
+         String addrCode = "";
+         String detailAddrCode="";
+       
          out.println("고유번호 : " + oriNum +"<br>");         
          out.println("분류  : " + numKind +"<br>");
          out.println("이름 : " + getTagValue("adminNm", eElement)+"<br>");
@@ -195,14 +186,11 @@ if(request.getParameterValues("urlStr")!=null){
          conn2.setRequestMethod("GET");
          conn2.setRequestProperty("Content-type", "application/json");
          BufferedReader rd2;
-
          DocumentBuilderFactory dbFactoty2 = DocumentBuilderFactory.newInstance();
          DocumentBuilder dBuilder2 = dbFactoty2.newDocumentBuilder();
          Document doc2 = dBuilder2.parse(urlStr2);
-
          NodeList nList2 = doc2.getElementsByTagName("item");
          System.out.println("파싱할 리스트 수2 : "+ nList2.getLength());
-
          doc2.getDocumentElement().normalize();
          System.out.println("Root element: " + doc2.getDocumentElement().getNodeName()); // Root element: result
          
@@ -212,11 +200,40 @@ if(request.getParameterValues("urlStr")!=null){
                Element eElement2 = (Element) nNode2;
                System.out.println(eElement2.getTextContent());
                out.println("연락처 : "+ getTagValue("locTelNo_1", eElement2)+"-"+getTagValue("locTelNo_2", eElement2)+"-"+getTagValue("locTelNo_3", eElement2)+"<br>");
+               addrCode = getTagValue("siDoCd", eElement) + getTagValue("siGunGuCd", eElement) +getTagValue("BDongCd", eElement2) + getTagValue("riCd", eElement2);
+               //out.println("주소코드: "+ addrCode+"<br>");
+               
             }
          }
          
          
          %>
+<script>
+
+		$.ajax({
+			url: '../data/data.json',
+			
+			success: (data) =>{
+				let addrs = data.addrs;
+				let addr;
+				
+				for(let row in addrs){ 
+					addr = addrs[row];
+					for(let key in addr) { 
+						val = addr[key]; 
+						if(val ==<%=addrCode%>){
+							$('p').eq(<%=temp%>).text("주소:" + addr['시도명'] +" " + addr['시군구명']+" "+ addr['동리명']);
+						}
+					}
+				}
+			},
+			error:(xhr, status) => {
+				console.log("error");
+			}
+		});
+	
+</script>
+         <p></p>
           <input type='hidden' name='sanaName' id='reviewNum' value='<%=getTagValue("adminNm", eElement) %>'/>
             <a href='03'><button type='submit'>지도보기</button></a>
             </form>
@@ -242,7 +259,6 @@ if(request.getParameterValues("urlStr")!=null){
 <%@ page import='javax.xml.parsers.DocumentBuilder'%>
 <%@ page import='javax.xml.parsers.DocumentBuilderFactory' %>
 <%!
-
 public  static String getTagValue(String tag, Element eElement) {
     NodeList nlList = eElement.getElementsByTagName(tag).item(0).getChildNodes();
     Node nValue = (Node) nlList.item(0);
