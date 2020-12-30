@@ -64,6 +64,13 @@ public class ReportController {
 		 reportService.delReport(report.getReviewNum());
 		return "redirect:../report";
 	}
+	
+	@GetMapping("/report/{reviewNum}")
+	public String findEmployee(@PathVariable int reviewNum,HttpSession session) { 
+		 Review review = reviewService.getReview(reviewNum);
+		 session.setAttribute("sanaName", review.getSanaName());
+		return "redirect:../sanatorium/03";
+	}
 
 	@PostMapping("/report/acceptReport")
 	public String reportAccpt(@RequestParam int reportNum, HttpSession session) { 
