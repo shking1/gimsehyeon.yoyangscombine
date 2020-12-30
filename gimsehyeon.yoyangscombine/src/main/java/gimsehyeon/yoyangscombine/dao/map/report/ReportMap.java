@@ -13,4 +13,5 @@ public interface ReportMap {
 	int countReport(@Param("searchOption")String searchOption, @Param("keyWord") String keyWord);
 	Integer insertReport(@Param("reporter") int reporter, @Param("reportCode") int reportCode, 
 					@Param("reportContent") String reportContent, @Param("reviewNum") int reviewNum);
+	Integer deleteReport(@Param("reviewNum") int reviewNum);
 }

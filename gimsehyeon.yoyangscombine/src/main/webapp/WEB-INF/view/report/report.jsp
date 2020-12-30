@@ -72,6 +72,41 @@ function list(page){
 			+ "&keyWord=${reports.keyWord}"
 			+ "&curPage=" + page;
 }
+
+function isReportNum() {
+	   
+	   let check = false;
+	   if($(':radio:checked').length) check = true;
+	   
+	   return check;
+	}
+	
+$(() =>{
+	$("#allowReport-btn").click(function() {
+		
+		if(isReportNum()){
+			$('#reportAccept').modal('show');
+			$('#reportNum-input').val($(':checked').parent().text().trim());
+		}else{
+			$('#radioCheckMsg-p').text("신고를 선택해주세요");
+		}
+	});
+	
+	$('#dismissReport-btn').click(function(){
+		if(isReportNum()){
+			$('#reportCancel').modal('show');
+			$('#reportNum-input2').val($(':checked').parent().text().trim());
+			
+		}else{
+			$('#radioCheckMsg-p').text("신고를 선택해주세요");
+		}
+		
+	});
+
+});
+	
+
+
 </script>
 </head>
 <div class = 'container'>
@@ -84,6 +119,7 @@ function list(page){
 	<div class='col'>
 		<div class='justify-content-center'>
 		<h4 id='board-title' style="text-align:left">신고 게시판</h4>
+		<p id='radioCheckMsg-p'></p>
 			<table class='table table-sm table-hover table-striped text-center'>
 				<thead>
 					<tr>
@@ -99,7 +135,12 @@ function list(page){
 <c:forEach var='report' items='${reports.boards}'>
 	<tr id='#reportContents'>
 		<td></td>
-		<td>${report.reportNum}</td>
+		
+		<td><div class='form-check form-check-inline'>
+		                     <input type='radio' class='form-check-input' id='reportNum' name='reportNum'/>
+		                     <label class='form-check-label' for='reportNum'>&nbsp;${report.reportNum}</label>
+		                     
+		</div></td>
 		<td>
 			<c:choose>
 				<c:when test="${report.reportCode eq '1'}">
@@ -153,10 +194,11 @@ function list(page){
 </tbody>
 					
 				</table>
-				<hr>				
+				<hr>			
 				<div class='float-right'>
-					<a class='btn btn-secondary' data-toggle='modal' data-target='#reportAccept'>수락</a>
-					<a class='btn btn-secondary' data-toggle='modal' data-target='#reportCancel'>기각</a>
+					 <button type='button' class='btn btn-secondary'  id='allowReport-btn' >수락</button>
+					<button type='button' class='btn btn-secondary' id='dismissReport-btn' >기각</button>
+					
 				</div>
 			</div>
 		</div>
@@ -206,7 +248,7 @@ function list(page){
 					</div>
 
 					<div class='modal-footer'>
-						<a class='btn btn-secondary' data-dismiss='modal' data-toggle='modal' data-target='#reportAccept'>수락</a>
+						<button type='btn btn-secondary'>수락</button>
 						<a class='btn btn-secondary' data-dismiss='modal' data-toggle='modal' data-target='#reportCancel'>기각</a>
 					</div>
 				</div>
@@ -218,11 +260,14 @@ function list(page){
 				<div class='modal-content'>
 					<div class='modal-body text-center'>
 						<br>
+					<form  method='post' action='report/dismissReport'>
 						<p style='font-size: 20px;'>기각 메세지를 보냈습니다.</p>
+						<input type='hidden' name='reportNum' id='reportNum-input2'/>
+			
 					</div>
-
 					<div class='modal-footer'>
-						<a class='btn btn-secondary btn-block' data-dismiss='modal'>확인</a>
+						<button type='submit' class='btn-secondary btn-block'>확인</button>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -232,12 +277,16 @@ function list(page){
 			<div class='modal-dialog'>
 				<div class='modal-content'>
 					<div class='modal-body text-center'>
+					<form  method='post' action='report/acceptReport'>
 						<br>
 						<p style='font-size: 20px;'>수락 확인 메세지를 보냈습니다.</p>
+						
+						<input type='hidden' name='reportNum' id='reportNum-input'/>
+						
 					</div>
-
 					<div class='modal-footer'>
-						<a class='btn btn-secondary btn-block' data-dismiss='modal'>확인</a>
+						<button type='submit' class='btn-secondary btn-block'>확인</button>
+						</form>
 					</div>
 				</div>
 			</div>

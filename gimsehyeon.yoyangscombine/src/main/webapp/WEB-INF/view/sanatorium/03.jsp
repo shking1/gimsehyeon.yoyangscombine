@@ -294,7 +294,6 @@ $(document).ready(function() {
 		reviewNum =  $(e.relatedTarget).data('reviewnum');
 		$('#reporter').val(reporter);
 		$('#reportReviewNum').val(reviewNum);
-		$("#reporttext").text(reviewNum);
 		$('#reportCode').val($('#reportreason-dropdown').val());
 		
 	});

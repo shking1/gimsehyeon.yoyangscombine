@@ -13,4 +13,5 @@ public interface ReportService {
 	List<Report> getReports(int start, int end) throws Exception;
 	Integer addReport( int reporter,  int reportCode, 
 			String reportContent, int reviewNum);
+	Integer delReport(int reviewNum);
 }

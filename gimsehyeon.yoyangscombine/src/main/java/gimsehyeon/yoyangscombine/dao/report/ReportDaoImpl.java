@@ -33,4 +33,9 @@ public class ReportDaoImpl implements ReportDao {
 		
 		return reportMap.insertReport(reporter, reportCode,  reportContent, reviewNum);
 	}
+	@Override
+	public Integer deleteReport(int reviewNum) {
+		
+		return reportMap.deleteReport(reviewNum);
+	}
 }

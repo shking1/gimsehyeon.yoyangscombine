@@ -27,6 +27,7 @@ public class ReportController {
 	@Autowired private ReportService reportService;	
 	@Autowired private ReviewService reviewService;
 	
+	
 	@RequestMapping("report")
 	public String allReport(Model model, Integer reportNum, @RequestParam(defaultValue = "all") String searchOption,
 			@RequestParam(defaultValue = "") String keyWord, @RequestParam(defaultValue="1") int curPage) throws Exception{
@@ -54,10 +55,24 @@ public class ReportController {
 		return "report/report";
 	}
 	
-	@GetMapping("/report/{reviewNum}")
-	public String findEmployee(@PathVariable int reviewNum,HttpSession session) { 
-		 Review review = reviewService.getReview(reviewNum);
-		 session.setAttribute("sanaName", review.getSanaName());
-		return "redirect:../sanatorium/03";
+	@PostMapping("/report/dismissReport")
+	public String reportDismiss(@RequestParam int reportNum, HttpSession session) { 
+		 
+		 Report report = reportService.getReport(reportNum);
+		 Review review = reviewService.getReview(report.getReviewNum());
+		 session.setAttribute("review", review);
+		 reportService.delReport(report.getReviewNum());
+		return "redirect:../report";
+	}
+
+	@PostMapping("/report/acceptReport")
+	public String reportAccpt(@RequestParam int reportNum, HttpSession session) { 
+		 
+		 Report report = reportService.getReport(reportNum);
+		 Review review = reviewService.getReview(report.getReviewNum());
+		 session.setAttribute("review", review);
+		 reportService.delReport(report.getReviewNum());
+		 reviewService.delReview(report.getReviewNum());
+		return "redirect:../report";
 	}
 }

@@ -3,7 +3,7 @@ package gimsehyeon.yoyangscombine.dao.report;
 import java.time.LocalDate;
 import java.util.List;
 
-
+import org.apache.ibatis.annotations.Param;
 
 import gimsehyeon.yoyangscombine.domain.Report;
 
@@ -13,4 +13,5 @@ public interface ReportDao {
 	int countReport(String searchOption, String keyWord);
 	Integer insertReport( int reporter, int reportCode, 
 			  String reportContent, int reviewNum);
+	Integer deleteReport( int reviewNum);
 }
