@@ -286,6 +286,8 @@ var reviewNum;
 $(document).ready(function() {
 	$('#fixReviewPost-div').hide(); 
 	
+	$('#reportCode').val($('#reportreason-dropdown').val());
+	
 	$("#inputfixReview-btn").click(function(){
 		
 		$('#fixReviewPost-div').show();
@@ -299,7 +301,7 @@ $(document).ready(function() {
 		reviewNum =  $(e.relatedTarget).data('reviewnum');
 		$('#reporter').val(reporter);
 		$('#reportReviewNum').val(reviewNum);
-		$('#reportCode').val($('#reportreason-dropdown').val());
+		
 		
 	});
 });
@@ -360,7 +362,7 @@ $(document).ready(function() {
             </div>
             <div class='modal-body'>
            	<form id='report-form' method='post' action='./addReport'>
-                <select id="reportreason-dropdown" class='justify-content-center' name="reportreason-dropdown">
+                <select id="reportreason-dropdown" class='justify-content-center' name="reportCode">
                     <option value="1">도배/광고성</option>
                     <option value="2">선정성/폭력성</option>
                     <option value="3">명예훼손</option>
@@ -369,7 +371,7 @@ $(document).ready(function() {
                 </select>
                 <textarea id='reporttext' name='reportContent'></textarea>
                 <input type='hidden' id='reporter' name='reporter'/>
-                <input type='hidden' id='reportCode' name='reportCode'/>
+                
                 <input type='hidden' id='reportReviewNum' name='reviewNum'/>
             </div>
             <div class='modal-footer'>

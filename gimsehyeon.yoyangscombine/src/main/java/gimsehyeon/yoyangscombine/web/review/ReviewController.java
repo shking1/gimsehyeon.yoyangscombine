@@ -82,13 +82,17 @@ public class ReviewController {
 	   }
 	   
 	@PostMapping("/sanatorium/addReport")
-	public String addReport(@RequestParam("reporter") String reporter, @RequestParam("reportCode") String reportCode,
+	public String addReport(@RequestParam("reporter") String reporter, @RequestParam("reportCode") String[] reportCode,
 							@RequestParam("reportContent") String reportContent, @RequestParam("reviewNum") int reviewNum){
 			
+		String reportco ="";
 			User user = userService.getUser(reporter);
 			
-			
-				reportService.addReport(user.getUserNum(), Integer.parseInt(reportCode), reportContent,reviewNum);	
+				for(String reportcode: reportCode)
+					reportco = reportcode;
+					
+				
+				reportService.addReport(user.getUserNum(), Integer.parseInt(reportco), reportContent,reviewNum);	
 			
 			
 			return "redirect:../sanatorium/03";
