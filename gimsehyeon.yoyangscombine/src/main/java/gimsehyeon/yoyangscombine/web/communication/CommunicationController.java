@@ -16,15 +16,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import gimsehyeon.yoyangscombine.domain.Comment;
 import gimsehyeon.yoyangscombine.domain.Communication;
+import gimsehyeon.yoyangscombine.domain.User;
 import gimsehyeon.yoyangscombine.service.communication.CommunicationService;
-import gimsehyeon.yoyangscombine.service.communication.comment.CommentService;
 import gimsehyeon.yoyangscombine.service.communication.pager.Pager;
+import gimsehyeon.yoyangscombine.service.report.ReportService;
+import gimsehyeon.yoyangscombine.service.user.UserService;
 
 @Controller
 public class CommunicationController {
 	@Autowired private CommunicationService commService;
+	@Autowired private UserService userService;
+	@Autowired private ReportService reportService;
 
 	// 게시판 화면 Controller
 	@RequestMapping("/communication")
@@ -122,4 +125,18 @@ public class CommunicationController {
 		model.addAttribute("comm", commService.readComm(communicationNum));
 		return "communication/editPost";
 	}
+	
+	
+	@PostMapping("communication/addReport")
+	public String addReport(@RequestParam("reporter") String reporter, @RequestParam("reportCode") String reportCode,
+							@RequestParam("reportContent") String reportContent, @RequestParam("commNum") int commNum){
+			
+			User user = userService.getUser(reporter);
+			
+			
+				reportService.addPostReport(user.getUserNum(), Integer.parseInt(reportCode), reportContent,commNum);	
+			
+			
+			return "redirect:../sanatorium/03";
+		}
 }

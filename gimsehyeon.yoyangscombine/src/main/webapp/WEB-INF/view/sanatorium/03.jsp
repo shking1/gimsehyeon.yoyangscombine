@@ -156,7 +156,7 @@ margin-left: 1px;
        
         <img src='#' width="300px" height="200px">
         <h3>${sanaName}</h3>
-        <h5>${addr}</h5>
+        
 
         <div class="accrodion">
             <input type='checkbox' id="viewbtn">
@@ -228,16 +228,21 @@ margin-left: 1px;
                               
                                 <h6 class='card-subtitle'></h6>
                                 <form  method='post' action='./delReview'>
-                                <button type='button' id='report-btn' data-target='#reportReview' data-reporter='${sessionScope.userId}' data-reviewnum='${reviewlist.reviewNum}' class='btn btn-secondary' data-dismiss='modal' data-toggle='modal'
-                                   		>신고</button>
-                                  <c:if test='${sessionScope.userName == reviewlist.writer}'>
+                                <c:choose>
+                                
+                                  <c:when test='${sessionScope.userName == reviewlist.writer}'>
                                   		
                                   		 <button type='button' id='inputfixReview-btn' class='btn btn-secondary'>수정</button>
                                   		 
                                   		  <input type='hidden' name='reviewNum' id='reviewNum' value='${reviewlist.reviewNum}'/>
                                   		 <button type='submit' id='delReview-btn' class='btn btn-secondary'>삭제</button>
                                   		  </form>
-                                  </c:if>
+                                  </c:when>
+                                  <c:otherwise>
+                                  	 <button type='button' id='report-btn' data-target='#reportReview' data-reporter='${sessionScope.userId}' data-reviewnum='${reviewlist.reviewNum}' class='btn btn-secondary' data-dismiss='modal' data-toggle='modal'
+                                   		>신고</button>
+                                  </c:otherwise>
+                                  </c:choose>
                                
                         </div>
                     </div>

@@ -13,5 +13,14 @@ public interface ReportDao {
 	int countReport(String searchOption, String keyWord);
 	Integer insertReport( int reporter, int reportCode, 
 			  String reportContent, int reviewNum);
+	Integer insertPostReport( int reporter, int reportCode, 
+			  String reportContent, int communicationNum);
+	Integer insertCommentReport( int reporter, int reportCode, 
+			  String reportContent, int commentNum);
 	Integer deleteReport( int reviewNum);
+	
+	Integer deletePostReport( int communicationNum);
+	Integer deleteCommentReport( int commentNum);
+	
+	
 }

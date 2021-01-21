@@ -80,16 +80,7 @@ ul {
                   <option value="44" <c:if test="${param.selectedsiDoCd == 44}">selected="selected"</c:if>>충청남도</option>
                   <option value="43" <c:if test="${param.selectedsiDoCd == 43}">selected="selected"</c:if>>충청북도</option>
             </select></li>
-            <li id='search-li'><select id="search-dropdown-o" name="country-search-dropdown-o">
-                  <option value="seoul">가평군</option>
-                  <option value="incheon">양평군</option>
-                  <option value="busan">영천군</option>
-            </select></li>
-            <li id='search-li'><select id="search-dropdown-o" name="district-search-dropdown-o">
-                  <option value="seoul">관양동</option>
-                  <option value="incheon">비산동</option>
-                  <option value="busan">부평동</option>
-            </select></li>
+            
          </ul>
                <div class="input-group">
                   <input type="text" name='searchName' class="form-control" placeholder="Search">
@@ -103,10 +94,10 @@ ul {
             <a href="../communication" id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
          </div>
          <br> 
-         <div>
+         <!-- <div>
             <a href="02" id='btn-brother' type='button' class='btn btn-secondary'>캘린더</a>
-         </div>
-      </div>
+         </div>-->
+      </div> 
  
 <div class='col-9' style='overflow:scroll; width:540px; height:800px;'>
 
@@ -202,8 +193,6 @@ if(request.getParameterValues("urlStr")!=null){
                out.println("연락처 : "+ getTagValue("locTelNo_1", eElement2)+"-"+getTagValue("locTelNo_2", eElement2)+"-"+getTagValue("locTelNo_3", eElement2)+"<br>");
                addrCode = getTagValue("siDoCd", eElement) + getTagValue("siGunGuCd", eElement) +getTagValue("BDongCd", eElement2) + getTagValue("riCd", eElement2);
                 
-               
-            
             }
          }
          
@@ -223,8 +212,8 @@ if(request.getParameterValues("urlStr")!=null){
 					for(let key in addr) { 
 						val = addr[key]; 
 						if(val ==<%=addrCode%>){
-							$('p').eq(<%=temp%>).text("주소:" + addr['시도명'] +" " + addr['시군구명']+" "+ addr['동리명']);
-							$('#addr').val(addr['시도명'] +" " + addr['시군구명']+" "+ addr['동리명']);
+							$('p').eq(<%=temp%>).text("주소:" + addr['시도명'] +" " + addr['시군구명']+" "+addr['동리명']);
+							$('#addr').val(addr['시도명'] +" " + addr['시군구명']+" "+addr['동리명']);
 						}
 					}
 				}

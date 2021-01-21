@@ -40,4 +40,16 @@ public class ReportServiceImpl implements ReportService{
 		
 		return reportDao.deleteReport(reviewNum);
 	}
+
+	@Override
+	public Integer addPostReport(int reporter, int reportCode, String reportContent, int communicationNum) {
+	
+		return reportDao.insertPostReport(reporter, reportCode, reportContent, communicationNum);
+	}
+
+	@Override
+	public Integer addCommentReport(int reporter, int reportCode, String reportContent, int commentNum) {
+		
+		return reportDao.insertCommentReport(reporter, reportCode, reportContent, commentNum);
+	}
 }

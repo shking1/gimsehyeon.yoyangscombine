@@ -33,6 +33,7 @@ public class ReviewController {
 	public String getreview(Model model,HttpSession session) {
 		
 		String sanaName = (String)session.getAttribute("sanaName");
+		String addr = (String)session.getAttribute("addr");
 		
 		if(sanaService.getSana(sanaName) == null) {
 			sanaService.addSana(sanaName);
@@ -43,6 +44,7 @@ public class ReviewController {
 		reviewList.put("list",rev);
 		model.addAttribute("reviewList",reviewList);
 		model.addAttribute("sanaName", sanaName);
+		model.addAttribute("addr", addr);
 		
 		return "sanatorium/03";
 	}

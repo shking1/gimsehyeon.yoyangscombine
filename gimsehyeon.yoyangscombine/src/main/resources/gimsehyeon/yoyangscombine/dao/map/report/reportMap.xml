@@ -30,9 +30,29 @@
 		values (gimsehyeon.reportnum_seq.nextval ,#{reporter}, #{reportCode}, sysdate, #{reportContent}, #{reviewNum}) 
 	</insert>
 	
+	<insert id='insertPostReport'>
+		insert into contents_of_report (report_num, reporter,report_code, report_reception_date, report_content, communication_num) 
+		values (gimsehyeon.reportnum_seq.nextval ,#{reporter}, #{reportCode}, sysdate, #{reportContent}, #{communicationNum}) 
+	</insert>
+	
+	<insert id='insertCommentReport'>
+		insert into contents_of_report (report_num, reporter,report_code, report_reception_date, report_content, comment_num) 
+		values (gimsehyeon.reportnum_seq.nextval ,#{reporter}, #{reportCode}, sysdate, #{reportContent}, #{commentNum}) 
+	</insert>
+	
 	<delete id='deleteReport'>
 		delete from contents_of_report
 		where review_num = #{reviewNum}
+	</delete>
+	
+	<delete id='deletePostReport'>
+		delete from contents_of_report
+		where communication_num = #{communicationNum}
+	</delete>
+	
+	<delete id='deleteCommentReport'>
+		delete from contents_of_report
+		where comment_num = #{commentNum}
 	</delete>
 	
 	<sql id='search'>

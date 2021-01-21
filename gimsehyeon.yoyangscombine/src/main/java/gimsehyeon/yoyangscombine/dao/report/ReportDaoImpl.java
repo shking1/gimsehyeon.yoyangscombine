@@ -38,4 +38,24 @@ public class ReportDaoImpl implements ReportDao {
 		
 		return reportMap.deleteReport(reviewNum);
 	}
+	@Override
+	public Integer insertPostReport(int reporter, int reportCode, String reportContent, int communicationNum) {
+		
+		return reportMap.insertPostReport(reporter, reportCode, reportContent, communicationNum);
+	}
+	@Override
+	public Integer insertCommentReport(int reporter, int reportCode, String reportContent, int commentNum) {
+		
+		return reportMap.insertCommentReport(reporter, reportCode, reportContent, commentNum);
+	}
+	@Override
+	public Integer deletePostReport(int communicationNum) {
+	
+		return reportMap.deletePostReport(communicationNum);
+	}
+	@Override
+	public Integer deleteCommentReport(int commentNum) {
+		
+		return reportMap.deleteCommentReport(commentNum);
+	}
 }

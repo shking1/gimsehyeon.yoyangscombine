@@ -120,16 +120,7 @@ span {
 						<option value="44">충청남도</option>
 						<option value="43">충청북도</option>
 					</select></li>
-					<li id='search-li'><select id="search-dropdown-o" name="country-search-dropdown-o">
-						<option value="seoul">가평군</option>
-						<option value="incheon">양평군</option>
-						<option value="busan">영천군</option>
-					</select></li>
-					<li id='search-li'><select id="search-dropdown-o" name="district-search-dropdown-o">
-						<option value="seoul">관양동</option>
-						<option value="incheon">비산동</option>
-						<option value="busan">부평동</option>
-					</select></li>
+					
 				</ul>
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Search">
@@ -143,9 +134,7 @@ span {
 			   <a href="../communication" id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
 			</div>
 			<br> 
-			<div>
-			   <a href="../sanatorium/02" id='btn-brother' type='button' class='btn btn-secondary'>캘린더</a>
-			</div>
+			
 		</div>
       
 
@@ -191,6 +180,7 @@ span {
 			                </button>
 			            </div>
 			            <div class='modal-body'>
+			            <form id='report-form' method='post' action='./addReport'>
 			                <select id='reportreason-dropdown' class='justify-content-center' name='reportreason-dropdown'>
 			                    <option value='advertising'>도배/광고성</option>
 			                    <option value='violence'>선정성/폭력성</option>
@@ -202,7 +192,8 @@ span {
 			            </div>
 			            <div class='modal-footer'>
 			                <button type='button' class='btn btn-secondary' data-dismiss='modal'>취소</button>
-			                <button type='button' class='btn btn-secondary' data-dismiss='modal' data-toggle='modal' data-target='#confirmReport'>신고</button>
+			                <button type='submit' class='btn btn-secondary' data-dismiss='modal' data-toggle='modal' data-target='#confirmReport'>신고</button>
+			                </form>
 			            </div>
 			        </div>
 			    </div>

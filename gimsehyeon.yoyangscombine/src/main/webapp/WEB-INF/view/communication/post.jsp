@@ -112,6 +112,8 @@ $(function(){
 	$("#btnComment").click(function(){
 		comment();
 	});
+	
+	
 });
 
 function comment() {
@@ -147,6 +149,9 @@ function commentList(num) {
 function btnUpdate(commNum) {
 	location.href = "editPost?&communicationNum=" + commNum;
 }
+
+
+
 </script>
 </head>
 <body>
@@ -178,16 +183,7 @@ function btnUpdate(commNum) {
 						<option value="44">충청남도</option>
 						<option value="43">충청북도</option>
 					</select></li>
-					<li id='search-li'><select id="search-dropdown-o" name="country-search-dropdown-o">
-						<option value="seoul">가평군</option>
-						<option value="incheon">양평군</option>
-						<option value="busan">영천군</option>
-					</select></li>
-					<li id='search-li'><select id="search-dropdown-o" name="district-search-dropdown-o">
-						<option value="seoul">관양동</option>
-						<option value="incheon">비산동</option>
-						<option value="busan">부평동</option>
-					</select></li>
+					
 				</ul>
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Search">
@@ -201,9 +197,7 @@ function btnUpdate(commNum) {
 			   <a href="../communication" id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
 			</div>
 			<br> 
-			<div>
-			   <a href="../sanatorium/02" id='btn-brother' type='button' class='btn btn-secondary'>캘린더</a>
-			</div>
+			
 		</div>
 		
 	
@@ -236,7 +230,8 @@ function btnUpdate(commNum) {
 								<a class='btn btn-secondary'
 									href='/gimsehyeon.yoyangscombine/communication/editPost?communicationNum=${commPost.communicationNum}'>수정</a>
 							</c:if>
-								<a class='btn btn-secondary' onClick='reportModal()'>신고하기</a>
+								<a class='btn btn-secondary'  data-target='#reportPost' data-reporter='${sessionScope.userId}' data-commnum='${commPost.communicationNum}' class='btn btn-secondary' data-dismiss='modal' data-toggle='modal'
+								>신고하기</a>
 						</div>
 					</div>
 				</form>
@@ -287,7 +282,7 @@ function btnUpdate(commNum) {
 				</div>	
 			</div>
 			
-			<div class='modal fade' id='reportReview'>
+			<div class='modal fade' id='reportPost'>
 			    <div class='modal-dialog'>
 			        <div class='modal-content'>
 			            <div class='modal-header'>
@@ -297,18 +292,23 @@ function btnUpdate(commNum) {
 			                </button>
 			            </div>
 			            <div class='modal-body'>
+			            	<form id='report-form' method='post' action='./addReport'>
 			                <select id='reportreason-dropdown' class='justify-content-center' name='reportreason-dropdown'>
-			                    <option value='advertising'>도배/광고성</option>
-			                    <option value='violence'>선정성/폭력성</option>
-			                    <option value='defamation'>명예훼손</option>
-			                    <option value='hazard'>자살암시/유해성</option>
+			                    <option value='1'>도배/광고성</option>
+			                    <option value='2'>선정성/폭력성</option>
+			                    <option value='3'>명예훼손</option>
+			                    <option value='4'>자살암시/유해성</option>
 			                    <option value='other'>기타</option>
 			                </select>
-			                <textarea id='reporttext'></textarea>
+			                <textarea id='reporttext' name='reportContent'></textarea>
+			                <input type='hidden' id='reporter' name='reporter'/>
+                			<input type='hidden' id='reportCode' name='reportCode'/>
+               				 <input type='hidden' id='reportCommNum' name='commNum'/>
 			            </div>
 			            <div class='modal-footer'>
 			                <button type='button' class='btn btn-secondary' data-dismiss='modal'>취소</button>
-			                <button type='button' class='btn btn-secondary' data-dismiss='modal' data-toggle='modal' data-target='#confirmReport'>신고</button>
+			                <button type='button' class='btn btn-secondary' >신고</button>
+			                </form>
 			            </div>
 			        </div>
 			    </div>

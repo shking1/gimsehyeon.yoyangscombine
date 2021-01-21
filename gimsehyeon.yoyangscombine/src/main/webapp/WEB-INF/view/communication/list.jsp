@@ -113,16 +113,7 @@ function commClick(commNum) {
 							<option value="44">충청남도</option>
 							<option value="43">충청북도</option>
 						</select></li>
-						<li id='search-li'><select id="search-dropdown-o" name="country-search-dropdown-o">
-							<option value="seoul">가평군</option>
-							<option value="incheon">양평군</option>
-							<option value="busan">영천군</option>
-						</select></li>
-						<li id='search-li'><select id="search-dropdown-o" name="district-search-dropdown-o">
-							<option value="seoul">관양동</option>
-							<option value="incheon">비산동</option>
-							<option value="busan">부평동</option>
-						</select></li>
+						
 					</ul>
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Search">
@@ -136,9 +127,7 @@ function commClick(commNum) {
 				   <a href="./communication" id='btn-brother' type='button' class='btn btn-secondary'>자유게시판</a>
 				</div>
 				<br> 
-				<div>
-				   <a href="./sanatorium/02" id='btn-brother' type='button' class='btn btn-secondary'>캘린더</a>
-				</div>
+				
 			</div>
 		
 			

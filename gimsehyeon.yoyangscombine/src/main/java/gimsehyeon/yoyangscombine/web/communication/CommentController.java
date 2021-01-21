@@ -6,20 +6,28 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import gimsehyeon.yoyangscombine.domain.Comment;
+import gimsehyeon.yoyangscombine.domain.User;
 import gimsehyeon.yoyangscombine.service.communication.comment.CommentService;
 import gimsehyeon.yoyangscombine.service.communication.pager.Pager;
+import gimsehyeon.yoyangscombine.service.report.ReportService;
+import gimsehyeon.yoyangscombine.service.user.UserService;
 
 @RestController
 @RequestMapping("/comment/*")
 public class CommentController {
 	@Autowired
 	private CommentService commentService;
+	@Autowired
+	private UserService userService;
+	@Autowired 
+	private ReportService reportService;
 
 	@RequestMapping("insert")
 	public void commentInsert(@ModelAttribute Comment comment, HttpSession session) {
@@ -54,4 +62,17 @@ public class CommentController {
 		comment.setCommentPost(commentPost);
 		commentService.modifyComment(comment);
 	}
+	
+	@PostMapping("/addCommentReport")
+	public String addReport(@RequestParam("reporter") String reporter, @RequestParam("reportCode") String reportCode,
+							@RequestParam("reportContent") String reportContent, @RequestParam("commentNum") int commentNum){
+			
+			User user = userService.getUser(reporter);
+			
+			
+				reportService.addReport(user.getUserNum(), Integer.parseInt(reportCode), reportContent,commentNum);	
+			
+			
+			return "redirect:../sanatorium/03";
+		}
 }

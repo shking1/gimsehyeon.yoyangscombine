@@ -59,7 +59,10 @@ public class ReportController {
 	public String reportDismiss(@RequestParam int reportNum, HttpSession session) { 
 		 
 		 Report report = reportService.getReport(reportNum);
-		 Review review = reviewService.getReview(report.getReviewNum());
+		 
+		 Review review = reviewService.getReview(report.getReviewNum()); 
+		
+		 
 		 session.setAttribute("review", review);
 		 reportService.delReport(report.getReviewNum());
 		return "redirect:../report";
