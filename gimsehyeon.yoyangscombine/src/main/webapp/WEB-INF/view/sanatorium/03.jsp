@@ -170,31 +170,37 @@ margin-left: 1px;
                 
                 
                 <br>
-               	<c:if test='${sessionScope.userId != null}'>
+               <c:if test='${sessionScope.userId != null}'>
                	<c:choose>
                  <c:when test='${reviewList.list.size() > 0 }'>
                  <c:set var="doneLoop" value="false"/>
-                
+
                		 <c:forEach var="dbreviews" items="${reviewList.list}" varStatus="index">
                		 	 <c:if test="${not doneLoop}">
+               		 	
                			<c:if test='${sessionScope.userName == dbreviews.writer}'>
-               				<c:if test="${!index.last}">
-                    			<button type='submit' id='addreview-btn' class='btn btn-secondary'>등록하기</button>
-                    		</c:if>
-               				<button type='button' class='btn btn-secondary'data-dismiss='modal' data-toggle='modal'
-                    			data-target='#overlapReview' >등록하기</button>
+               			
+                    		
+                    			<button type='button' id='overlapReview-btn' class='btn btn-secondary'data-dismiss='modal' data-toggle='modal'
+                    			data-target='#overlapReview'>등록하기</button>
                     		<c:set var="doneLoop" value="true" />
-
+                    		
                     		</c:if>
+                    	<c:if test='${sessionScope.userName != dbreviews.writer }'>
+                    		<c:if test="${index.last}">
+                    	       <button type='submit' id='addreview2-btn' class='btn btn-secondary'>등록하기</button>
+                    	       <c:set var="doneLoop" value="true" />
+                    	    </c:if>
+                    	</c:if>
                     	</c:if> 
                		</c:forEach>
-               		   
+
                		</c:when>
                		<c:otherwise>
                			<button type='submit' id='addreview-btn' class='btn btn-secondary'>등록하기</button>
                		</c:otherwise>
                		</c:choose>
-               		
+
                     </c:if>
                     <c:if test='${sessionScope.userId == null}'>
                     	<button type='button'  class='btn btn-secondary'  data-dismiss='modal' data-toggle='modal'
@@ -202,25 +208,32 @@ margin-left: 1px;
                     </c:if>
                   </form>
                 <br>
+                <div id='fixReviewPost-div' name='fixReviewPost-div' style="display:none">
+                            		<form  method='post' action='./fixReview'>
+                            		<c:forEach var="dbreviews" items="${reviewList.list}" varStatus="index">
+                            			<c:if test='${dbreviews.writer == sessionScope.userName }'>
+                            				<input type='hidden' name='reviewNum' id='reviewNum' value='${dbreviews.reviewNum}'/>
+                            				<input type='text' name='reviewPost' id='reviewPost'/>
+                            			</c:if>
+                            		</c:forEach>
+                            		
+                            		<button type='submit' id='fixReview-btn' class='btn btn-secondary'>수정</button>
+                                  		  </form>
+                            	</div>
                 <hr>
                 <!--   -->
                 <div id='reviews-card' style="overflow:scroll; width:300px; height:300px;" >
 					<c:choose>
+					
 						<c:when test='${reviewList.list.size() >0}'>
 							<c:forEach var="reviewlist" items="${reviewList.list}">
+							
                     <div class='card'>
-                        
                         
                         <div class='card-body'>
                         		
                             	<h6 id ='reviewWriter-h5' class='card-title'>${reviewlist.writer}</h5>
-                            	<div id='fixReviewPost-div' name='fixReviewPost-div'>
-                            		<form  method='post' action='./fixReview'>
-                            		<input type='hidden' name='reviewNum' id='reviewNum' value='${reviewlist.reviewNum}'/>
-                            		<input type='text' name='reviewPost' id='reviewPost'/>
-                            		<button type='submit' id='fixReview-btn' class='btn btn-secondary'>수정</button>
-                                  		  </form>
-                            	</div>
+                            	
 								<div id='reviewPost-div'>
                                 <p   class='card-text'>${reviewlist.reviewPost}</p>
                                 </div>
@@ -228,8 +241,8 @@ margin-left: 1px;
                               
                                 <h6 class='card-subtitle'></h6>
                                 <form  method='post' action='./delReview'>
-                                <c:choose>
                                 
+                                  <c:choose>
                                   <c:when test='${sessionScope.userName == reviewlist.writer}'>
                                   		
                                   		 <button type='button' id='inputfixReview-btn' class='btn btn-secondary'>수정</button>
@@ -251,6 +264,7 @@ margin-left: 1px;
                     </c:forEach>
                     </c:when>
                     </c:choose>
+                    
 									
                     
                 </div>
@@ -285,7 +299,8 @@ var reviewNum;
 
 $(document).ready(function() {
 	$('#fixReviewPost-div').hide(); 
-	
+	//$('#overlapReview-btn').css('display','inline');
+	//$('#addreview2-btn').css('display','inline');
 	$('#reportCode').val($('#reportreason-dropdown').val());
 	
 	$("#inputfixReview-btn").click(function(){
@@ -301,12 +316,18 @@ $(document).ready(function() {
 		reviewNum =  $(e.relatedTarget).data('reviewnum');
 		$('#reporter').val(reporter);
 		$('#reportReviewNum').val(reviewNum);
-		
-		
+
 	});
+	
+	if($("#addreview-btn").css("display") !="none"){
+		//$("#overlapReview-btn").css("display","none");
+		//$("#addreview2-btn").css("display","none");
+	}
+	
+	
 });
 
-	
+
 	    	
 	  
 </script>

@@ -213,7 +213,7 @@ if(request.getParameterValues("urlStr")!=null){
 						val = addr[key]; 
 						if(val ==<%=addrCode%>){
 							$('p').eq(<%=temp%>).text("주소:" + addr['시도명'] +" " + addr['시군구명']+" "+addr['동리명']);
-							$('#addr').val(addr['시도명'] +" " + addr['시군구명']+" "+addr['동리명']);
+							
 						}
 					}
 				}
@@ -225,8 +225,9 @@ if(request.getParameterValues("urlStr")!=null){
 	
 </script>
          <p ></p>
-          <input type='hidden' name='addr' id='addr'/>
-          <input type='hidden' name='sanaName' id='reviewNum' value='<%=getTagValue("adminNm", eElement) %>'/>
+          <input type='hidden' name='sanaName' id='sanaName' value='<%=getTagValue("adminNm", eElement) %>'/>
+          <input type='hidden' name='sanaNum' id='sanaNum' value='<%=getTagValue("longTermAdminSym", eElement)%>'/>
+          <input type='hidden' name='city' id='city' value='<%=getTagValue("siDoCd", eElement) %>'/>
             <a href='03'><button type='submit'>지도보기</button></a>
             </form>
 

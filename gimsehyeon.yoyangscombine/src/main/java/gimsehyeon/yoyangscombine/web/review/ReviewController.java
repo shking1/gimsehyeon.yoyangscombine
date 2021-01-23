@@ -33,18 +33,18 @@ public class ReviewController {
 	public String getreview(Model model,HttpSession session) {
 		
 		String sanaName = (String)session.getAttribute("sanaName");
-		String addr = (String)session.getAttribute("addr");
 		
 		if(sanaService.getSana(sanaName) == null) {
 			sanaService.addSana(sanaName);
 		}
+		
 		List<Review> rev = reviewService.getReviews(sanaName);
 		
 		Map<String, Object> reviewList = new HashMap<>();
 		reviewList.put("list",rev);
 		model.addAttribute("reviewList",reviewList);
 		model.addAttribute("sanaName", sanaName);
-		model.addAttribute("addr", addr);
+		
 		
 		return "sanatorium/03";
 	}

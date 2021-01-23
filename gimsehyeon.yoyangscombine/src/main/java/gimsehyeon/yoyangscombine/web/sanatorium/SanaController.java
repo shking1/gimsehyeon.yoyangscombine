@@ -34,9 +34,10 @@ public class SanaController {
 	}
 	
 	@PostMapping("/sanatorium/getReviewlist")
-	public String getSanadata( @RequestParam("sanaName") String sanaName, @RequestParam("addr") String addr,HttpSession session) {
+	public String getSanadata( @RequestParam("sanaName") String sanaName,HttpSession session) {
 		session.setAttribute("sanaName", sanaName);
-		session.setAttribute("addr", addr);
+		
+		
 		return "redirect:../sanatorium/03";
 	}
 }
