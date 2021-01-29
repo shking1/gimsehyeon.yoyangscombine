@@ -147,6 +147,13 @@ list-style: none;
 margin-left: 1px;
 }
 
+#inputfixReview-btn{
+	padding: 3px;
+}
+#fixReviewPost-btn{
+padding: 3px;
+}
+
 </style>
 
 
@@ -208,18 +215,7 @@ margin-left: 1px;
                     </c:if>
                   </form>
                 <br>
-                <div id='fixReviewPost-div' name='fixReviewPost-div' style="display:none">
-                            		<form  method='post' action='./fixReview'>
-                            		<c:forEach var="dbreviews" items="${reviewList.list}" varStatus="index">
-                            			<c:if test='${dbreviews.writer == sessionScope.userName }'>
-                            				<input type='hidden' name='reviewNum' id='reviewNum' value='${dbreviews.reviewNum}'/>
-                            				<input type='text' name='reviewPost' id='reviewPost'/>
-                            			</c:if>
-                            		</c:forEach>
-                            		
-                            		<button type='submit' id='fixReview-btn' class='btn btn-secondary'>수정</button>
-                                  		  </form>
-                            	</div>
+                
                 <hr>
                 <!--   -->
                 <div id='reviews-card' style="overflow:scroll; width:300px; height:300px;" >
@@ -235,20 +231,26 @@ margin-left: 1px;
                             	<h6 id ='reviewWriter-h5' class='card-title'>${reviewlist.writer}</h5>
                             	
 								<div id='reviewPost-div'>
-                                <p   class='card-text'>${reviewlist.reviewPost}</p>
+                                <p   class='card-text'>
+                                <div class='row'>
+                                	<input type='text' id='reviewPost${reviewlist.reviewNum}' name='reviewPost'  class=' col-7' 
+											value='${reviewlist.reviewPost}' style="margin-left: 5px; border:none" readonly >
+									<div id='fixReview-div${reviewlist.reviewNum}' class='col-4'></div>
+                                </div>
+                                </p>
                                 </div>
                                 <p class='card-text'>${reviewlist.writingDate }</p>
                               
                                 <h6 class='card-subtitle'></h6>
-                                <form  method='post' action='./delReview'>
+                                <form  method='post' name='delReviewform' action='./delReview'>
                                 
                                   <c:choose>
                                   <c:when test='${sessionScope.userName == reviewlist.writer}'>
                                   		
-                                  		 <button type='button' id='inputfixReview-btn' class='btn btn-secondary'>수정</button>
+                                  		 <button type='button' id='inputfixReview-btn' class='btn btn-secondary' onClick="fixReview('${reviewlist.reviewNum}')">수정</button>
                                   		 
                                   		  <input type='hidden' name='reviewNum' id='reviewNum' value='${reviewlist.reviewNum}'/>
-                                  		 <button type='submit' id='delReview-btn' class='btn btn-secondary'>삭제</button>
+                                  		 <button type='button' id='delReview-btn' class='btn btn-secondary' data-target='#delReviewModal' data-dismiss='modal' data-toggle='modal'>삭제</button>
                                   		  </form>
                                   </c:when>
                                   <c:otherwise>
@@ -296,19 +298,43 @@ var map = new naver.maps.Map('map', mapOptions);
 var reporter;
 var reviewNum;
 
+function fixReview(reviewNum){
+	$('#reviewPost' + reviewNum ).attr("readonly",false);
+	$('#reviewPost' + reviewNum ).css("border","1px solid");
+	$("#fixReview-div" + reviewNum).html("<a class='btn btn-secondary' id='fixReviewPost-btn'onClick='fixReviewProc("+reviewNum+")' >수정</a>");
+	$("#inputfixReview-btn").hide();
+	
+}
+
+function fixReviewProc(reviewNum){
+	var reviewPost = $("#reviewPost" + reviewNum ).val();
+	var pathName = window.location.href;
+	var param = {
+			"reviewNum" : reviewNum,
+			"reviewPost" : reviewPost
+	};
+	
+	$.ajax({
+		type: "post",
+		url: "../sanatorium/fixReview",
+		data: param,
+		success : function(){
+			location.href= pathName;
+		}
+	});
+}
+
+
+
+
 
 $(document).ready(function() {
 	$('#fixReviewPost-div').hide(); 
-	//$('#overlapReview-btn').css('display','inline');
-	//$('#addreview2-btn').css('display','inline');
+	
 	$('#reportCode').val($('#reportreason-dropdown').val());
 	
-	$("#inputfixReview-btn").click(function(){
-		
-		$('#fixReviewPost-div').show();
-		$('#reviewPost-div').hide();
-		$("#inputfixReview-btn").hide();
-		
+	$('#confirmDel-btn').click(function(){
+		document.delReviewform.submit();
 	});
 	
 	$("#reportReview").on('show.bs.modal', function(e) {
@@ -319,19 +345,34 @@ $(document).ready(function() {
 
 	});
 	
-	if($("#addreview-btn").css("display") !="none"){
-		//$("#overlapReview-btn").css("display","none");
-		//$("#addreview2-btn").css("display","none");
-	}
+	
+	
 	
 	
 });
 
-
-	    	
+   	
 	  
 </script>
-
+<div id='delReviewModal' name='delReviewModal' class='modal fade' tabindex='-1'>
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title'>삭제</h5>
+                <button type='button' class='close' data-dismiss='modal'>
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+                <p>정말로 삭제 하시겠습니까?</p>
+            </div>
+            <div class='modal-footer'>
+              <button type='button' id='confirmDel-btn'class='btn btn-secondary' >삭제</button>
+               <button type='button' class='btn btn-secondary' data-dismiss='modal'>취소</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div id='overlapReview' class='modal fade' tabindex='-1'>
     <div class='modal-dialog'>
