@@ -230,8 +230,7 @@ function btnUpdate(commNum) {
 								<a class='btn btn-secondary'
 									href='/gimsehyeon.yoyangscombine/communication/editPost?communicationNum=${commPost.communicationNum}'>수정</a>
 							</c:if>
-								<a class='btn btn-secondary'  data-target='#reportPost' data-reporter='${sessionScope.userId}' data-commnum='${commPost.communicationNum}' class='btn btn-secondary' data-dismiss='modal' data-toggle='modal'
-								>신고하기</a>
+								
 						</div>
 					</div>
 				</form>
@@ -282,37 +281,7 @@ function btnUpdate(commNum) {
 				</div>	
 			</div>
 			
-			<div class='modal fade' id='reportPost'>
-			    <div class='modal-dialog'>
-			        <div class='modal-content'>
-			            <div class='modal-header'>
-			                <h5 class='modal-title'>신고하기</h5>
-			                <button type='button' class='close' data-dismiss='modal' tabindex='-1'>
-			                    <span>&times;</span>
-			                </button>
-			            </div>
-			            <div class='modal-body'>
-			            	<form id='report-form' method='post' action='./addReport'>
-			                <select id='reportreason-dropdown' class='justify-content-center' name='reportreason-dropdown'>
-			                    <option value='1'>도배/광고성</option>
-			                    <option value='2'>선정성/폭력성</option>
-			                    <option value='3'>명예훼손</option>
-			                    <option value='4'>자살암시/유해성</option>
-			                    <option value='other'>기타</option>
-			                </select>
-			                <textarea id='reporttext' name='reportContent'></textarea>
-			                <input type='hidden' id='reporter' name='reporter'/>
-                			<input type='hidden' id='reportCode' name='reportCode'/>
-               				 <input type='hidden' id='reportCommNum' name='commNum'/>
-			            </div>
-			            <div class='modal-footer'>
-			                <button type='button' class='btn btn-secondary' data-dismiss='modal'>취소</button>
-			                <button type='button' class='btn btn-secondary' >신고</button>
-			                </form>
-			            </div>
-			        </div>
-			    </div>
-			</div>
+			
 			
 			<div id='confirmReport' class='modal fade' tabindex='-1'>
 			    <div class='modal-dialog'>

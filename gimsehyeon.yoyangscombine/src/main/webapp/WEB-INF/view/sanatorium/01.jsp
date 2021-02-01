@@ -137,13 +137,7 @@ if(request.getParameterValues("urlStr")!=null){
              <div id='border'>
               100x120
               </div>
-               <div class='star ml-2'>
-                   <span class="fa fa-star checked"></span>
-                   <span class="fa fa-star checked"></span>
-                   <span class="fa fa-star checked"></span>
-                   <span class="fa fa-star checked"></span>
-                   <span class="fa fa-star"></span>
-            </div>
+               
          </div>
            <div id='border2 ml-2'>   
            <form method='post' action='./getReviewlist'>

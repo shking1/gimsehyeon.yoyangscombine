@@ -18,6 +18,5 @@ public interface ReportService {
 	Integer addCommentReport( int reporter,  int reportCode, 
 			String reportContent, int commentNum);
 	Integer delReport(int reviewNum);
-	Integer delPostReport(int communicationNum);
-	Integer delCommentReport(int commentNum);
+	
 }

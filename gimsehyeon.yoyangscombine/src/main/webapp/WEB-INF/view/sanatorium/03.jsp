@@ -254,8 +254,10 @@ padding: 3px;
                                   		  </form>
                                   </c:when>
                                   <c:otherwise>
+                                  	<c:if test='${sessionScope.userName != null}'>
                                   	 <button type='button' id='report-btn' data-target='#reportReview' data-reporter='${sessionScope.userId}' data-reviewnum='${reviewlist.reviewNum}' class='btn btn-secondary' data-dismiss='modal' data-toggle='modal'
                                    		>신고</button>
+                                   	</c:if>
                                   </c:otherwise>
                                   </c:choose>
                                
